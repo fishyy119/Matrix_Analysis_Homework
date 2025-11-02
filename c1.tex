@@ -1,0 +1,168 @@
+\documentclass{matrix-homework}
+% \usepackage{showframe}
+\usepackage{extarrows}
+
+\chapternumber{1}
+\begin{document}
+
+\section{}
+试证：所有$n$阶实对称矩阵构成$\dfrac{n(n+1)}{2}$维线性空间；所有$n$阶反对称矩阵构成$\dfrac{n(n-1)}{2}$维线性空间。
+
+\answer
+显然, 在所有$n$阶实对称矩阵构成的空间上可以定义矩阵加法与数乘运算,其满足封闭性与其他各项基本性质,下面主要对其维数进行分析.
+
+$n$阶实对称矩阵在其主对角线上有$n$个独立元素.对于主对角线以外的部分,其上三角与下三角元素有重复,只需要考虑一部分,即$\dfrac{n(n-1)}{2}$个独立元素.故该线性空间维数为
+$$ n + \dfrac{n(n-1)}{2} = \dfrac{n(n+1)}{2} $$
+
+类似地,反对称矩阵主对角线元素为0,其他部分有$\dfrac{n(n-1)}{2}$个独立元素,线性空间维数为
+$$\dfrac{n(n-1)}{2}$$
+\qed
+
+\section{}
+设$R[x]_4$是所有次数小于4的实系数多项式组成的线性空间，求多项式$p(x)=1+2x^3$在基$1,x-1,(x-1)^2,(x-1)^3$下的坐标。
+
+\answer
+设$t=x-1$,则$x=t+1$,从而有
+\begin{align*}
+    p(x) & = 1+2(t+1)^3                 \\
+         & = 2(t^3 + 3t^2 + 3t + 1) + 1 \\
+         & = 2t^3 +6t^2 +6t +3
+\end{align*}
+故坐标为$(3,6,6,2)$
+\qed
+
+\newpage
+\section{}
+\newcommand{\Axi}[1]{\underline{A}^{#1}\left(\xi\right)}
+设$\underline{A}$是$n$维线性空间$V$的一个线性变换,对某个$\xi \in V$有$\Axi{k-1} \neq0, \Axi{k-} =0$, 试证: $\xi,\Axi{},\Axi{2},\cdots,\Axi{k-1}$线性无关
+
+\answer
+使用反证法,设$\xi,\Axi{},\Axi{2},\cdots,\Axi{k-1}$线性相关,于是有不全为0的系数$c_0,c_1,\allowbreak c_2,\allowbreak\cdots,c_{k-1}$使得
+$$ c_0\xi + c_1\Axi{1} + c_2\Axi{2} + \cdots + c_{k-1}\Axi{k-1} = 0 $$
+对上式两端同时进行线性变换可得
+\begin{align*}
+                                   & c_0 \Axi{1} + c_1 \Axi{2} + c_2 \Axi{3} + \cdots + c_{k-1} \Axi{k}      \\
+    \xlongequal[]{\Axi{k}=0} \quad & c_0 \Axi{1} + c_1 \Axi{2} + c_2 \Axi{3} + \cdots + c_{k-2} \Axi{k-1}    \\
+    =                        \quad & \underline{A}(0)    =                                                 0
+\end{align*}
+重复上述过程,最终得到
+$$c_0\Axi{k-1}=0$$
+由于$\Axi{k-1}\ne0$,所以$c_0=0$,将该结果向上一次变换得到的等式带入得到
+$$c_0\Axi{k-2} + c_1\Axi{k-1}=0$$
+故$c_1=0$.不断重复此步骤,最终得到$c_0=c_1=c_2=\cdots=c_{k-1}=0$,与原假设矛盾.
+
+故原假设不成立,$\xi,\Axi{},\Axi{2},\cdots,\Axi{k-1}$线性无关.
+\qed
+
+\section{}
+设$R[x]_4$中,试求在基$\alpha_1=1,\alpha_2=x,\alpha_3=x^2$下的矩阵为
+\begin{equation*}
+    \begin{bmatrix}
+        1 & 1 & 1 \\
+        0 & 1 & 1 \\
+        0 & 0 & 1
+    \end{bmatrix}
+\end{equation*}
+的线性变换$\underline{A}$,并求$g=2+4x-7x^2$的像.
+
+\answer
+$\underline{A}(x_0,x_1,x_2)=(x_0+x_1+x_2, x_1+x_2, x_2)$
+
+$\underline{A}(g)=-1-3x-7x^2$
+\qed
+
+\section{}
+已知两个$n$维列向量$\alpha=[a_1,a_2,\cdots,a_n]^{\TT},\beta=[b_1,b_2,\cdots,b_n]^{\TT}$都是非零列向量,$b_1\ne0$,且$\alpha^\TT\beta=0$,若$A=\alpha\beta^\TT$,求$A$的特征值与特征向量.
+
+\answer
+由$A=\alpha\beta^\TT$可知,$A$的秩为1,至多有一个非零特征值
+
+又有$\Tr{A} = \Tr{\alpha\beta^\TT} = \alpha^\TT\beta=0$,$A$的全部特征值和为0,故A的所有特征值均为0.
+
+对于特征值$\lambda=0$,其特征向量$v$满足
+$$Av=\alpha\beta^\TT v=\lambda v=0$$
+故$\beta^\TT v=0$,特征向量$v$是与$\beta$正交的任意非零向量.
+\qed
+
+\section{}
+在线性空间$R[x]_4$中,基$1,x,x^2,x^3$到基$1,1-x,1-x-x^2,1-x-x^2-x^3$的过渡矩阵为.
+
+\answer
+记旧基底$1,x,x^2,x^3$为$\alpha_1, \alpha_2, \alpha_3, \alpha_4$,新基底$1,1-x,1-x-x^2,1-x-x^2-x^3$为$\beta_1, \beta_2, \beta_3, \beta_4$.
+有
+\begin{equation*}
+    \left\{
+    \begin{aligned}
+        \beta_1 & = \alpha_1                           \\
+        \beta_2 & =\alpha_1-\alpha_2                   \\
+        \beta_3 & =\alpha_1-\alpha_2-\alpha_3          \\
+        \beta_4 & =\alpha_1-\alpha_2-\alpha_3-\alpha_4
+    \end{aligned}
+    \right.
+\end{equation*}
+于是有
+$$
+    \begin{bmatrix}
+        \beta_1 & \beta_2 & \beta_3 & \beta_3
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        \alpha_1 & \alpha_2 & \alpha_3 & \alpha_3
+    \end{bmatrix}
+    \underbrace{
+        \begin{bmatrix}
+            1 & 1  & 1  & 1  \\
+            0 & -1 & -1 & -1 \\
+            0 & 0  & -1 & -1 \\
+            0 & 0  & 0  & -1
+        \end{bmatrix}
+    }_{P}
+$$
+其中$P$即为过渡矩阵.
+\qed
+
+\newpage
+\section{}
+设$R[x]_4$是所有次数小于4的实系数多项式组成的线性空间，求多项式$p(x)=3+2x^3$在基$1,x-1,(x-1)^2,(x-1)^3$下的坐标。
+
+\answer
+设$t=x-1$,则$x=t+1$,从而有
+\begin{align*}
+    p(x) & = 3+2(t+1)^3                 \\
+         & = 2(t^3 + 3t^2 + 3t + 1) + 3 \\
+         & = 2t^3 +6t^2 +6t +5
+\end{align*}
+故坐标为$(5,6,6,2)$
+\qed
+
+\section{}
+已知数域$F$上的线性空间$M_{3\times 3}(F)$,令$V=\{A\in M_{3\times 3}(F) | \Tr{A}=0\}$,则$V$的维数为\_\_\_\_,写出$V$的一组基\_\_\_\_.
+
+\answer
+$\mr{dim}(V)=8$,
+
+$\{a_{12},a_{13},a_{21},a_{23},a_{31},a_{32},a_{11}-a_{22},a_{22}-a_{33}\}$(其中$a_{ij}$表示仅第$i$行$j$列为1的$3\times3$矩阵)
+\qed
+
+\section{}
+在线性空间$R^3$中,定义线性变换$f([x_1,x_2,x_3])=[x_3,x_2+x_3,x_1+x_2+x_3]$,其中$x_i\in R$,则$f$在基$\varepsilon_1=[1,0,0]$,$\varepsilon_2=[0,1,0]$,$\varepsilon_3=[0,0,1]$下的矩阵表示为
+
+\answer
+$
+    \begin{bmatrix}
+        0 & 0 & 1 \\
+        0 & 1 & 1 \\
+        1 & 1 & 1
+    \end{bmatrix}
+$\qed
+
+\section{}
+在线性空间$R^3$中,我们取三个向量$\alpha_1=[1,-1,1]$,$\alpha_2=[2,1,0]$,$\alpha_3=[3,0,1]$,分别生成子空间$V_1=L(\alpha_1,\alpha_2)$,$V_2=L(\alpha_1,\alpha_3)$,则$V_1\cap  V_2$的维数为.
+
+\answer
+$\alpha_1+\alpha_2=\alpha_3$
+
+$\Dim{V_1\cap V_2} = \Dim{V_1} + \Dim{V_2} - \Dim{V_1 + V_2} = 2+2-2 = 2$
+\qed
+
+\end{document}

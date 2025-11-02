@@ -1,0 +1,27 @@
+{
+  // "my_boldsymbol": {
+  //   "prefix": "bs",
+  //   "body": "\\bs{$1}",
+  //   "description": "Insert \\boldsymbol"
+  // },
+  "my_mathrm": {
+    "prefix": "mr",
+    "body": "\\mr{$1}",
+    "description": "Insert \\mathrm"
+  },
+  "dim": {
+    "prefix": "Dim",
+    "body": "\\Dim{$1}",
+    "description": "Insert \\mathrm{dim}"
+  },
+  "tr": {
+    "prefix": "Tr",
+    "body": "\\Tr{$1}",
+    "description": "Insert \\mathrm{tr}"
+  },
+  "answer": {
+    "prefix": "answer",
+    "body": "\\answer",
+    "description": "Insert \\answer"
+  },
+}
