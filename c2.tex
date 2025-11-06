@@ -1,0 +1,216 @@
+\documentclass{matrix-homework}
+\newcommand{\la}{\lambda}
+\newcommand{\simeqstep}[1]{\;\overset{#1}{\simeq}\;}
+\newcommand{\rowSwap}[2]{\simeqstep{R_{#1} \leftrightarrow R_{#2}}}
+\newcommand{\rowScale}[2]{\simeqstep{R_{#1} \to #2 R_{#1}}}
+\newcommand{\rowAdd}[3]{\simeqstep{R_{#1} \to R_{#1}  #2 R_{#3}}}
+\newcommand{\colSwap}[2]{\simeqstep{C_{#1} \leftrightarrow C_{#2}}}
+\newcommand{\colScale}[2]{\simeqstep{C_{#1} \to #2 C_{#1}}}
+\newcommand{\colAdd}[3]{\simeqstep{C_{#1} \to C_{#1}  #2 C_{#3}}}
+
+
+\chapternumber{2}
+\begin{document}
+\section{}
+
+\newcommand{\questionA}{
+    \mat{-\la+1  & 2\la-1      & \la    \\
+        \la      & \la^2       & -\la   \\
+        \la^2 +1 & \la^2+\la-1 & -\la^2}
+}
+\newcommand{\questionB}{\mat{\la^2-1 & 0 \\ 0 & (\la-1)^3}}
+
+求下列$\la -$矩阵的Simth标准型$$(a)\questionA,\quad(b)\questionB$$
+\answer
+$(a)$
+$
+    \questionA
+    \rowAdd{1}{+}{2}
+    \mat{1 & \la^2+2\la-1 & 0\\
+        \la & \la^2 & -\la \\
+        \la^2+1 & \la^2+\la-1 & -\la^2}
+    \simeqstep{}
+$
+
+$
+    \mat{1 & \la^2+2\la-1 & 0\\
+        0 & -\la^3-\la^2+\la & -\la \\
+        0 & -\la^4-2\la^3+\la^2-\la & -\la^2}
+    \simeqstep{}
+    \mat{1 & 0 & 0\\
+        0 & -\la^3-\la^2+\la & -\la \\
+        0 & -\la^4-2\la^3+\la^2-\la & -\la^2}
+    \rowAdd{3}{-\la}{2}
+$
+
+$
+    \mat{1 & 0 & 0\\
+        0 & -\la^3-\la^2+\la & -\la \\
+        0 & -\la^3-\la & 0}
+    \colSwap{2}{3}
+    \mat{1 & 0 & 0\\
+        0 & -\la & -\la^3-\la^2+\la\\
+        0 & 0 & -\la^3-\la}
+    \simeqstep{}
+    \mat{1 & 0 & 0\\
+        0 & \la & 0\\
+        0 & 0 & \la^3+\la}
+$\\ \\
+
+$(b)$
+
+$D_1(\la) = \la-1$, $D_2(\la) = (\la+1)(\la-1)^4$
+
+$d_1(\la) = \la-1$, $d_2(\la) = (\la+1)(\la-1)^3$
+
+$\questionB \simeqstep{} \mat{d_1(\la) & 0 \\ 0 & d_2(\la)}$
+\qed
+
+\section{}
+设$A(\la)$为一个5阶$\la-$矩阵,其秩为4,初等因子为$\la,\la^2,\la^2,\la-1,\la-1,\la+1,(\la+1)^3$,试求$A(\la)$的不变因子及其smith标准形.
+
+\answer
+$d_4(\la) = \la^2(\la-1)(\la+1)^3$ \qquad
+$d_3(\la) = \la^2(\la-1)(\la+1)$ \qquad
+$d_2(\la) = \la$ \qquad
+$d_1(\la) = 1$
+
+simth标准形为
+$\mr{diag}\left(d_1(\la),d_2(\la),d_3(\la),d_4(\la),0\right)$
+\qed
+
+\newpage
+\section{}
+求下列矩阵的Jordan标准形及其相似变换矩阵$P$.
+$$\mat{2 & 1 & 0 & -1 \\ 0 & 2 & 0 & 1 \\ 0 & 0& 2 & 1 \\ 0 & 0 & 0 & 2}$$
+\answer
+$
+    \la I - A =
+    \mat{\la-2 & -1 & 0 & 1 \\
+        0 & \la-2 & 0 & -1 \\
+        0 & 0 & \la-2 & -1 \\
+        0 & 0 & 0 & \la-2}
+    \simeqstep{}
+    \mat{1 & 0 & 0 & 0 \\
+        0 & 1 & 0 & 0 \\
+        0 & 0 & \la-2 & 0 \\
+        0 & 0 & 0 & (\la-2)^3}
+$
+
+初等因子为$\la-2,(\la-2)^3$,Jordan标准形为
+$$J = \mat{2 & 1 & 0 & 0 \\ 0 & 2 & 1 & 0 \\ 0 & 0 & 2 & 0 \\ 0 & 0 & 0 & 2}$$
+
+设相似变换矩阵为$P=[X_1,X_2,X_3,X_4]$，则$AP=PJ$
+$$AP=[AX_1,AX_2,AX_3,AX_4]=PJ=[X_1,X_2,X_3,X_4]J=[2X_1,X_1+2X_2,X_2+2X_3,2X_4]$$
+从而有
+$$AX_1=2X_1,AX_2=X_1+2X_2,AX_3=X_2+2X_3,AX_4=2X_4$$
+首先考虑$(2I-A)X=0$,其全部解为$k_1[1,0,0,0]^\TT+k_2[0,0,1,0]^\TT$
+
+取$X_1=[1,0,0,0]^\TT$,$X_4=[0,0,1,0]^\TT$
+
+随后考虑方程$(A-2I)X=X_1$,其全部解为$[l_1,1,l_2,0]^\TT$,取$X_2=[0,1,1,0]^\TT$
+
+最后考虑方程$(A-2I)X=X_2$,全部解为$[m_1,1,m_2,1]^\TT$,取$X_3=[0,1,0,1]^\TT$
+
+故$P=\mat{1 & 0 & 0 & 0 \\ 0 & 1 & 1 & 0 \\ 0 & 1 & 0 & 1 \\ 0 & 0 & 1 & 0}$
+\qed
+
+\newpage
+\section{}
+已知矩阵$$A=\mat{3 & 0 & 0 \\ a & 3 & 0 \\ c & b & 2}$$求A的所有可能Jordan标准形,并给出A可对角化的条件.
+
+\answer
+$|\la E-A|=(\la-2)(\la-3)^2$
+
+特征值$\la_1=2$是一重根,对应一个1阶Jordan块
+
+对于特征值$\la_2=3$,$A-3E=\mat{0 & 0 & 0 \\ -a & 0 & 0 \\ -c & -b &1}$,有如下两种情况:
+\begin{itemize}
+    \item $a=0$,$\mr{rank}(A-3E)=1$,$q_{\la_2}=2$,对应两个1阶Jordan块.即Jordan标准形为$\mat{3 \\ &3 \\ &&2}$
+    \item $a\ne 0$,$\mr{rank}(A-3E)=2$,$q_{\la_2}=1$,对应一个2阶Jordan块.即Jordan标准形为$\mat{3&1 \\ &3 \\ &&2}$
+\end{itemize}
+$A$可对角化的条件为$a=0$.
+\qed
+
+\newpage
+\section{}
+
+已知$A^2=E$，证明：$A$相似于矩阵
+$$
+    \begin{bmatrix}
+        1                                \\
+         & \ddots                        \\
+         &        & 1                    \\
+         &        &   & -1               \\
+         &        &   &    & \ddots      \\
+         &        &   &    &        & -1
+    \end{bmatrix}
+$$
+\answer
+设$A$的Jordan标准形为$J=\mr{diag}(J_1,J_2,\cdots,J_n)$,存在可逆矩阵使得$P^{-1}AP=J$,于是有
+$$J^2=(P^{-1}AP)^2=P^{-1}A^2P=E$$
+即$J_i^2=E_{d_i}$,其中
+$$
+    J_i=
+    \mat{a_i & 1 \\ & a_i & 1 \\ && \ddots & \ddots \\ &&& \ddots & 1 \\ &&&& a_i }_{d_i\times d_i}
+    ,\quad
+    J_i^2=
+    \mat{a_i^2 & a_i & 1 \\ 0 & a_i^2 & a_i & 1 \\ & \ddots & \ddots & \ddots & \ddots\\ && \ddots & \ddots & \ddots & 1\\ &&& \ddots & \ddots & a_i \\ &&&& 0 & a_i^2 }_{d_i\times d_i}
+$$
+当且仅当$d_i=1$时,才有$J_i^2=E$.经过适当初等变换后,可得
+
+$A$相似于$\mr{diag}(1,\cdots,1,-1,\cdots,-1)$
+\qed
+
+\section{}
+如果$\la-$矩阵$A(\la)$的秩为3,其初等因子为$\la,\la^2,\la^3,\la+2,(\la+2)^2$,则$A(\la)$的行列式因子为
+
+\answer
+$d_3(\la)=\la^3(\la+2)^2$, $d_2(\la)=\la^2(\la+2)$, $d_1(\la)=\la$
+
+$D_3(\la)=\la^6(\la+2)^3$, $D_2(\la)=\la^3(\la+2)$, $D_1(\la)=\la$
+\qed
+
+\section{}
+$\la-$矩阵$A(\la)=\mat{\la^3(\la-2) \\ & \la(\la+1) \\ && \la(\la-2)^2}$的Smith标准形为
+
+\answer
+$D_3(\la)=\la^5(\la+1)(\la-2)^3$, $D_2(\la)=\la^2(\la-2)$, $D_1(\la)=\la$
+
+$d_3(\la)=\la^3(\la-2)^2(\la+1)$, $d_2(\la)=\la(\la-2)$, $d_1(\la)=\la$
+\qed
+
+\section{}
+下面四个矩阵有三个Jordan块构成的是
+
+\answer
+$\mat{-1 & 0 & 0 & 0 \\ 0 & -1 & 1 & 0 \\ 0 & 0 & -1 & 0 \\ 0 & 0 & 0 & -1}$
+\qed
+
+\section{}
+两个$n$阶复矩阵相似的充要条件为:
+\\A. 秩相等
+\\B. 初等因子完全相同
+\\C. 行列式值相等
+\\D. 特征值完全相同
+
+\answer
+B\qed
+
+\section{}
+将矩阵$A=\mat{1 & -1 & 0 \\ -2 & 2 & 4 \\ 1 & 0 & 3}$表示成一个数量矩阵和一个迹为零的矩阵之和
+
+\answer
+$\mat{-1 & -1 & 0 \\ -2 & 0 & 4 \\ 1 & 0 & 1} + \mat{2 & 0 & 0 \\ 0 & 2 & 0 \\ 0 & 0 & 2}$
+\qed
+
+\section{}
+已知两个$n$维列向量$\alpha,\beta$,且$\beta^\TT\alpha=6$,则矩阵$A=\alpha\beta^\TT$的Jordan标准形为
+
+\answer
+$\mr{rank}(A)=1,\mr{tr}(A)=6$, $A$仅存在一个非零特征值为$6$
+
+Jordan标准形为$\mr{diag}(6,0,\cdots,0)$
+\qed
+
+\end{document}

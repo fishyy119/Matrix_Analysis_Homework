@@ -61,6 +61,7 @@
 
 % 宏包
 \RequirePackage{amsmath, amssymb}
+\RequirePackage{extarrows}
 
 % 快捷定义
 \newcommand{\answer}{%
@@ -74,4 +75,6 @@
 \newcommand{\Tr}[1]{\mr{tr}(#1)}
 \newcommand{\Dim}[1]{\mr{dim}(#1)}
 \newcommand{\qed}{\hfill $\blacksquare$}
+
+\newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
 \endinput
