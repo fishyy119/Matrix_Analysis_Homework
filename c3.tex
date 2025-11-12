@@ -1,0 +1,150 @@
+\documentclass{matrix-homework}
+
+\chapternumber{3}
+\begin{document}
+
+\section{}
+举例说明可对角化的矩阵不一定是正规矩阵.
+
+\answer
+取两个线性无关但是不正交的向量,令
+
+$P=[\alpha_1,\alpha_2]=\mat{1&1\\0&1}$,$D=\mat{1&0\\0&2}$
+
+则$A=PDP^{-1}=\mat{1&1\\0&1}\mat{1&0\\0&2}\mat{1&-1\\0&1}=\mat{1&1\\0&2}$
+
+验证从略,$A$具有两个不正交的特征向量$\alpha_1,\alpha_2$,不是正规矩阵
+\qed
+
+
+\section{}
+设$A$为正定H矩阵,$B$为H矩阵,试证:$AB$与$BA$的特征值为实数.
+
+\answer
+由于$A$为正定H矩阵,所以存在可逆矩阵$Q$,使得$A=Q^\HH Q$,于是有
+$$AB=Q^\HH Q B= Q^\HH QB Q^\HH (Q^\HH)^{-1} \sim QBQ^\HH$$
+
+由于$B$是H矩阵,故$QBQ^\HH$也是H矩阵,特征是为实数.
+
+$AB$与$QBQ^\HH$具有相同的特征值,故$AB$特征值为实数.
+
+同理,$BA$特征值为实数.
+\qed
+
+\newpage
+\section{}
+设$A$是半正定H矩阵,$A\ne 0$,$B$是正定H矩阵,试证:$|A+B| >|B|$
+
+\answer
+由于$B$为正定H矩阵,所以存在可逆矩阵$Q$,使得$B=Q^\HH Q$,于是有
+$$|A+B|= |A+Q^\HH Q| = |Q^\HH| |(Q^\HH)^{-1}AQ^{-1}+I| |Q| = |B| |(Q^\HH)^{-1}AQ^{-1}+I|$$
+
+其中矩阵$(Q^\HH)^{-1}AQ^{-1}$仍然是半正定H阵,具有$n$个非负特征值$\lambda_1,\lambda_2,\cdots,\lambda_n$,于是有
+$$|(Q^\HH)^{-1}AQ^{-1}+I| > (1+\lambda_1)(1+\lambda_2)\cdots(1+\lambda_n)>1$$
+
+最终有
+$$|A+B|= |B| |(Q^\HH)^{-1}AQ^{-1}+I| > |B|$$
+\qed
+
+\section{}
+\newcommand{\xx}[2]{\overline{x}_{#1}x_{#2}}
+已知Hermite二次型
+$$f(x_1,x_2,x_3)=\xx{1}{1}+2i\xx{1}{3}-2i\xx{3}{1}+3\xx{2}{2}+\xx{3}{3}$$
+
+求酉变换$X=UY$并将$f(x_1,x_2,x_3)$化为Hermite二次型的标准形.
+
+\answer
+二次型矩阵$A=\mat{1&0&2i\\0&3&0\\-2i&0&1}$, $|\lambda I - A|=(\lambda-3)^2(\lambda+1)$
+
+对于特征值$\lambda=3$,解方程组$(3I-A)X=0$可得两个标准单位向量解为
+$$\eta_1=[0,1,0]^\TT, \eta_2=[\frac{i}{\sqrt{2}},0,\frac{1}{\sqrt{2}}]^\TT$$
+
+同样地,对于特征值$\lambda=-1$,解得$\eta_3=[\dfrac{1}{\sqrt{2}},0,\dfrac{i}{\sqrt{2}}]^\TT$
+
+$U=[\eta_1,\eta_2,\eta_3]$, $U^\HH AU=\mat{3\\&3\\&&-1}$
+\qed
+
+
+\section{}
+设$A,B$为两个正定Hermite矩阵,证明:
+$$\mr{det}(A)+\mr{det}(B)\le\mr{det}(A+B)$$
+\answer
+存在可逆矩阵$P$,使得
+$$P^\HH AP=\mat{\lambda_1\\&\ddots\\&&\lambda_n},P^\HH BP=I$$
+
+其中,由于$A$正定, $\lambda_i > 0 (i=1,\cdots,n)$
+
+$|P^\HH AP|= |P^\HH||A||P|=\lambda_1\cdots\lambda_n$
+
+$|P^\HH BP|=|P^\HH||B||P|=1$
+
+再考虑$P^\HH AP + P^\HH BP = P^\HH (A+B)P=\mat{\lambda_1+1\\&\ddots\\&&\lambda_n+1}$,于是有
+\begin{align*}
+    |P^\HH|| (A+B)||P| & =(\lambda_1+1)\cdots(\lambda_n+1) \\
+                       & \ge \lambda_1\cdots\lambda_n + 1  \\
+                       & = |P^\HH||A||P| + |P^\HH||B||P|
+\end{align*}
+
+又$|P^\HH| \ne 0$,$|P|\ne0$, 最终得$\mr{det}(A)+\mr{det}(B)\le\mr{det}(A+B)$
+\qed
+
+\newpage
+\section{}
+设$\alpha_1=(1,0,i,0)^\TT$,$\alpha_2=(1,1,0,0)^\TT$,求向量$\gamma=(1,1,1,1)^\TT$在子空间$S=\mr{span}\{\alpha_1,\alpha_2\}$上的正交投影.
+
+\answer
+将$\alpha_1,\alpha_2$正交标准化为:
+
+$\beta_1=\alpha_1$, $\eta_1=\dfrac{1}{\sqrt{2}}(1,0,i,0)^\TT$
+
+$\beta_2=\alpha_2-\dfrac{(\alpha_2,\beta_1)}{(\beta_1,\beta_1)}\beta_1= \dfrac{1}{2}(1,2,-i,0)^\TT$, $\eta_2=\dfrac{1}{\sqrt{6}}(1,2,-i,0)^\TT$
+
+令$U=[\eta_1,\eta_2]$,投影变换矩阵为$UU^\TT$
+
+向量$\gamma$在$S$的正交投影为$UU^\TT\gamma=(1-\dfrac{i}{3},1+\dfrac{i}{3},\dfrac{2}{3},0)^\TT$
+\qed
+
+
+\section{}
+已知四阶矩阵$A=\mat{a&b&c&d\\ b&-a&d&-c\\ c&-d&-a&b\\ d&c&-b&-a}$,其中$a,b,c,d$是全不为零的实数,则线性方程组$AX=\eta$的解为.
+
+\answer
+$A^\TT A = AA^\TT = (a^2+b^2+c^2+d^2)I_{4\times 4}$
+
+$X=A^{-1}\eta=(a^2+b^2+c^2+d^2)^{-1}A^\TT\eta$
+\qed
+
+
+\section{}
+已知Hermite二次型$f(x_1,x_2,x_3)=3\xx{1}{1}+1\xx{2}{2}+(1+i)\xx{1}{2}+(1-i)\xx{2}{1}+2\xx{3}{3}$,其是( )二次型
+
+\answer
+$A=\mat{3&1+i&0\\1-i&1&0\\0&0&2}$,三个顺序主子式均正,正定
+\qed
+
+
+\section{}
+已知Hermite二次型$f(x_1,x_2,x_3)=2\xx{1}{1}+i\xx{1}{2}-i\xx{2}{1}+2\xx{2}{2}+2\xx{3}{3}$,其是( )二次型
+
+\answer
+$A=\mat{2&i&0\\-i&2&0\\0&0&2}$,三个顺序主子式均正,正定
+\qed
+
+
+\section{}
+设矩阵$A$为一个$n$阶正定Hermite且又为酉矩阵,则$A$的特征值为.
+
+\answer
+$n$个1
+\qed
+
+
+\section{}
+已知$R^3$中向量$\alpha=(1,0,0)^\TT,\beta=(2,0,3)^\TT$,则向量$X=(x_1,x_2,x_3)^\TT\in R^3$在子空间$\mr{span}\{\alpha,\beta\}$上的正交投影为.
+
+\answer
+$(x_1,0,x_3)^\TT$
+\qed
+
+
+\end{document}

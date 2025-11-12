@@ -72,6 +72,7 @@
 
 \newcommand{\mr}[1]{\mathrm{#1}}
 \newcommand{\TT}{\mr{T}}
+\newcommand{\HH}{\mr{H}}
 \newcommand{\Tr}[1]{\mr{tr}(#1)}
 \newcommand{\Dim}[1]{\mr{dim}(#1)}
 \newcommand{\qed}{\hfill $\blacksquare$}
