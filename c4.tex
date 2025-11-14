@@ -1,0 +1,159 @@
+\documentclass{matrix-homework}
+
+\chapternumber{4}
+\begin{document}
+
+\section{}
+求矩阵$A$的满秩分解
+$$A=\mat{1&1&0&1&0\\ 0&1&1&1&1\\ 2&3&1&3&1}$$
+\answer
+$A\simeq\mat{1&0&-1&0&-1\\ 0&1&1&1&1\\ 0&0&0&0&0}$, $A=\mat{1&1 \\ 0&1 \\ 2&3}\mat{1&0&-1&0&-1\\ 0&1&1&1&1}$
+\qed
+
+
+\section{}
+已知$$A=\mat{0&1\\ -1&0\\ 0&2\\ 1&0}$$求$A$的奇异值分解
+
+\answer
+$A^\HH=B=U\mat{\sqrt{5}&0&0&0\\ 0&\sqrt{2}&0&0}V^\HH$
+
+其中$U=\mat{0&1\\1&0}$, $V_1=B^\HH U\Delta^{-1}=\mat{1/\sqrt{5}&0\\ 0&-1/\sqrt{2} \\ 2/\sqrt{5}&0 \\ 0&1/\sqrt{2}}$,
+
+$V=[V_1, V_2]=\mat{1/\sqrt{5}&0&2/\sqrt{5}&0\\ 0&-1/\sqrt{2}&0&1/\sqrt{2} \\ 2/\sqrt{5}&0&-1/\sqrt{5}&0 \\ 0&1/\sqrt{2}&0&1/\sqrt{2}}$
+
+$A=B^\HH=V\mat{\sqrt{5}&0 \\ 0&\sqrt{2} \\ 0&0 \\ 0&0}U^\HH = V\mat{\sqrt{5}&0 \\ 0&\sqrt{2} \\ 0&0 \\ 0&0}\mat{0&1\\1&0}$
+\qed
+
+
+\section{}
+已知三阶矩阵$$A=\mat{1&-1&1\\x&4&y\\-3&-3&5}$$的二重特征值$\lambda=2$对应两个线性无关的特征向量.
+
+(1) 求$x,y$
+
+(2) 求可逆矩阵$P$,使得$P^{-1}AP为对角矩阵$.
+
+(3) 求$A$的谱分解表达式.
+
+\answer
+(1) 特征值$\lambda=2$代数重复度与几何重复度均为$2$,于是$\mr{rank}(2I-A)=1$
+
+$2I-A=\mat{1&1&-1\\ -x&-2&-y\\ 3&3&-3}$, 于是$x=2, y=-2$.
+
+(2) 带入(1)中结果,$A$有一个2重特征值$\lambda=2$,一个1重特征值$\lambda=6$
+
+$\lambda=2$对应的特征向量为$\alpha_1=[1,0,1]^\TT,\alpha_2=[0,1,1]^\TT$
+
+$\lambda=6$对应的特征向量为$\alpha_3=[1,-2,3]^\TT$
+
+令可逆矩阵$P=[\alpha_1,\alpha_2,\alpha_3]$,则$P^{-1}AP=\mat{2\\&2\\&&6}$
+
+(3) $P^{-1}=\mat{5/4 & 1/4 & -1/4 \\ -1/2 & 1/2 & 1/2 \\ -1/4 & -1/4 & 1/4}=[\beta_1,\beta_2,\beta_3]^\TT$
+
+$G_1=\alpha_1\beta_1^\TT+\alpha_2\beta_2^\TT=\mat{5/4& 1/4& -1/4\\ -1/2& 1/2& 1/2\\ 3/4& 3/4& 1/4}$, $G_2=\alpha_3\beta_3^\TT=\mat{-1/4& -1/4& 1/4\\ 1/2& 1/2& -1/2\\ -3/4& -3/4& 3/4}$
+
+谱分解表达式为$A=2G_1+6G_2$
+\qed
+
+\newpage
+\section{}
+\newcommand{\Det}[1]{\mr{det}(#1)}
+已知$A$为一个$n$阶可逆矩阵,试证:$A$的行列式的绝对值是$A$的所有奇异值之积.
+
+\answer
+$A$可逆,于是有$\mr{rank}(A)=\mr{rank}(A^\HH A)=n$, $A^\HH A$有$n$个正特征值,记为$\alpha_1^2,\alpha_2^2,...,\alpha_n^2$, 其中$\alpha_1,\alpha_2,...,\alpha_n$即为$A$的奇异值,均为正数.
+
+$\Det{A^\HH A} = \Det{A^\HH}\Det{A} = \Det{A}^2 = \alpha_1^2\cdots\alpha_n^2$
+
+$|\Det{A}|=\sqrt{\alpha_1^2\cdots\alpha_n^2}=\alpha_1\cdots\alpha_n$
+\qed
+
+
+\section{}
+已知$A\in C_r^{m\times n}(r>0)$的奇异值分解表达式为$$A=U\mat{\Delta& 0\\ 0&0}V^\HH$$试求矩阵$B=\mat{A\\A}$的奇异值分解表达式.
+
+\answer
+将$U$分块为$V=[U_1,U_2]$,将$V$分块为$V=[V_1,V_2]$,其中$U_1,V_1$列数为$r$.
+
+于是有$U_1=A V_1 \Delta^{-\HH}$
+
+设$C=B^\HH$,则$CC^\HH=2A^\HH A=V\mat{(\sqrt{2}\Delta)^2& 0\\0&0}V^\HH$
+
+$\widetilde{U}_1=C^\HH V_1 (\sqrt{2}\Delta)^{-\HH}=\dfrac{1}{\sqrt{2}}\mat{A\\A}V_1\Delta^{-\HH}=\dfrac{1}{\sqrt{2}}\mat{U_1\\U_1}$
+
+补充$\widetilde{U}_2$使得$\widetilde{U}$为酉矩阵,即$\widetilde{U}=[\widetilde{U}_1,\widetilde{U}_2]=\mat{\frac{U_1}{\sqrt{2}} & \frac{U_1}{\sqrt{2}} & U_2 & 0 \\ \frac{U_1}{\sqrt{2}} & -\frac{U_1}{\sqrt{2}} & 0 & U_2}$
+
+$C$的奇异值分解表达式为$C=V\mat{(\sqrt{2}\Delta)^2& 0\\0&0}\widetilde{U}^\HH$
+
+于是有$B=C^\HH=\widetilde{U}\mat{(\sqrt{2}\Delta)^2& 0\\0&0}V^\HH$
+\qed
+
+\section{}
+关于非零矩阵的满秩分解,下面判断正确的是
+
+A. 满秩分解存在且唯一
+
+B. 满秩分解有无穷多个
+
+C. 如果$A=BC$是满秩分解,则$A$与$B$列空间相同
+
+D. 如果$A=BC$是满秩分解,则方程组$AX=0$与$CX=0$同解
+
+\answer
+B. 已知一个满秩分解$A=BC$,则可以构造另一个满秩分解$A=(B\theta)(\theta^{-1}C)$
+
+C. $B$来自于$A$的列向量的极大线性无关组
+
+D. $C$来自于对$A$的行变换
+\qed
+
+
+\section{}
+关于$A$的奇异值分解,正确的是
+
+A. 奇异值分解唯一
+
+B. $A$正奇异值个数等于$A$的秩
+
+C. 等价的矩阵有相同的奇异值
+
+D. $n$阶酉矩阵的奇异值都是1,共n个
+
+
+\answer
+BD正确
+
+C错误,需要正交相似
+\qed
+
+\newpage
+\section{}
+已知矩阵$A=\mat{1&0\\1&i}$,则矩阵$A$的$UR$分解为
+
+\answer
+$A=\mat{\dfrac{1}{\sqrt{2}} & \dfrac{-i}{\sqrt{2}} \\ \dfrac{1}{\sqrt{2}} & \dfrac{i}{\sqrt{2}}} \mat{\sqrt{2} & \dfrac{i}{\sqrt{2}} \\ 0 & \dfrac{1}{\sqrt{2}}}$
+\qed
+
+
+\section{}
+已知矩阵$A=\mat{1 & 2i & 2 \\ 0&0&0}$,则$A$的正奇异值为
+
+\answer
+3
+\qed
+
+
+\section{}
+已知矩阵$A=\mat{-2i & 4 \\ -4 & -2i}$,则正规矩阵$A$的谱分解表达式为
+
+\answer
+$A=\dfrac{1}{\sqrt{2}}\mat{1&1 \\ i&-i}\mat{2i \\ &-6i} \dfrac{1}{\sqrt{2}}\mat{1&-i \\ 1&i}$
+
+$G_1=\dfrac{1}{2}\mat{1&-i \\ i&1}$, $G_2=\dfrac{1}{2}\mat{1&i \\ -i&1}$
+
+$A=2iG_1-6iG_2$
+\qed
+
+
+
+
+\end{document}
