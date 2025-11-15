@@ -19,9 +19,4 @@
     "body": "\\Tr{$1}",
     "description": "Insert \\mathrm{tr}"
   },
-  "answer": {
-    "prefix": "answer",
-    "body": "\\answer",
-    "description": "Insert \\answer"
-  },
 }

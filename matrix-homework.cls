@@ -77,5 +77,7 @@
 \newcommand{\Dim}[1]{\mr{dim}(#1)}
 \newcommand{\qed}{\hfill $\blacksquare$}
 
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+
 \newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
 \endinput
