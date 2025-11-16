@@ -71,6 +71,7 @@
 }
 
 \newcommand{\mr}[1]{\mathrm{#1}}
+\newcommand{\dd}{\mr{d}}
 \newcommand{\TT}{\mr{T}}
 \newcommand{\HH}{\mr{H}}
 \newcommand{\Tr}[1]{\mr{tr}(#1)}

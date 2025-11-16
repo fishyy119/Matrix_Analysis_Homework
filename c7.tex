@@ -1,0 +1,126 @@
+\documentclass{matrix-homework}
+\usepackage{enumitem}
+
+\chapternumber{7}
+\begin{document}
+\newcommand{\ddd}[2]{\dfrac{\dd #1}{\dd #2}}
+\newcommand{\ddx}[1]{\ddd{#1}{x}}
+\newcommand{\la}{\lambda}
+
+
+\section{}
+已知函数矩阵$$A=\mat{e^{2x} & xe^x & x^2 \\ e^{-x} & 2e^{2x} & 0 \\ 3x & 0 & 0}$$试求$\displaystyle\int_{0}^{1}A(x)\dd x$和$\displaystyle\dfrac{\dd}{\dd x}\left(\int_{0}^{x^2}A(t)\dd t\right)$
+
+\answer
+$\displaystyle\int_{0}^{1}A(x)\dd x=\mat{\dfrac{e^2-1}{2} & 1 & \dfrac{1}{3} \\ 1-\dfrac{1}{e} & e^2-1 & 0 \\ \dfrac{3}{2} & 0 & 0}$
+
+$\displaystyle\dfrac{\dd}{\dd x}\left(\int_{0}^{x^2}A(t)\dd t\right)
+    = 2xA(x^2) = 2x\mat{e^{2x^2} & x^2e^{x^2} & x^4 \\ e^{-x^2} & 2e^{2x^2} & 0 \\ 3x^2 & 0 & 0}$
+\qed
+
+\newpage
+\section{}
+\begin{enumerate}[label=(\arabic*)]
+    \item 已知函数矩阵$A(x)$与$A^{-1}(x)$都可导,证明:$$\ddx{A^{-1}(x)}=-A^{-1}(x)\ddx{A(x)}A^{-1}(x)$$
+    \item 已知$A(x)=\mat{x & 1 \\ 1 & x}$在$[2,3]$上有逆矩阵$A^{-1}=\dfrac{1}{x^2-1}\mat{x & -1 \\ -1 & x}$,\\试用(1)计算$\ddx{A^{-1}(x)}$
+\end{enumerate}
+\answer
+\textbf{(1)} $A^{-1}A=I$
+
+$\ddx{A^{-1}A}=\ddx{A^{-1}}A+A^{-1}\ddx{A}=\ddx{I}=0 \\[1em]\Rightarrow \ddx{A^{-1}(x)}=-A^{-1}(x)\ddx{A(x)}A^{-1}(x)$
+
+\textbf{(2)} $\ddx{A(x)}=\mat{1 & 0 \\ 0 & 1}$
+
+$\ddx{A^{-1}(x)}=-A^{-1}(x)A^{-1}(x)=\dfrac{-1}{(x^-1)^2}\mat{x^2+1 & -2x \\ -2x & x^2+1}$
+\qed
+
+
+\section{}
+对于任意的$n$阶实矩阵$A$和任意实数$t$,我们有$\ddd{e^{tA}}{t}=Ae^{tA}=e^{tA}A$
+
+\answer
+$\displaystyle e^{At}=\sum_{k=0}^{\infty}\frac{(At)^k}{k!}$
+
+$\displaystyle \ddd{e^{At}}{t}
+    = \ddd{}{t}\left(\sum_{k=0}^{\infty}\frac{(At)^k}{k!}\right)
+    = \sum_{k=0}^{\infty}\left(\ddd{}{t}\frac{(At)^k}{k!}\right)
+    = \underbrace{\sum_{k=1}^{\infty}\left(\frac{A(At)^{k-1}}{(k-1)!}\right)}_{Ae^{tA}}
+    = \underbrace{\sum_{k=1}^{\infty}\left(\frac{(At)^{k-1}A}{(k-1)!}\right)}_{e^{tA}A} $
+\qed
+
+\newpage
+\section{}
+设$A$为一个$n$阶实矩阵,$B$为一个$n\times m$实矩阵,$u$为一个连续函数向量. 证明: 对任意的实数$t>t_0$, 线性非齐次初值问题
+$$\ddd{x(t)}{t}=Ax(t)+Bu(t), x(t_0)=x_0\in R^n$$
+的解可由下式给出
+$$x(t)=e^{(t-t_0)A}x_0+\int_{t_0}^{t}e^{(t-s)A}Bu(s)\dd s$$
+\answer
+\[
+    \ddd{}{t}\left(e^{-tA}x(t)\right)=e^{-tA}\ddd{x(t)}{t}-e^{-tA}Ax(t)= e^{-tA}Bu(t)
+\]
+两端同时积分得
+\begin{align*}
+    e^{-tA}x(t) - e^{-t_0A}x(t_0) & = \int_{t_0}^{t}e^{-sA}Bu(s)\dd s                    \\
+    e^{-tA}x(t)                   & = e^{-t_0A}x(t_0)+\int_{t_0}^{t}e^{-sA}Bu(s)\dd s    \\
+    x(t)                          & = e^{(t-t_0)A}x_0+\int_{t_0}^{t}e^{(t-s)A}Bu(s)\dd s
+\end{align*}
+\qed
+
+\newpage
+\section{}
+求解线性常系数齐次微分方程
+\[
+    \left\{
+    \begin{aligned}
+        \ddd{x(t)}{t} & = Ax(t)               \\
+        x(0)          & = \mat{1 & 1 & 0}^\TT
+    \end{aligned}
+    \right.
+\]
+其中$A=\mat{3&-1&1\\2&0&-1\\1&-1&2}$.
+
+\answer
+解为$x(t)=e^{At}x(0)$
+
+$A$的初等因子为$\la,\la-2,\la-3$
+
+$J=\mat{3 &0 &0\\ 0&2 & 0 \\ 0 & 0 & 0}$, $P=\mat{2 & 1 & 1 \\ 1 & 1 & 5\\ 1&0&2}$, $P^{-1}=\dfrac{1}{6}\mat{2&-2&4\\ 3&3&-9\\ -1&1&1}$
+
+$e^{At}=P\mat{e^{3t}\\&e^{2t}\\&&e^0}P^{-1}$, $x(t)=e^{At}x(0)=\mat{e^{2t}\\e^{2t}\\0}$
+\qed
+
+
+\section{}
+已知函数矩阵$A(x)=\mat{\sin x & \cos x & x \\ \dfrac{\sin x}{x} & e^x & x^2 \\ 1 & 0 & x^3}$, $x\ne 0$, 则$\lim_{x\to 0}A(x)=$\_\_\_\_.
+
+\answer
+$\mat{0 & 1 & 0 \\ 1 & 1 & 0 \\ 1 & 0 & 0}$
+\qed
+
+
+\section{}
+已知函数矩阵$A(x)=\mat{x & e^x \\ -x^2 & \cos x}$, 则$\dfrac{\dd^2A(x)}{\dd x^2}=$\_\_\_\_.
+
+\answer
+$\mat{0 & e^x \\ -2 & -\cos x}$
+\qed
+
+
+\section{}
+已知函数矩阵$A(x)=\mat{e^x & x^2 \\ \sin x & 1}$, 则$\displaystyle\left(\int_{0}^{t^3}A(x)\dd x\right)'=$\_\_\_\_.
+
+\answer
+$3t^2A(t^3)=3t^2\mat{e^{t^3} & t^6 \\ \sin t^3 & 1}$
+\qed
+
+
+\section{}
+已知$A=\mat{2&1&0 \\ 0&2&1\\ 0&0&2}$, 则$\displaystyle\ddd{}{t}\left(\sin At\right)=$\_\_\_\_.
+
+\answer
+$\sin At=\mat{\sin 2t & t\cos 2t & \frac{-t^2}{2}\sin 2t \\ 0 & \sin 2t & t\cos 2t \\ 0&0&\sin 2t}$
+
+$\displaystyle\ddd{}{t}\left(\sin At\right)= \mat{2\cos 2t & \cos 2t -2t\sin 2t & -t\sin 2t - t^2\cos 2t \\ 0 & 2\cos 2t & \cos 2t -2t\sin 2t \\0&0&2\cos 2t}$
+\qed
+
+\end{document}
