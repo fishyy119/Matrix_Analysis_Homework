@@ -1,0 +1,204 @@
+\documentclass{matrix-homework}
+\usepackage{enumitem}
+\usepackage{xfrac}
+
+\chapternumber{6}
+\begin{document}
+\newcommand{\la}{\lambda}
+\newcommand{\al}{\alpha}
+
+\section{}
+已知矩阵A$$A=\mat{1&0&0\\ -1&2&-1\\ 0&0&2}$$求矩阵函数$f(A)$的jordan表示. 并计算$e^A,e^{tA},\sin \dfrac{\pi}{2}A, \cos \pi A$.
+
+\answer
+$\la I -A=\mat{\la-1&0&0\\1&\la-2&1\\0&0&\la-2}\simeq\mat{1\\&1\\&&(\la-1)(\la-2)^2}$, $J=\mat{1\\&2&1\\&&2}$
+
+$P=\mat{\al_1&\al_2&\al_3}, AP=PJ$, 得
+\begin{equation*}
+    \left\{
+    \begin{aligned}
+        A\al_1 & = \al_1          \\
+        A\al_2 & = 2\al_2         \\
+        A\al_3 & = \al_2 + 2\al_3
+    \end{aligned}
+    \right.
+    \Rightarrow
+    \left\{
+    \begin{aligned}
+        (I-A)\al_1  & = 0       \\
+        (2I-A)\al_2 & = 0       \\
+        (2I-A)\al_3 & = - \al_2
+    \end{aligned}
+    \right.
+    \Rightarrow
+    \left\{
+    \begin{aligned}
+        \al_1 & =\mat{1 & 1 & 0}^\TT  \\
+        \al_2 & =\mat{0 & 1 & 0}^\TT  \\
+        \al_3 & =\mat{0 & 0 & -1}^\TT
+    \end{aligned}
+    \right.
+\end{equation*}
+
+$f(A)=Pf(J)P^{-1}=\mat{1&0&0\\1&1&0\\0&0&-1} \mat{f(1)\\&f(2)&f'(2)\\&&f(2)} \mat{1&0&0\\-1&1&0\\0&0&-1}$\\
+$ = \mat{f(1)&0&0\\f(1)-f(2)&f(2)&-f'(2)\\0&0&f(2)}$
+\\[3em]
+
+$e^{A}=\mat{e&0&0\\e-e^2&e^2&-e^2\\0&0&e^2}$, $e^{tA}=\mat{e^t&0&0\\e^t-e^{2t}&e^{2t}&-te^{2t}\\0&0&e^{2t}}$
+
+$\sin \dfrac{\pi}{2}A=\mat{1&0&0\\1&0&\pi/2\\0&0&0}$, $\cos \pi A=\mat{-1&0&0\\-2&1&0\\0&0&1}$
+\qed
+
+
+\section{}
+已知矩阵$A$,求矩阵函数$f(A)$的多项式表示.并计算$e^A,e^{tA},\sin \pi A, \cos \pi A$
+$$A=\mat{2&2&1\\-2&6&1\\0&0&4}$$
+
+\answer
+$\la-A=\mat{\la-2 & -2 & -1 \\ 2 &\la-6&-1\\0&0&\la-4}$, $D_1(\la)=1, D_2(\la)=\la-4, D_3(\la)=(\la-4)^3$
+
+初等因子为$(\la-4),(\la-4)^2$, 最小多项式$m(\la)=(\la-4)^2$
+
+设多项式为$p(x)=a_1 x+ a_0$,需要满足如下条件
+\begin{equation*}
+    \left\{
+    \begin{aligned}
+        p(4)  & = 4a_1+a_0 =f(4) \\
+        p'(4) & = a_1 =f'(4)     \\
+    \end{aligned}
+    \right.
+    \Rightarrow
+    \left\{
+    \begin{aligned}
+        a_1 & = f'(4)       \\
+        a_0 & =f(4) -4f'(4) \\
+    \end{aligned}
+    \right.
+\end{equation*}
+
+$p(A)=(f(4) -4f'(4) )I +  f'(4) A= \mat{f(4)-2f'(4)& 2f'(4) & f'(4) \\ -2f'(4) & f(4)+2f'(4) & f'(4) \\ 0 & 0 & f(4)} $
+
+$e^{A}= e^4\mat{-1&2&1\\-2&3&1\\0&0&1}$,
+$e^{tA}= e^{4t} \mat{1-2t&2t&t\\-2t&1+2t&t\\0&0&1}$
+
+$\sin \pi A=\pi \mat{-1&2&1\\-2&2&1\\0&0&0}$, $\cos \pi A=\mat{1&0&0\\0&1&0\\0&0&1}$
+\qed
+
+\newpage
+\section{}
+设$A$为$n$阶矩阵,试证:
+\begin{enumerate}[label=(\arabic*)]
+    \item $e^{2\pi iE}=E, e^{2\pi iE+A}=e^A$
+    \item $\sin 2\pi E=0, \cos 2\pi E=E$
+    \item $\sin(2\pi E+A)=\sin A$
+    \item $|e^A|=e^{\Tr{A}}$
+    \item $\norm{e^A}\le e^{\norm{A}}$, 这里$\norm{\cdot}$是算子范数.
+\end{enumerate}
+
+\answer
+\textbf{(1)} $2\pi i E$为对角矩阵, $e^{2\pi iE}=\mr{diag}\{e^{2\pi i},\cdots,e^{2\pi i}\}=E$
+
+$2\pi i E$与$A$的乘法可交换,所以$e^{2\pi iE+A}=e^{2\pi iE}e^A=e^A$
+
+\textbf{(2)} 由$\sin A=\frac{1}{2i}(e^{iA}-e^{-iA})$, $\sin 2\pi E=\frac{1}{2i}(e^{2\pi iE}-e^{2\pi iE})=0$
+
+由$\cos A=\frac{1}{2}(e^{iA}+e^{-iA})$, $\cos 2\pi E=\frac{1}{2}(e^{2\pi iE}+e^{2\pi iE})=E$
+
+\textbf{(3)} $2\pi i E$与$A$的乘法可交换,
+
+$sin(2\pi E+A)=\sin(2\pi E)\cos A + \cos(2\pi E)\sin A = \sin A$
+
+\textbf{(4)} 将$A$变换为Jordan标准形$A=PJP^{-1}$,$e^A=Pe^JP^{-1}$
+
+$|e^A|=|e^J|=|\mr{diag}\{e^{J_1},e^{J_2},\cdots,e^{J_r}\}|=\prod_i^r |e^{J_i}|=\prod_i^ne^{\la_i}=\exp(\sum_{i=1}^{n}\la_i)= e^{\Tr{A}}$
+
+\textbf{(5)} $e^A=\sum_{k=0}^{\infty}\dfrac{A^k}{k!}$
+\begin{align*}
+    \norm{e^A}=
+    \norm{\sum_{k=0}^{\infty}\frac{A^k}{k!}}
+    \le\sum_{k=0}^{\infty}\norm{\frac{A^k}{k!}}
+    \le\sum_{k=0}^{\infty}\frac{\norm{A}^k}{k!}
+    =e^{\norm{A}}
+\end{align*}
+\qed
+
+\newpage
+\section{}
+已知$$A=\frac{\pi}{2}\mat{1&1&0\\0&1&0\\0&0&2}$$求$\sin A$.
+
+\answer
+令$B=\mat{1&1&0\\0&1&0\\0&0&2}, A=\dfrac{\pi}{2}B$
+
+$\sin A=\sin \dfrac{\pi}{2}B=f(B)=\mat{f(1)&f'(1)&0\\0&f(1)&0\\0&0&f(2)}=\mat{1&0&0\\0&1&0\\0&0&0}$
+\qed
+
+
+\section{}
+计算矩阵幂级数$\displaystyle\sum_{k=1}^{\infty}\frac{k^2}{2^k}\mat{1&4\\0&1}^k$之和.
+
+\answer
+令$f(x)=\displaystyle\sum_{k=1}^{\infty}k^2x^k$, 收敛半径$\sfrac{1}{\lim_{k\to\infty}\left|\frac{(k+1)^2}{k^2}\right|}=1$
+
+$B=\dfrac{1}{2}\mat{1&4\\0&1}, \rho(B)=\dfrac{1}{2}<1$, $f(B)$绝对收敛.
+
+$\displaystyle\sum_{k=0}^{\infty}x^k=(1-x)^{-1}, \left(\sum_{k=0}^{\infty}x^k\right)'=\sum_{k=0}^{\infty}kx^{k-1}=(1-x)^{-2}$
+
+$\displaystyle\sum_{k=0}^{\infty}kx^{k}=x(1-x)^{-2}, \left(\sum_{k=0}^{\infty}kx^k\right)'=\sum_{k=0}^{\infty}k^2x^{k-1}=(1+x)(1-x)^{-3}$
+
+$\displaystyle\sum_{k=0}^{\infty}k^2x^k=x(1+x)(1-x)^{-3}, f(x)=x(1+x)(1-x)^{-3}$
+
+$f(B)=B(I+B)(I-B)^{-3}=\mat{6&104\\0&6}$
+\qed
+
+\section{}
+已知四阶矩阵$A$的特征多项式为$f(\la)=(\la-5)^2(\la+3)^2$, 其最小多项式为$m(\la)=(\la-5)^2(\la+3)$, 则$A$的Jordan标准形为\_\_\_\_, 特征值5的特征子空间维数为\_\_\_\_, $\mr{rank}(A+3I)=$\_\_\_\_.
+
+\answer
+$\mat{5&1\\&5\\&&-3\\&&&-3}$, $1$, $2$
+\qed
+
+
+\section{}
+已知$A=\mat{2&0&0\\1&2&0\\0&1&2}$, 则$\sin At=$\_\_\_\_.
+
+\answer
+令$f(x)=\sin tx, B=A^\TT$
+
+$f(B)= \mat{f(2)&f'(2)&f''(2)/2\\0&f(2)&f'(2)\\0&0&f(2)}= \mat{\sin 2t&t\cos 2t&-\frac{t^2}{2} \sin 2t\\0&\sin 2t&t\cos 2t\\0&0&\sin 2t}$
+
+$f(A)=f(B)^\TT=\mat{\sin 2t&0&0\\t\cos 2t&\sin 2t&0\\-\frac{t^2}{2} \sin 2t&t\cos 2t&\sin 2t}$
+\qed
+
+
+\section{}
+已知$n$阶矩阵$A$, 则函数矩阵$\sin 2A$的幂级数表达式为\_\_\_\_.
+
+\answer
+$\displaystyle\sin 2A=\sum_{k=0}^{\infty}\frac{(-1)^k}{(2k+1)!}(2A)^{2k+1}$
+\qed
+
+
+\section{}
+已知$n$阶单位矩阵$I$,则$\cos \dfrac{\pi}{3}I=$\_\_\_\_.
+
+\answer
+$f(x)=\cos \dfrac{\pi}{3}x, f(I)=\dfrac{1}{2}I$
+\qed
+
+
+\section{}
+已知$n$阶单位矩阵$I$,则$e^{2\pi iI}=$\_\_\_\_, $\cos\pi I=$\_\_\_\_.
+
+\answer
+$I,-I$
+\qed
+
+
+\section{}
+已知矩阵$A=\mat{2&0&1\\-1&2&2\\0&-3&0}$, 则$\mr{det}(e^{2A})=$\_\_\_\_.
+
+\answer
+$|e^{2A}|=e^{\Tr{2A}}=e^8$
+\qed
+
+\end{document}
