@@ -1,0 +1,122 @@
+\documentclass{matrix-homework}
+\usepackage{enumitem}
+
+\chapternumber{8}
+\begin{document}
+
+\section{}
+已知矩阵$$A=\mat{-1&0&1\\2&0&-2}$$求$A^+$.
+
+\answer
+$A=BC=\mat{-1\\2}\mat{1&0&-1}$
+
+$A^+=C^\HH (CC^\HH)^{-1}(B^\HH B)^{-1}B^\HH=\dfrac{1}{2}\dfrac{1}{5}C^\HH B^\HH=\dfrac{1}{10}\mat{-1&2\\0&0\\1&-2}$
+\qed
+
+
+\section{}
+设$A\in C^{m\times n}$, $P$与$Q$分别为$m$阶与$n$阶酉矩阵,试证:$$(PAQ)^+=Q^+A^+P^+$$
+
+\answer
+将$A$满秩分解得$A=BC$,其中$B$列满秩,$C$行满秩
+
+由于$P,Q$为酉矩阵,故$PB$列满秩,$CQ$行满秩
+\begin{align*}
+    \left(PAQ\right)^+
+    =\left(PBCQ\right)^+
+     & =\left(CQ\right)^\HH \left(\left(CQ\right)\left(CQ\right)^\HH\right)^{-1} \left(\left(PB\right)^\HH\left(PB\right)\right)^{-1}\left(PB\right)^\HH \\
+     & =Q^\HH C^\HH \left(CQQ^\HH C^\HH\right)^{-1} \left(B^\HH P^\HH PB\right)^{-1}B^\HH P^\HH                                                          \\
+     & =Q^\HH C^\HH \left(CC^\HH\right)^{-1}\left(B^\HH B\right)^{-1}B^\HH P^\HH                                                                         \\
+     & =Q^\HH A^+P^\HH = Q^+A^+P^+
+\end{align*}
+\qed
+
+\newpage
+\section{}
+设$A$是正规矩阵,证明$AA^+=A^+A$.
+
+\answer
+由于$A$为正规矩阵,存在酉矩阵$Q$与对角矩阵$\Lambda$使得$A=Q\Lambda Q^\HH$
+
+由题(2)的结论: $A^+= \left(Q^\HH\right)^+\Lambda^+Q^+= Q \Lambda^+ Q^\HH$
+
+于是有
+\begin{align*}
+    AA^+ & = Q\Lambda Q^\HH Q \Lambda^+ Q^\HH              \\
+         & = Q\Lambda \Lambda^+ Q^\HH                      \\
+         & = Q\left(\Lambda\Lambda^+\right)^\HH Q^\HH      \\
+         & = Q\left(\Lambda^+\right)^\HH \Lambda^\HH Q^\HH \\
+         & = Q\Lambda^+ \Lambda Q^\HH                      \\
+         & = Q\Lambda^+ Q^\HH Q\Lambda Q^\HH               \\
+         & = A^+A
+\end{align*}
+\qed
+
+\newpage
+\section{}
+已知线性方程组
+\begin{equation*}
+    \left\{
+    \begin{aligned}
+        x_1+2x_2+3x_3  & =1  \\
+        x_1+x_3        & = 0 \\
+        2x_1 +2x_3     & =1  \\
+        2x_1+4x_2+6x_3 & =3
+    \end{aligned}
+    \right.
+\end{equation*}
+\begin{enumerate}[label=(\arabic*)]
+    \item 证明线性方程组无解
+    \item 求此线性方程组的最佳最小二乘解$x^*$
+    \item 求$b=\mat{1&0&1&3}^\TT$到$R(A)$的最短距离,$A$为此方程组系数矩阵
+\end{enumerate}
+\answer
+\textbf{(1)} 系数矩阵$A=\mat{1&2&3\\1&0&1\\2&0&2\\2&4&6}$, 增广矩阵$A^{\text{aug}}=\mat{1&2&3&1\\1&0&1&0\\2&0&2&1\\2&4&6&3}$
+
+$\mr{rank}(A)=2$, $\mr{rank}(A^{\text{aug}})=3$, 方程组无解
+
+\textbf{(2)} $A=BC=\mat{1&2\\1&0\\2&0\\2&4}\mat{1&0&1\\0&1&1}$
+
+$A^+=C^\HH\left(CC^\HH\right)^{-1}\left(B^\HH B\right)^{-1}B^\HH = \dfrac{1}{30}\mat{-1&5&10&-2\\2&-4&-8&4\\1&1&2&2}$, $x^*=A^+b=\dfrac{1}{10}\mat{1\\2\\3}$
+
+\textbf{(3)} $\norm{Ax^*-b}_2=\dfrac{2}{\sqrt{10}}$
+\qed
+
+\section{}
+写出矩阵$A$的伪逆满足的四个基本条件,即Penrose-Moore方程:\_\_\_\_.
+
+\answer
+$AA^+A=A, A^+AA^+=A^+, \left(AA^+\right)^\HH=AA^+, \left(A^+A\right)^\HH=A^+A$
+\qed
+
+
+\section{}
+已知矩阵$A=\mat{1&1\\2&2}$,则$A^+=$\_\_\_\_.
+
+\answer
+$A=BC=\mat{1\\2}\mat{1&1}$, $A^+=C^\HH (CC^\HH)^{-1}(B^\HH B)^{-1}B^\HH=\dfrac{1}{10}\mat{1&2\\1&2}$
+\qed
+
+
+\section{}
+方程组$\left\{\begin{array}{l}x_1+x_2=1 \\2x_1+2x_2=3\end{array}\right.$的最佳最小二乘解为\_\_\_\_.
+
+\answer
+$A^+=\dfrac{1}{10}\mat{1&2\\1&2}, x^*=A^+b=\mat{7/10\\7/10}$
+\qed
+
+
+\section{}
+若$q_1,q_2$是$R^n$中两个正交的单位向量,$b$是$R^n$中给定向量,则当$k_1=$\_\_\_\_,$k_2=$\_\_\_\_时,$\norm{k_1q_1+k_2q_2-b}_2$达到最小.
+
+\answer
+$A=\mat{q_1&q_2}$列满秩
+
+$A^+=\left(A^\TT A\right)^{-1}A^\TT=A^\TT=\mat{q_1^\TT \\ q_2^\TT}$
+
+$\mat{k_1\\k_2}=A^+b=\mat{q_1^\TT b\\ q_2^\TT b}$
+\qed
+
+
+
+\end{document}

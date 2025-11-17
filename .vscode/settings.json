@@ -1,4 +1,9 @@
 {
+    "files.exclude": {
+        "build/*.aux": true,
+        "build/*.log": true,
+        "build/*.synctex.gz": true,
+    },
     "editor.wordWrap": "on",
     "editor.formatOnSave": true,
     "latex-workshop.synctex.afterBuild.enabled": true, // 编译后自动定位
