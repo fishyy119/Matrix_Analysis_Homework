@@ -1,0 +1,67 @@
+\documentclass{matrix-review}
+
+\begin{document}
+
+\section{1}
+\subsection{正规矩阵}
+
+
+
+\subsection{11}
+\begin{equation}\label{1}
+    \frac{\dd}{\dd x}\left(\int_{a(x)}^{b(x)}f(t)\dd t\right) = f(b(x))b'(x) - f(a(x))a'(x)
+\end{equation}
+
+
+\section{广义逆与最小二乘}
+
+
+\section{Kronecker积}
+\subsection{基本性质}
+\newcommand{\OT}[2]{#1 \otimes #2}
+\newcommand{\OTL}[2]{\left(#1\right) \otimes #2}
+\newcommand{\OTR}[2]{#1 \otimes \left(#2\right)}
+\newcommand{\OTLR}[2]{\left(#1\right) \otimes \left(#2\right)}
+
+$\OT{A}{B}=\mat{a_{11}B & a_{12}B & \cdots & a_{1n}B \\
+        a_{21}B & a_{22}B & \cdots & a_{2n}B \\
+        \vdots & \vdots & \ddots & \vdots \\
+        a_{m1}B & a_{m2}B & \cdots & a_{mn}B \\}$, 有如下性质:
+\begin{enumerate}
+    \item 无交换律. 有结合律、分配律,数乘可任意移动位置
+    \item $\left(\OT{A}{B}\right)\left(\OT{C}{D}\right) = \OT{AC}{BD}$  \important
+    \item $\left(\OT{A}{B}\right)^\HH = \OT{A^\HH}{B^\HH}$
+    \item $\left(\OT{A}{B}\right)^{-1} = \OT{A^{-1}}{B^{-1}}$
+    \item $\Tr{\OT{A}{B}} = \Tr{A}\cdot\Tr{B}$
+    \item $\Rank{\OT{A}{B}} = \Rank{A}\cdot\Rank{B}$
+    \item $|\OT{A}{B}| = {|A|}^p{|B|}^m$ ($p,m$为阶数)
+    \item 若$A,B$为正规矩阵、对称矩阵、H矩阵、反H矩阵、酉矩阵, $\OT{A}{B}$保持对应性质
+    \item 存在合同变换,使得$P^\TT\left(\OT{A}{B}\right)P=\OT{B}{A}$, 其中$P$为有限个初等矩阵乘积
+    \item $\OT{A}{B}\sim\OT{B}{A}$ (上面一条的$P$是正交矩阵)
+    \item Kronecker积同样有幂的概念,$\left(AB\right)^{[k]}=A^{[k]}B^{[k]}$
+\end{enumerate}
+
+\subsection{特征值}
+考虑$\displaystyle f(x,y)=\sum_{i,j}c_{ij}x^iy^j$
+
+则$\displaystyle f(A,B)=\sum_{i,j}c_{ij}A^i\otimes B^j$的特征值为$f(\la_r,\mu_s)$, 对应特征向量为 $\OT{x_r}{y_s}$
+
+(其中$\la_i,x_i$为$A$的特征值与特征向量, $\mu_j,y_j$为$B$的...)
+
+\textbf{推论}: $\OT{A}{E_n}+\OT{E_m}{B}$被称为Kronecker和,特征值为$\la_r+\mu_s$
+
+\subsection{行展开与列展开}
+\newcommand{\rs}[1]{\mr{rs}\left(#1\right)}
+\newcommand{\cs}[1]{\mr{cs}\left(#1\right)}
+将矩阵$A$的每一行串接为一个行向量,成为$A$的行展开,记为$\mr{rs}(A)$
+
+同理,将矩阵$A$的每一列串接为一个列向量,成为$A$的列展开,记为$\mr{cs}(A)$,有如下性质:
+\begin{enumerate}
+    \item $\rs{A^\TT}=\left(\cs{A}\right)^\TT$,  $\cs{A^\TT}=\left(\rs{A}\right)^\TT$
+    \item $\rs{ABC}=\rs{B}\left(\OT{A^\TT}{C}\right)$
+    \item $\cs{ABC}=\left(\OT{C^\TT}{A}\right)\cs{B}$
+    \item $\cs{AX}=\left(\OT{E_n}{A}\right)\cs{X}$
+    \item $\cs{XB}=\left(\OT{B^\TT}{E_m}\right)\cs{X}$
+\end{enumerate}
+
+\end{document}

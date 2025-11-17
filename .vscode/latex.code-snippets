@@ -1,22 +1,16 @@
 {
-  // "my_boldsymbol": {
-  //   "prefix": "bs",
-  //   "body": "\\bs{$1}",
-  //   "description": "Insert \\boldsymbol"
-  // },
   "my_mathrm": {
     "prefix": "mr",
     "body": "\\mr{$1}",
-    "description": "Insert \\mathrm"
+    "description": "插入 \\mathrm"
   },
-  "dim": {
-    "prefix": "Dim",
-    "body": "\\Dim{$1}",
-    "description": "Insert \\mathrm{dim}"
-  },
-  "tr": {
-    "prefix": "Tr",
-    "body": "\\Tr{$1}",
-    "description": "Insert \\mathrm{tr}"
-  },
+  "Remark Box": {
+    "prefix": "\\rmbox",
+    "body": [
+      "\\begin{remarkbox}",
+      "\t$0",
+      "\\end{remarkbox}"
+    ],
+    "description": "插入彩色备注框"
+  }
 }
