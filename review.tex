@@ -1,5 +1,5 @@
 \documentclass{matrix-review}
-\usepackage[normalem]{ulem}
+\usepackage{ulem} % 他会把emph变为下划线样式
 
 \begin{document}
 
@@ -8,10 +8,88 @@
 
 
 
-
-\section{函数矩阵与矩阵微分方程}
+\section{矩阵函数}
 \newcommand{\ddd}[2]{\dfrac{\dd #1}{\dd #2}}
 \newcommand{\ddx}[1]{\ddd{#1}{x}}
+\newcommand{\ddt}[1]{\ddd{#1}{t}}
+
+\subsection{矩阵多项式}
+$\displaystyle p(A)=\sum_{i=0}^{m}a_iA^i$被称为矩阵多项式. 考虑$d_i$阶Jordan块矩阵$J_i$,则\begin{equation}
+    p(J_i)=\begin{bmatrix}
+        p(\la_i) & p'(\la_i) & \frac{p''(\la_i)}{2!} & \cdots & \frac{p^{d_i-1}(\la_i)}{(d_i-1)!} \\
+                 & p(\la_i)  & p'(\la_i)             & \ddots & \vdots                            \\
+                 &           & p(\la_i)              & \ddots & \frac{p''(\la_i)}{2!}             \\
+                 &           &                       & \ddots & p'(\la_i)                         \\
+                 &           &                       &        & p(\la_i)
+    \end{bmatrix}_{d_i\times d_i}
+\end{equation}
+\begin{remarkbox}
+    注意其中的阶乘
+\end{remarkbox}
+
+\textbf{\important 矩阵多项式的Jordan表示:} $p(A)=P\mr{diag}(p(J_1),p(J_2),\cdots,p(J_r))P^{-1}$, 其中$P$是将$A$变换为Jordan标准形的变换矩阵.
+\begin{remarkbox}
+    矩阵多项式$p(A)$的特征值对应为$p(\la_i)$,对应的特征向量不变. (使用定义证明)
+\end{remarkbox}
+
+\textbf{化零多项式:} 满足$f(A)=O_{n\times n}$的多项式,被称为矩阵$A$的化零多项式. 根据Hamilton-Cayley定理, \emph{矩阵$A$的特征多项式$\mr{det}(\la E-A)$是化零多项式}.
+
+\textbf{最小多项式:} 次数最低且首项系数为1的化零多项式为最小多项式,记为$m(\la)$. 性质如下:
+\begin{enumerate}
+    \item 任何一个化零多项式都能被$m(\la)$整除
+    \item 最小多项式唯一
+    \item 相似矩阵具有相同的最小多项式
+\end{enumerate}
+最小多项式的求法如下:
+\begin{enumerate}
+    \item 化为Jordan标准形,相似矩阵最小多项式相同,只需考虑标准形
+    \item 对于$d_i$阶Jordan块矩阵,简单运算一下即可得到其最小多项式为$(\la-\la_i)^{d_i}$
+    \item 准对角矩阵的最小多项式为各块最小多项式的最大公倍式
+\end{enumerate}
+
+\subsection{矩阵函数}
+\textbf{定义:} $A$的最小多项式为\begin{equation*}
+    m(\la)=\sum_{i=1}^{s}(\la-la_i)^{d_ii}  \qquad  \left(\sum_{i=1}^{s}d_i=m\right)
+\end{equation*}如果函数$f(x)$具有足够高阶的导数并且以下$m$个值
+$$\{f(\la_i),f'(\la_i),\cdots,f^{(d_i-1)}(\la_i),i=1,2,\cdots,s\}$$存在,则称\emph{$f(x)$在矩阵$A$的影谱上有定义}.
+
+$f(x)$在影谱上有定义,如果存在多项式$p(\la)$的上面$m$个值与$f(\la)$相等,则定义矩阵函数$f(A)=p(A)$. 满足定义的多项式\emph{存在但并不唯一}, 只要影谱上对应的值相等, 最终矩阵函数就相等.
+
+\textbf{\important 矩阵函数的Jordan表示:} 与上文矩阵多项式的Jordan表示是相似的,不过是把多项式换为了函数,同时要求在影谱上有定义.
+
+\textbf{\important 矩阵函数的多项式表示:} 使用拉格朗日插入计算多项式系数$a_0,a_1,\cdots,a_{m-1}$,使得多项式影谱上对应值相等\begin{equation*}
+    p^{(k)}(\la_i)=f^{(k)}(\la_i), \quad i=1,2,\cdots,s; \quad k=1,2,\cdots,d_i-1
+\end{equation*}最终可得到多项式表示$f(A)=a_{m-1}A^{m-1}+\cdots+a_1A+A_0I$
+
+\textbf{\important 矩阵函数的幂级数表示:} 将一元函数$f(x)$展开为收敛半径$R$的幂级数$\displaystyle\sum_{k=0}^{\infty}c_kx^k$. 当矩阵$A$的谱半径$\rho(A)<R$时,矩阵幂级数$\displaystyle\sum_{k=0}^{\infty}c_kx^k$绝对收敛, 该级数即为急诊的幂级数表示.
+
+\subsection{矩阵指数函数和矩阵三角函数}
+
+\begin{align}
+    e^{At}  & = \sum_{k=0}^{\infty}\frac{1}{k!}A^Kt^k                     \\
+    \sin At & = \sum_{k=0}^{\infty}\frac{(-1)^k}{(2k+1)!}A^{2k+1}t^{2k+1} \\
+    \cos At & = \sum_{k=0}^{\infty}\frac{(-1)^k}{(2k)!}A^{2k}t^{2k}
+\end{align}
+\begin{remarkbox}
+    复指数函数的一些结论: $e^{iA}=\cos A+i\sin A$, $e^{-iA}=\cos A-i\sin A$, \\[0.5em]
+    $\cos A=\dfrac{e^{iA}+e^{-iA}}{2}$, $\sin A=\dfrac{e^{iA}-e^{-iA}}{2i}$
+\end{remarkbox}
+
+当$AB=BA$时,一些标量三角函数的结论可套用:
+\begin{enumerate}
+    \item $e^{A+B}=e^Ae^B=e^Be^A$ (若$AB$不可交换,该性质不一定成立,但也可能成立)
+    \item 三角函数两角和, 二倍角, 平方和
+\end{enumerate}
+
+几个特殊性质如下:
+\begin{enumerate}
+    \item $\ddt{e^{At}}=Ae^{At}=e^{At}A$
+    \item $\ddt{\sin At}=A(\cos At)=(\cos At)A$
+    \item $\ddt{\cos At}=-A(\sin At)=-(\sin At)A$
+    \item $|e^{At}|=e^{\Tr{A}}$
+\end{enumerate}
+
+\section{函数矩阵与矩阵微分方程}
 
 \subsection{函数矩阵的导数与积分}
 本部分并没有什么值得一提的东西,基本都是把多个标量函数摞在一起运算了一下. 需要注意一些由于矩阵乘法导致交换律不适用的运算:
