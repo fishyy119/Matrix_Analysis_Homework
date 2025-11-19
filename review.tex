@@ -1,4 +1,5 @@
 \documentclass{matrix-review}
+\usepackage[normalem]{ulem}
 
 \begin{document}
 
@@ -7,11 +8,24 @@
 
 
 
-\subsection{11}
-\begin{equation}\label{1}
-    \frac{\dd}{\dd x}\left(\int_{a(x)}^{b(x)}f(t)\dd t\right) = f(b(x))b'(x) - f(a(x))a'(x)
+
+\section{函数矩阵与矩阵微分方程}
+\newcommand{\ddd}[2]{\dfrac{\dd #1}{\dd #2}}
+\newcommand{\ddx}[1]{\ddd{#1}{x}}
+
+\subsection{函数矩阵的导数与积分}
+本部分并没有什么值得一提的东西,基本都是把多个标量函数摞在一起运算了一下. 需要注意一些由于矩阵乘法导致交换律不适用的运算:
+\begin{enumerate}
+    \item $\ddx{}\left[A(x)B(x)\right]=\ddx{A}B+A\ddx{B}$
+    \item $\ddx{A^{-1}(x)}=-A^{-1}\ddx{A}A^{-1}$
+\end{enumerate}
+以及一些做题时经常用到的公式:
+\begin{equation}
+    \ddx{}\left(\int_{a(x)}^{b(x)}f(t)\dd t\right) = f(b(x))b'(x) - f(a(x))a'(x)
 \end{equation}
 
+\subsection{矩阵微分方程}
+\sout{我看往年题都不考这里,先暂缓整理吧.}
 
 \section{广义逆与最小二乘}
 
@@ -123,7 +137,6 @@ $\OT{A}{B}=\mat{a_{11}B & a_{12}B & \cdots & a_{1n}B \\
 \end{enumerate}
 
 \subsection{特征值}
-
 考虑$\displaystyle f(x,y)=\sum_{i,j}c_{ij}x^iy^j$,
 则$\displaystyle f(A,B)=\sum_{i,j}c_{ij}A^i\otimes B^j$的特征值为$f(\la_r,\mu_s)$, 对应特征向量为 $\OT{x_r}{y_s}$,
 (其中$\la_i,x_i$为$A$的特征值与特征向量, $\mu_j,y_j$为$B$的...)
