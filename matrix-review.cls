@@ -45,7 +45,8 @@
 % --------------------------
 % 段落设置
 % --------------------------
-\setlength{\parindent}{0pt}
+\RequirePackage{indentfirst}
+% \setlength{\parindent}{0pt}
 \setlength{\parskip}{0.7em}
 
 % --------------------------

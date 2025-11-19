@@ -15,6 +15,87 @@
 
 \section{广义逆与最小二乘}
 
+\subsection{广义逆}
+广义逆矩阵$A^-$的充要条件为\begin{equation}\label{eq:inv1}
+    AA^-A=A
+\end{equation}具有如下性质:
+\begin{enumerate}
+    \item $A^-b$是方程组$Ax=b$的解 \textbf{(定义)}
+    \item $(A^-)^\TT=(A^\TT)^-$
+    \item $\Rank{A}\le\Rank{A^-}$
+    \item $AA^-$和$A^-A$都是幂等矩阵
+\end{enumerate}
+
+\begin{remarkbox}
+    根据定义就可以看出,广义逆是不一定唯一的
+\end{remarkbox}
+
+\textbf{定义:} 若$A_L^{-1}A=E_n$,则$A_L^{-1}$被称为左逆; 若$AA^{-1}_R=E_m$,则$A_R^{-1}$被称为右逆.
+$A$列满秩的充要条件是$A^-A=E$, $A$行满秩的充要条件是$AA^-=E$.
+
+\subsection{自反广义逆}
+在\eqref{eq:inv1}的基础上附加另一条件\begin{equation}\label{eq:inv2}
+    A^-AA^-=A^-
+\end{equation}
+满足该定义的广义逆成为自反广义逆,记作$A_r^-$,相比于广义逆具有如下额外性质:
+\begin{enumerate}
+    \item $\Rank{A}=\Rank{A^-}$ \textbf{(充要条件)}
+    \item 若$X,Y$是$A$的广义逆,则$XAY$是自反广义逆
+    \item 若$A=BC$为满秩分解,则$C^{-1}_RB^{-1}_L$是自反广义逆
+\end{enumerate}
+
+\subsection{伪逆}
+在\eqref{eq:inv1}\eqref{eq:inv2}的基础上额外添加两个对称条件,构成Penros-Moore方程如下:\begin{equation}
+    \left\{
+    \begin{aligned}
+        AA^+A                 & =A    \\ A^+AA^+&=A^+                \\
+        \left(AA^+\right)^\HH & =AA^+ \\ \left(A^+A\right)^\HH&=A^+A
+    \end{aligned}
+    \right.
+\end{equation}
+满足上述四个条件的特殊自反广义逆矩阵即为\textbf{伪逆矩阵},具有如下性质:
+\begin{enumerate}
+    \item 若$A=BC$是满秩分解,则$C^\HH\left(CC^\HH\right)^{-1}\left(B^\HH B\right)^{-1}B^\HH$是伪逆矩阵 \important
+    \item $A^+=U\Lambda^+U^\HH A^\HH$, 其中$U^\HH A^\HH AU=\mr{diag}\{\la_1,\la_2,\cdots,\la_n\}=\Lambda$
+    \item $\left(A^+\right)^+=A$
+    \item $\left(AA^\HH\right)^+=\left(A^\HH\right)^+A^+=\left(A^+\right)^\HH A^+$, $\left(A^\HH A\right)^+=A^+\left(A^\HH\right)^+=A^+\left(A^+\right)^\HH $
+    \item $A^+=A^\HH\left(AA^\HH\right)^+=\left(A^\HH A\right)^+A^\HH$
+\end{enumerate}
+\begin{remarkbox}
+    伪逆是唯一的. (思路:$X=XAX=...=XAY=...=YAY=Y$)
+\end{remarkbox}
+
+\subsection{线性方程组}
+矩阵方程$AXB=D$有解的充要条件为存在广义逆$A^-,B^-$使得\begin{equation}
+    AA^-DB^-B=D
+\end{equation}成立. 矩阵方程的通解为\begin{equation}
+    X=A^-DB^-+Y-A^-AYBB^-
+\end{equation}其中$Y$为任意符合尺寸的矩阵.
+
+\textbf{推论1:} 矩阵方程$AX=D$有解的充要条件为存在广义逆$A^-$使得\begin{equation}
+    AA^-D=D
+\end{equation}成立. 矩阵方程的通解为\begin{equation}
+    X=A^-D+Y-A^-AY
+\end{equation}其中$Y$为任意符合尺寸的矩阵.
+
+\textbf{推论2\important :} 矩阵方程$AX=b$有解的充要条件为存在广义逆$A^-$使得\begin{equation}
+    AA^-b=b
+\end{equation}成立. 矩阵方程的通解为\begin{equation}
+    X=A^-b+(E_n-A^-A)Y
+\end{equation}其中$Y$为任意符合尺寸的向量.
+
+\textbf{定义:} 相容(有解)方程组$Ax=b$的所有解中模(2-范数)最小的解称为最小模解.
+
+\textbf{定义:} 若$n$维向量$x_0$满足对于任何一个$n$维向量$x$,都有$\norm{Ax_0-b}^2\le\norm{Ax-b}^2$,则称$x_0$是方程组$Ax=b$的一个最小二乘解.
+
+\textbf{定义:} 若对于任意一个最小二乘解$x_0$,最小二乘解$u$都满足$\norm{u}\le\norm{x_0}$,则称$u$为最佳最小二乘解.
+
+最小二乘解有如下性质:
+\begin{enumerate}
+    \item 对于满足P-M方程\{1,3\}的广义逆矩阵$B$,$x=Bb$是$Ax=b$的最小二乘解
+    \item $x=A^+b$是$Ax=b$的最佳最小二乘解 \important
+    \item $\norm{Ax^*-b}_2$是$b$到$R(A)$的最短距离,其中$x^*$为最佳最小二乘解 \important
+\end{enumerate}
 
 \section{Kronecker积}
 \subsection{基本性质}
@@ -42,10 +123,9 @@ $\OT{A}{B}=\mat{a_{11}B & a_{12}B & \cdots & a_{1n}B \\
 \end{enumerate}
 
 \subsection{特征值}
-考虑$\displaystyle f(x,y)=\sum_{i,j}c_{ij}x^iy^j$
 
-则$\displaystyle f(A,B)=\sum_{i,j}c_{ij}A^i\otimes B^j$的特征值为$f(\la_r,\mu_s)$, 对应特征向量为 $\OT{x_r}{y_s}$
-
+考虑$\displaystyle f(x,y)=\sum_{i,j}c_{ij}x^iy^j$,
+则$\displaystyle f(A,B)=\sum_{i,j}c_{ij}A^i\otimes B^j$的特征值为$f(\la_r,\mu_s)$, 对应特征向量为 $\OT{x_r}{y_s}$,
 (其中$\la_i,x_i$为$A$的特征值与特征向量, $\mu_j,y_j$为$B$的...)
 
 \textbf{推论}: $\OT{A}{E_n}+\OT{E_m}{B}$被称为Kronecker和,特征值为$\la_r+\mu_s$
@@ -53,8 +133,7 @@ $\OT{A}{B}=\mat{a_{11}B & a_{12}B & \cdots & a_{1n}B \\
 \subsection{行展开与列展开}
 \newcommand{\rs}[1]{\mr{rs}\left(#1\right)}
 \newcommand{\cs}[1]{\mr{cs}\left(#1\right)}
-将矩阵$A$的每一行串接为一个行向量,成为$A$的行展开,记为$\mr{rs}(A)$
-
+将矩阵$A$的每一行串接为一个行向量,成为$A$的行展开,记为$\mr{rs}(A)$.
 同理,将矩阵$A$的每一列串接为一个列向量,成为$A$的列展开,记为$\mr{cs}(A)$,有如下性质:
 \begin{enumerate}
     \item $\rs{A^\TT}=\left(\cs{A}\right)^\TT$,  $\cs{A^\TT}=\left(\rs{A}\right)^\TT$
