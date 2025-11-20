@@ -5,7 +5,7 @@
     "description": "插入 \\mathrm"
   },
   "Remark Box": {
-    "prefix": "\\rmbox",
+    "prefix": "rmbox",
     "body": [
       "\\begin{remarkbox}",
       "\t$0",

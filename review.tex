@@ -5,7 +5,128 @@
 \begin{document}
 
 \section{1}
+\newcommand{\cross}[2]{\left(#1,#2\right)}
+\newcommand{\schmidt}[4]{\frac{\cross{#1}{#2}}{\cross{#3}{#4}}}
+
+\subsection{欧氏空间}
+\textbf{\important Schmidt正交化方法}: 从一个线性无关向量组$\left\{\al_1,\al_2,\cdots,\al_r\right\}$出发,可以构造一个等价的标准正交向量组(是$\mr{span}\left\{\al_1,\al_2,\cdots,\al_r\right\}$的一个标准正交基):\begin{equation}\label{eq:schmidt}
+    \left\{
+    \begin{aligned}
+        \be_1  & =\al_2                                                                                                              \\
+        \be_2  & =\al_2-\schmidt{\al_2}{\be_1}{\be_1}{\be_1}\be_1                                                                    \\
+        \cdots & \cdots\cdots\cdots\cdots                                                                                            \\
+        \be_r  & =\al_r-\schmidt{\al_2}{\be_1}{\be_1}{\be_1}\be_1 -\cdots- \schmidt{\al_r}{\be_{r-1}}{\be_{r-1}}{\be_{r-1}}\be_{r-1}
+    \end{aligned}
+    \right.
+\end{equation}标准化步骤不再赘述.
+
 \subsection{正规矩阵}
+
+\section{矩阵的分解}
+
+\subsection{满秩分解}
+对矩阵$A$做初等行列变换化成如下形式\begin{equation*}
+    PAQ=\begin{bmatrix}
+        I_r & D \\ 0 & 0
+    \end{bmatrix}
+\end{equation*}则矩阵$A$可以表示为一个列满秩矩阵与行满秩矩阵的乘积\begin{equation}
+    A=\underbrace{P^{-1}\mat{I_r \\ 0}}_B \underbrace{\mat{I_r & D}Q^{-1}}_C = BC
+\end{equation}满秩分解不是唯一的,可以选择不同的线性无关组来组成.
+\begin{remarkbox}
+    满秩分解的一个简单操作步骤:
+    \begin{enumerate}
+        \item 先只靠行变换变为最简阶梯型
+        \item 在原矩阵中提取所有主元所在列序号的列向量,组成$B$
+        \item 最简阶梯型去除末端的全0行,即得到$C$
+    \end{enumerate}
+\end{remarkbox}
+
+\subsection{正交三角分解}
+对于$n$阶可逆矩阵,其可被唯一分解为$$A=UR,\qquad A=R_1U_1$$其中$R$是正线上三角矩阵,$R_1$是正线下三角矩阵,$U,U_1$是酉矩阵.
+分解方法为:
+\begin{enumerate}
+    \item 将矩阵$A$按列分块为$n$个线性无关的列向量${\al_1,\al_2,\cdots,\al_n}$
+    \item 标准正交化后得到${\eta_1,\eta_2,\cdots,\eta_n}$
+    \item $A=\mat{\al_1& \al_2& \cdots& \al_n}=\mat{\eta_1& \eta_2& \cdots& \eta_n}
+              \begin{bmatrix}
+                  c_{11} & c_{21} & \cdots & c_{n1} \\
+                         & c_{22} & \cdots & c_{n2} \\
+                         &        & \ddots & \vdots \\
+                         &        &        & c_{nn}
+              \end{bmatrix}=UR$
+\end{enumerate}
+\begin{remarkbox}
+    其中矩阵为三角形是由正交化过程\eqref{eq:schmidt}保证的.
+\end{remarkbox}
+
+若矩阵$A$列满秩,则其可被唯一分解为\begin{equation*}
+    A=UR
+\end{equation*}若其行满秩,则可被唯一分解为\begin{equation*}
+    A=LU
+\end{equation*}上面两式中$U$为次酉矩阵,$R$为正线上三角矩阵,$L$为正线下三角矩阵.
+
+\subsection{奇异值分解}
+对于任意矩阵$A$, $AA^\HH$与$A^\HH A$都是半正定H-矩阵,同时有\begin{equation*}
+    \Rank{A^\HH A}=\Rank{AA^\HH}=\Rank{A}
+\end{equation*}同时两者的非零特征值相等,称他们\emph{正特征值}的平方根\begin{equation*}
+    \al_i=\sqrt{\la_i}=\sqrt{\mu_i}>0
+\end{equation*}为矩阵$A$的正奇异值,简称为奇异值.
+\begin{remarkbox}
+    正规矩阵的奇异值是非零特征值的模长\\
+    酉矩阵特征值模长为1,奇异值为1
+\end{remarkbox}
+
+\textbf{奇异值分解计算方法}:
+\begin{enumerate}
+    \item 求出$AA^\HH$的$m$个特征值以及$r$个非零特征值,记为$\la_1\ge\la_2\ge\cdots\ge\la_r>\la_{r+1}=\la_{r+2}=\cdots=\la_m=0$
+    \item 计算奇异值$\delta_1,\delta_2,\cdots,\delta_r$,得到$\Delta=\mr{diag}(\delta_1,\delta_2,\cdots,\delta_r)$
+    \item 求出$AA^\HH$对应各特征值的标准正交特征向量$\eta_1,\eta_2,\cdots,\eta_m$,得到矩阵$$U=\mat{\eta_1,\eta_2,\cdots,\eta_r,\cdots,\eta_m}=\mat{U_1&U_2}$$
+    \item \important $V_1=A^\HH U_1\Delta^{-\HH}$, $V_1$是次酉矩阵,构造$V_2$使得$V=\mat{V_1&V_2}$为酉矩阵
+    \item 得到分解式$$A=U\mat{\Delta&0\\0&0}V^\HH$$
+\end{enumerate}
+\begin{remarkbox}
+    \begin{enumerate}
+        \item 奇异值分解不唯一
+        \item $U$的列向量是$AA^\HH$的标准正交特征向量;$V$的列向量是$A^\HH A$的标准正交列向量
+        \item 视计算量,可以先分解转置矩阵后再转置回来
+    \end{enumerate}
+\end{remarkbox}
+
+
+\subsection{极分解}
+对于$n$阶可逆矩阵$A$,其可被唯一分解为$$A=H_1U=UH_2$$其中$U$是酉矩阵,$H_1,H_2$是正定H-矩阵,同时有如下关系:$$A^\HH A=H_2^2,\quad AA^\HH=H_1^2$$
+分解方法为:\begin{align*}
+    H_2^2 & =A^\HH A,\qquad U=AH_2^{-1} \\
+    H_1   & =UH_2U^\HH
+\end{align*}
+\begin{remarkbox}
+    如果$A$不可逆,仍然可以进行分解,只不过$H$矩阵的条件从正定放宽到半正定.\\[0.7em]
+    分解方法的第一个等式利用了(半)正定矩阵的平方根, $U$是酉矩阵可以由第一个等式变形简单验证.
+\end{remarkbox}
+
+\subsection{谱分解}
+\textbf{正规矩阵的谱分解}: 根据正规矩阵的结构定理,存在酉矩阵$U$,使得正规矩阵$A$被分解为:\begin{equation*}
+    A=U\Lambda U^\HH=\la_1\al_1\al_1^\HH + \la_2\al_2\al_2^\HH + \cdots + \la_n\al_n\al_n^\HH
+\end{equation*}其中多重特征值还可以进一步合并,表示为\begin{equation*}
+    A=\sum_{i=1}^{r}\la_i\sum_{j=1}^{n_i}\al_{i_j}\al_{i_j}^\HH=\sum_{i=1}^{r}\la_iG_i
+\end{equation*}
+
+\textbf{单纯(可对角化)矩阵的谱分解}: 将$A$相似对角化的结果变形得:\begin{align*}
+    A=P\Lambda P^{-1} & =\mat{\al_1,\al_2,\cdots,\al_n}
+    \begin{bmatrix}
+        \la_1                     \\
+         & \la_2                  \\
+         &       & \ddots         \\
+         &       &        & \la_n
+    \end{bmatrix}
+    \begin{bmatrix}
+        \be_1^\TT \\\be_2^\TT\\\vdots\\\be_n^\TT
+    \end{bmatrix}             \\& = \sum_{i=1}^{n}\la_i\al_i\be_i^\TT = \sum_{i=1}^{r}\la_iG_i
+\end{align*}
+
+
+
+
 
 \section{向量与矩阵范数}
 
@@ -213,6 +334,7 @@ $f(x)$在影谱上有定义,如果存在多项式$p(\la)$的上面$m$个值与$f
     \item $|e^{At}|=e^{\Tr{A}}$
 \end{enumerate}
 
+
 \section{函数矩阵与矩阵微分方程}
 
 \subsection{函数矩阵的导数与积分}
@@ -228,6 +350,7 @@ $f(x)$在影谱上有定义,如果存在多项式$p(\la)$的上面$m$个值与$f
 
 \subsection{矩阵微分方程}
 \sout{我看往年题都不考这里,先暂缓整理吧.}
+
 
 \section{广义逆与最小二乘}
 
@@ -312,6 +435,7 @@ $A$列满秩的充要条件是$A^-A=E$, $A$行满秩的充要条件是$AA^-=E$.
     \item $x=A^+b$是$Ax=b$的最佳最小二乘解 \important
     \item $\norm{Ax^*-b}_2$是$b$到$R(A)$的最短距离,其中$x^*$为最佳最小二乘解 \important
 \end{enumerate}
+
 
 \section{Kronecker积}
 \subsection{基本性质}
