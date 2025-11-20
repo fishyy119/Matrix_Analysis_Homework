@@ -1,11 +1,135 @@
 \documentclass{matrix-review}
 \usepackage{ulem} % 他会把emph变为下划线样式
+\usepackage{multicol}
 
 \begin{document}
 
 \section{1}
 \subsection{正规矩阵}
 
+\section{向量与矩阵范数}
+
+\subsection{向量范数}
+向量范数需要满足三个性质:
+\begin{enumerate}
+    \item 非负性: $\norm{\al}\ge 0$, 当且仅当$\al=0$时$\norm{\al}=0$
+    \item 齐次性: $\norm{k\al}=|k|\norm{\al}$
+    \item 三角不等式: $\norm{\al+\be}\le\norm{\al}+\norm{\be}$
+\end{enumerate}
+常用的三个向量范数: $\norm{\al}_1=\displaystyle\sum_{i=1}^{n}|a_i|;$
+$\norm{\al}_2=\displaystyle\sqrt{\sum_{i=1}^{n}|a_i|^2}=\sqrt{\al^\HH\al};$
+$\norm{\al}_\infty=\displaystyle\max_{1\le i\le n}|a_i|$
+
+\begin{remarkbox}
+    常用不等式1(Holder不等式):\begin{equation*}
+        \sum_{i=1}^{n}|a_ib_i|\le\left(\sum_{i=1}^{n}\left|a_i\right|^p\right)^{1/p}\left(\sum_{i=1}^{n}\left|b_i\right|^p\right)^{1/p}
+    \end{equation*}其中$p>1,q>1$且$1/p+1/q=1$\\[1em]
+    常用不等式2(Minkowski不等式):\begin{equation*}
+        \left(\sum_{i=1}^{n}\left|a_i+b_i\right|^p\right)^{1/p}\le\left(\sum_{i=1}^{n}\left|a_i\right|^p\right)^{1/p}+\left(\sum_{i=1}^{n}\left|b_i\right|^p\right)^{1/p}
+    \end{equation*}其中$p\ge1$
+\end{remarkbox}
+
+向量范数的等价性: 对于两个有限维线性空间$V$上的向量范数$\norm{\al}_a,\norm{\al}_b$, 存在两个与$\al$无关的正数使得\begin{equation*}
+    d_1\norm{\al}_b\le \norm{\al}_a\le d_2\norm{\al}_b, \qquad \forall \al\in V
+\end{equation*}
+
+利用向量范数构造新范数: 设$\norm{\cdot}_b$是$C^m$上的向量范数,$A\in C^{m\times n}_n$, 则\begin{equation*}
+    \norm{\al}_a = \norm{A\al}_b
+\end{equation*}所定义的$\norm{\cdot}_a$是$C^n$上的向量范数.
+
+\subsection{矩阵范数}
+矩阵范数需要满足四个性质:
+\begin{enumerate}
+    \item 非负性: $\norm{A}\ge 0$, 当且仅当$A=0$时$\norm{A}=0$
+    \item 齐次性: $\norm{kA}=|k|\norm{A}$
+    \item 三角不等式: $\norm{A+B}\le\norm{A}+\norm{B}$
+    \item \important 矩阵乘法相容性: $\norm{AB}\le\norm{A}\norm{B}$
+\end{enumerate}
+矩阵范数也有类似于向量范数的等价性,不再赘述.
+
+常见矩阵范数:
+\begin{enumerate}
+    \item Frobenious范数 $\norm{A}_F^2=\displaystyle\sum_{i=1}^{m}\sum_{i=1}^{n}\left|a_{ij}\right|^2=\Tr{A^\HH A}$
+    \item 列和范数 $\norm{A}_1=\displaystyle\max_j\left(\sum_{i=1}^{m}\left|a_{ij}\right|\right)$
+    \item 谱范数 $\norm{A}_2=\displaystyle\max_{j}\sqrt{\la_j\left(A^\HH A\right)}$
+    \item 行和范数 $\norm{A}_\infty=\displaystyle\max_i\left(\sum_{j=1}^{n}\left|a_{ij}\right|\right)$
+\end{enumerate}
+\begin{remarkbox}
+    Frobenious范数的一些其他性质:
+    \begin{enumerate}
+        \item $\displaystyle A=\mat{\al_1&\al_2&\cdots&\al_n}, \norm{A}_F^2=\sum_{i=1}^{n}\norm{\al_i}_2^2$
+        \item 酉不变性: $\norm{A}_F=\norm{UA}_F=\norm{A^\HH}_F=\norm{AV}_F=\norm{UAV}_F$
+        \item Frobenious范数与向量2-范数\emph{相容}
+    \end{enumerate}
+\end{remarkbox}
+
+\textbf{矩阵范数与向量范数相容}: 对于任意矩阵$A$与向量$X$都有\begin{equation*}
+    \norm{AX}_\al\le\norm{A}_\be\norm{X}_\al
+\end{equation*}则称矩阵范数$\norm{A}_\be$与向量范数$\norm{X}_\al$是相容的.
+
+\textbf{诱导范数（算子范数）}: 设$\norm{X}_\al$是向量范数,则\begin{equation*}
+    \norm{A}_i=\max_{X\ne0}\frac{\norm{AX}_\al}{\norm{X}_\al}
+\end{equation*}是与$\norm{X}_\al$ \emph{相容}的矩阵范数,被称为算子范数.
+
+\textbf{由矩阵范数构造向量范数}: 设$\norm{A}_*$是矩阵范数,则存在与其\emph{相容}的向量范数$\norm{X}=\norm{X\al^\HH}_*$.
+
+\textbf{\important 谱半径}: 矩阵$A$所有特征值的绝对值中的最大值被称为矩阵$A$的谱半径,即\begin{equation*}
+    \rho(A)=\max\left\{|\la_1|,|\la_2|,\cdots,|\la_n|\right\}
+\end{equation*}矩阵$A$的任意一种范数都不小于它的谱半径,即$\rho(A)\le\norm{A}$.
+
+\subsection{矩阵序列与极限}
+矩阵各项收敛即可得到矩阵序列收敛, 除加法数乘外还有如下运算规则:
+\begin{enumerate}
+    \item $\displaystyle\lim_{k\to\infty}A^{(k)}B^{(k)}=AB$
+    \item $\displaystyle\lim_{k\to\infty}PA^{(k)}Q=PAQ$
+    \item $\displaystyle\lim_{k\to\infty}\left(A^{(k)}\right)^{-1}=A^{-1}$
+\end{enumerate}
+
+矩阵序列$\left\{A^{(k)}\right\}$收敛于$A$的充要条件为$\displaystyle\lim_{k\to\infty}\norm{A^{(k)}-A}=0$.
+\begin{remarkbox}
+    根据矩阵范数等价性,任意范数成立上式后都可以使用夹逼准则证明另一范数满足该条件,因此证明时可以使用最简单形式的范数$\norm{A}=\displaystyle\sum_{i=1}^{m}\sum_{j=1}^{n}|a_{ij}|$.
+\end{remarkbox}
+
+矩阵序列$\left\{A,A^2,\cdots,A^k,\cdots\right\}$收敛于$0$的充要条件为$\rho(A)<0$.
+
+\subsection{矩阵幂级数}
+矩阵级数$\displaystyle\sum_{k=1}^{\infty}A^{(k)}$绝对收敛的充要条件是正项级数$\displaystyle\sum_{k=1}^{\infty}\norm{A^{(k)}}$收敛.
+
+矩阵幂级数$\displaystyle\sum_{k=0}^{\infty}a_kA^k$在$\rho(A)<R$时绝对收敛,在$\rho(A)>R$时发散,在$\rho(A)=R$时需额外判断.其中$R$为收敛半径,计算公式如下\begin{equation*}
+    \frac{1}{R}=\lim_{k\to\infty}\left|\frac{a_{k+1}}{a_k}\right|
+\end{equation*}
+\begin{remarkbox}
+    因为谱半径是所有范数值的下界,因此可以通过寻找在收敛域内的范数值来说明级数收敛.
+\end{remarkbox}
+
+\textbf{\important Jordan块矩阵的幂}: \begin{equation}
+    J_i^k(\la_i)=\begin{bmatrix}
+        \la_i^k & C^1_k\la_i^{k-1} & \cdots & C_k^{d_i-1}\la_i^{k-d_i+1} \\
+                & \la_i^k          & \ddots & \vdots                     \\
+                &                  & \ddots & C^1_k\la_i^{k-1}           \\
+                &                  &        & \la_i^k
+    \end{bmatrix}_{d_i\times d_i}
+\end{equation}
+\begin{remarkbox}
+    常见函数的幂级数展开, 前三个全域收敛, 后三个收敛半径为$1$
+    \begin{multicols}{2}
+        \begin{enumerate}
+            \item $e^x=\displaystyle\sum_{n=0}^{\infty}\frac{x^n}{n!}$
+            \item $\sin x=\displaystyle\sum_{n=0}^{\infty}\frac{(-1)^n}{(2n+1)!}x^{2n+1}$
+            \item $\cos x=\displaystyle\sum_{n=0}^{\infty}\frac{(-1)^n}{(2n)!}x^{2n}$
+            \item $\arctan x=\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{2n-1}x^{2n-1}$
+            \item $\ln x=\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{n}x^{n}$
+            \item $\displaystyle\frac{1}{1+x}=(1+x)^{-1}=\sum_{i=0}^{\infty}(-1)^nx^n$
+        \end{enumerate}
+    \end{multicols}
+\end{remarkbox}
+
+一个特殊级数:矩阵幂级数\begin{equation*}
+    I+A+A^2+\cdots+A^k+\cdots
+\end{equation*}绝对收敛的充要条件是$\rho(A)<1$,收敛和为$(I-A)^{-1}$.
+\begin{remarkbox}
+    充分性证明是前文定理,必要性证明是$\lim_{k\to\infty}\norm{A^k}=0$.
+\end{remarkbox}
 
 
 \section{矩阵函数}
@@ -16,10 +140,10 @@
 \subsection{矩阵多项式}
 $\displaystyle p(A)=\sum_{i=0}^{m}a_iA^i$被称为矩阵多项式. 考虑$d_i$阶Jordan块矩阵$J_i$,则\begin{equation}
     p(J_i)=\begin{bmatrix}
-        p(\la_i) & p'(\la_i) & \frac{p''(\la_i)}{2!} & \cdots & \frac{p^{d_i-1}(\la_i)}{(d_i-1)!} \\
-                 & p(\la_i)  & p'(\la_i)             & \ddots & \vdots                            \\
-                 &           & p(\la_i)              & \ddots & \frac{p''(\la_i)}{2!}             \\
-                 &           &                       & \ddots & p'(\la_i)                         \\
+        p(\la_i) & p'(\la_i) & \frac{p''(\la_i)}{2!} & \cdots & \frac{p^{(d_i-1)}(\la_i)}{(d_i-1)!} \\
+                 & p(\la_i)  & p'(\la_i)             & \ddots & \vdots                              \\
+                 &           & p(\la_i)              & \ddots & \frac{p''(\la_i)}{2!}               \\
+                 &           &                       & \ddots & p'(\la_i)                           \\
                  &           &                       &        & p(\la_i)
     \end{bmatrix}_{d_i\times d_i}
 \end{equation}

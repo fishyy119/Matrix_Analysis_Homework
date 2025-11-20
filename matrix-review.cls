@@ -113,6 +113,7 @@
 \newcommand{\Rank}[1]{\mr{rank}\left(#1\right)}
 \newcommand{\Dim}[1]{\mr{dim}\left(#1\right)}
 \newcommand{\al}{\alpha}
+\newcommand{\be}{\beta}
 \newcommand{\la}{\lambda}
 % \newcommand{\qed}{\hfill $\blacksquare$}
 
