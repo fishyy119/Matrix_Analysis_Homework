@@ -11,10 +11,103 @@
 
 \section{线性空间与线性变换}
 
+\subsection{代数重复度与几何重复度}\label{subsec:pq}
+已知矩阵$A$的特征多项式为
+$$|\la I-A|=(\la-\la_1)^{p_i}(\la-\la_2)^{p_2}\cdots(\la-\la_r)^{p_r}$$
+则$p_i$为$\la_i$的\emph{代数重复度}.
+
+属于$\la_i$的全部特征向量加上零向量构成了特征值$\la_i$的\emph{特征子空间}, 它是$\la_iI-A$的零空间.特征子空间的维数$q_i$称为$\la_i$的\emph{几何重复度},显然
+$$q_i=n-\Rank{\la_iI-A}$$
+
+
 
 
 \section{\texorpdfstring{$\la-$矩阵与Jordan标准形}{lambda-矩阵与Jordan标准形}}
 
+\subsection{\texorpdfstring{$\la-$矩阵}{lambda-矩阵}}
+称呼每个元素为多项式的矩阵为多项式矩阵($\la$-矩阵),其中各元素最高的次数称为矩阵的次数,各项规律基本与数字矩阵相似. 经过初等行列变换后得到的矩阵之间相互等价.
+\begin{remarkbox}
+    此处行列变换只能进行对换、单行数乘、倍加三种运算
+\end{remarkbox}
+
+\textbf{\important Smith标准形}: 任意一个非零$\la$-矩阵都能等价于对角矩阵\begin{equation*}
+    \begin{bmatrix}
+        d_1(\la)                                         \\
+         & d_2(\la)                                      \\
+         &          & \ddots                             \\
+         &          &        & d_r(\la)                  \\
+         &          &        &          & 0              \\
+         &          &        &          &   & \ddots     \\
+         &          &        &          &   &        & 0
+    \end{bmatrix}
+\end{equation*}其中$d_i(\la)$能被$d_{i+1}(\la)$整除, 其中$d_i(\la)$被称为\emph{不变因子}.
+
+\textbf{行列式因子}: 对于所有非0的$k$阶子式,令其首项系数为1后求出的最大公因式$D_k(\la)$被称为$A(\la)$的$k$阶\emph{行列式因子}. 行列式因子的数量等于$\mr{rank}(A(\la))$.
+\begin{remarkbox}
+    注意这里子式是可以跨行选取的.\\
+    等价的矩阵具有相同的不变因子与行列式因子.
+\end{remarkbox}
+
+\textbf{\important 行列式因子与不变因子的关系}: $d_1(\la)=D_1(\la),d_2(\la)=\frac{D_2(\la)}{D_1(\la)},\cdots,d_r(\la)=\frac{D_r(\la)}{D_{r-1}(\la)}$. 从而可证明Smith标准形唯一.
+
+\textbf{\important 初等因子}: 由于不变因子的整除特性, 不变因子可以被分解为一次因式幂的乘积:\begin{align*}
+    d_1(\la) & =(\la-\la+_1)^{e_{11}}(\la-\la+_2)^{e_{12}}\cdots(\la-\la+_s)^{e_{1s}} \\
+    d_2(\la) & =(\la-\la+_1)^{e_{21}}(\la-\la+_2)^{e_{22}}\cdots(\la-\la+_s)^{e_{2s}} \\
+    \vdots                                                                            \\
+    d_r(\la) & =(\la-\la+_1)^{e_{r1}}(\la-\la+_2)^{e_{r2}}\cdots(\la-\la+_s)^{e_{rs}} \\
+\end{align*}其中所有指数大于0的因子$(\la-\la_j)^{e_{ij}}$即为\emph{初等因子},在列出时就算相同也要写多次.
+\begin{remarkbox}
+    两个$\la$矩阵等价的充要条件是具有相同的不变(行列式/初等)因子.\\
+    两个数字矩阵相似的充要条件是他们的特征矩阵$\la I-A$与$\la I-B$等价.
+\end{remarkbox}
+
+\subsection{Jordan标准形}
+对于一个矩阵$A$,其特征矩阵$\la I-A$的每个初等因子都对应了一个Jordan块矩阵. 例如$(\la-a_i)^{n_i}$对应Jordan块\begin{equation*}
+    \begin{bmatrix}
+        a_1 & 1                           \\
+            & a_1 & 1                     \\
+            &     & \ddots & \ddots       \\
+            &     &        & \ddots & 1   \\
+            &     &        &        & a_i
+    \end{bmatrix}_{n_i\times n_i}
+\end{equation*}该Jordan块矩阵只有一个初等因子,就是他对应的那个初等因子.于是矩阵就可以相似变换为Jordan标准形\begin{equation}
+    P^{-1}AP=
+    \begin{bmatrix}
+        J_1                   \\
+         & J_2                \\
+         &     & \ddots       \\
+         &     &        & J_s
+    \end{bmatrix}
+\end{equation}
+\begin{remarkbox}
+    前面$\la-$矩阵的练习题初等因子都很多,这是因为那些题里的给的矩阵次数都很高,而求Jordan标准形时考虑的是特征矩阵$\la I-A$.
+\end{remarkbox}
+
+\textbf{\important 相似变换矩阵的求法}: 将$P$按列分块为$P=\mat{X_1&X_2&\cdots&X_n}$, 获得联立方程组$AP=PJ$, 逐步解方程获得一组解.
+\begin{remarkbox}
+    这里面涉及到齐次方程与非齐次方程的求解.\\
+    齐次方程通解是基础解系的加权和,有时需要选取以保证后面方程有解.\\
+    非齐次方程解的形式是齐次方程通解加一个特解.
+\end{remarkbox}
+
+\subsection{\important 另一种Jordan标准形的求法}
+给定特征值$\la_i$,其对应的Jordan块有如下性质(重复度计算方法见\ref{subsec:pq})
+\begin{enumerate}
+    \item 对应的Jordan块个数等于\emph{几何重复度}
+    \item 对应的Jordan块阶数和等于\emph{代数重复度}
+\end{enumerate}
+
+对于阶数很高的情况,分析方法如下:
+\begin{enumerate}
+    \item 计算$\Rank{\la_iI-A},\Rank{\la_iI-A}^2\cdots$
+    \item 对应$\la_i$的Jordan块总数为$n-\Rank{\la_iI-A}$
+    \item 对应$\la_i$的Jordan块中大于2阶的数量为$\Rank{\la_iI-A}-\Rank{\la_iI-A}^2$
+    \item 大于3阶的有...依此类推,直到不再降秩
+\end{enumerate}
+\begin{remarkbox}
+    考虑$\la_iI-J$的多次幂,不难发现只有对应$\la_i$的Jordan块会降秩,同时在次数为$r$时,阶数小于等于$r$的Jordan块会降秩到0.\\
+    上面步骤中不再降秩,就代表该特征值对应的所有Jordan块都已经降秩到0了.
+\end{remarkbox}
 
 
 \section{内积空间与正规矩阵}
@@ -162,9 +255,6 @@ H-矩阵$A$的Rayleigh商定义为:\begin{equation}
         \item $\displaystyle\max_{X\ne0}R(X)=\la_n$
     \end{enumerate}
 \end{multicols}
-
-
-
 
 
 \section{矩阵的分解}
@@ -623,5 +713,6 @@ $\OT{A}{B}=\mat{a_{11}B & a_{12}B & \cdots & a_{1n}B \\
     \item $\cs{AX}=\left(\OT{E_n}{A}\right)\cs{X}$
     \item $\cs{XB}=\left(\OT{B^\TT}{E_m}\right)\cs{X}$
 \end{enumerate}
+
 
 \end{document}
