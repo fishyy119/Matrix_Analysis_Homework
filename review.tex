@@ -11,7 +11,49 @@
 
 \section{线性空间与线性变换}
 
-\subsection{代数重复度与几何重复度}\label{subsec:pq}
+\subsection{线性空间}
+\begin{multicols}{2}[\textbf{线性空间定义}: 已知数域$F$,在集合$V$中定义数乘与加法运算,线性空间应满足如下八条运算律:]
+    \begin{enumerate}
+        \item 加法交换律
+        \item 加法结合律
+        \item 存在零元素,使得$\forall \al\in V,\al+0=\al$
+        \item $\forall \al\in V, \exists \be\in V, \text{s.t. } \al+\be=0$
+        \item $1\cdot\al=\al$
+        \item $k(l\al)=(kl)\al$
+        \item $(k+l)\al=k\al+l\al$
+        \item $k(\al+\be)=k\al+k\be$
+    \end{enumerate}
+\end{multicols}
+
+线性无关,线性相关,极大线性无关组,向量组的秩,基底,坐标,维数...
+
+\textbf{基变换与坐标变换}: 设旧基底$\al_1,\al_2,\cdots,\al_n$与新基底$\be_1,\be_2,\cdots,\be_n$之间变换关系为\begin{equation*}
+    \be_i=\mat{\al_1&\al_2&\cdots&\al_n}\mat{a_{1i}\\a_{2i}\\\vdots\\a_{ni}}
+\end{equation*}则$P=\mat{a_{11}&a_{12}&\cdots&a_{1n}\\a_{21}&a_{22}&\cdots&a_{2n}\\\cdots&\cdots&\cdots&\cdots\\a_{n1}&a_{n2}&\cdots&a_{nn}}$是由旧基底到新基底的过渡矩阵,基变换公式为:\begin{equation}
+    \mat{\be_1&\be_2&\cdots&\be_n}=\mat{\al_1&\al_2&\cdots&\al_n}P
+\end{equation}对于同一个向量,其在两个基底下的坐标(y新x旧)变换公式为:\begin{equation}
+    \mat{x_1\\x_2\\\vdots\\x_n}=P\mat{y_1\\y_2\\\vdots\\y_n}
+\end{equation}
+
+\subsection{线性子空间}
+设$V$是数域$F$上一个线性空间,$W$是$V$的一个非空子集合,如果$\forall \al,\be\in W,\forall k,l\in F$都有$$k\al+l\be\in W$$则称$W$是$V$的一个子空间.
+
+两个子空间$V_1,V_2$的交空间$V_1\cap V_2$与和空间$V_1+V_2$仍然是子空间. 如果$V_1\cap V_2={0}$,则称和空间为直和,记为$V_1\oplus V_2$.
+
+\textbf{\important 维数公式}:$\Dim{V_1+V_2}=\Dim{V_1}+\Dim{V_2}-\Dim{V_1\cap V_2}$
+
+\subsection{\important 特征值与特征向量}\label{subsec:pq}
+特征值与特征向量的定义: $AX=\la X$.
+
+特征值的性质:
+\begin{multicols}{2}
+    \begin{enumerate}
+        \item $|A| =\prod_{i=1}^{n}\la_i$
+        \item $\Tr{A} = \sum_{i=1}^{n}\la_i$
+    \end{enumerate}
+\end{multicols}
+
+
 已知矩阵$A$的特征多项式为
 $$|\la I-A|=(\la-\la_1)^{p_i}(\la-\la_2)^{p_2}\cdots(\la-\la_r)^{p_r}$$
 则$p_i$为$\la_i$的\emph{代数重复度}.
@@ -19,7 +61,14 @@ $$|\la I-A|=(\la-\la_1)^{p_i}(\la-\la_2)^{p_2}\cdots(\la-\la_r)^{p_r}$$
 属于$\la_i$的全部特征向量加上零向量构成了特征值$\la_i$的\emph{特征子空间}, 它是$\la_iI-A$的零空间.特征子空间的维数$q_i$称为$\la_i$的\emph{几何重复度},显然
 $$q_i=n-\Rank{\la_iI-A}$$
 
+\subsection{相似对角形}
+$A$可相似对角化的充要条件:
+\begin{enumerate}
+    \item 有$n$个线性无关的特征向量
+    \item 每个特征值的几何重复度等于代数重复度
+\end{enumerate}
 
+$A,B$可以同时相似对角化的充要条件为:$AB=BA$
 
 
 \section{\texorpdfstring{$\la-$矩阵与Jordan标准形}{lambda-矩阵与Jordan标准形}}
@@ -161,10 +210,10 @@ $$q_i=n-\Rank{\la_iI-A}$$
 \begin{remarkbox}
     零(Null)空间: $N(A)=\{x|Ax=0,x\in C^n\}$\\
     列空间: $C(A)=\{Ay|y\in C^n\}$ (列向量张成的空间) \\
-    行空间: $R(A)=C(A^\HH),\qquad$
+    行空间: $C(A^\HH),\qquad$
     左零空间: $N(A^\HH)$\\
     一个矩阵的零空间和行空间是正交的,左零空间与列空间是正交的.\\
-    \sout{有的时候列空间(range space)也可以表示为$R(A)$,有些坑人.}
+    \sout{有的时候列空间(range space, 值域)也可以表示为$R(A)$,有些坑人.}
 \end{remarkbox}
 
 \textbf{投影变换}: 将$n$维酉空间$V$分解为两个子空间$S,T$,且$V=S\oplus T$, 则$V$中任一向量都可以唯一表示为
