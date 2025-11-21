@@ -2,13 +2,46 @@
 \usepackage{ulem} % 他会把emph变为下划线样式
 \usepackage{multicol}
 
+% 孤行寡行
+\widowpenalty=10000
+\clubpenalty=10000
+
 \begin{document}
 
-\section{1}
+
+\section{线性空间与线性变换}
+
+
+
+\section{\texorpdfstring{$\la-$矩阵与Jordan标准形}{lambda-矩阵与Jordan标准形}}
+
+
+
+\section{内积空间与正规矩阵}
 \newcommand{\cross}[2]{\left(#1,#2\right)}
 \newcommand{\schmidt}[4]{\frac{\cross{#1}{#2}}{\cross{#3}{#4}}}
 
-\subsection{欧氏空间}
+\subsection{内积空间}
+实数域内积的性质:
+\begin{multicols}{2}
+    \begin{enumerate}
+        \item $\cross{\al}{\be}=\cross{\be}{\al}$
+        \item $\cross{k\al}{\be}=k\cross{\al}{\be}$
+        \item $\cross{\al+\be}{\gamma}=\cross{\al}{\gamma}+\cross{\be}{\gamma}$
+        \item $\cross{\al}{\al}\ge0$, 当且仅当$\al=0$时取零
+    \end{enumerate}
+\end{multicols}
+
+复数域内积的性质:
+\begin{multicols}{2}
+    \begin{enumerate}
+        \item $\cross{\al}{\be}=\overline{\cross{\be}{\al}} $
+        \item ...其余三条相同
+    \end{enumerate}
+\end{multicols}
+
+定义了内积的$n$维实线性空间被称为\emph{欧氏空间},复线性空间被称为\emph{酉空间},两者合称\emph{内积空间}.
+
 \textbf{\important Schmidt正交化方法}: 从一个线性无关向量组$\left\{\al_1,\al_2,\cdots,\al_r\right\}$出发,可以构造一个等价的标准正交向量组(是$\mr{span}\left\{\al_1,\al_2,\cdots,\al_r\right\}$的一个标准正交基):\begin{equation}\label{eq:schmidt}
     \left\{
     \begin{aligned}
@@ -20,7 +53,119 @@
     \right.
 \end{equation}标准化步骤不再赘述.
 
+\textbf{正交矩阵(酉矩阵)}: 转置(共轭转置)等于逆的矩阵, 其各行(列)向量构成标准正交向量组, 行列式模长为1. \sout{(可以从几何直观上理解,懒得写了,反正我知道...)}
+
+\subsection{幂等矩阵}
+满足式$$A^2=A$$的矩阵被称为幂等矩阵,其\emph{充要条件}是可以被相似对角化为$\mat{I_r & 0 \\ 0 & 0}$(幂等矩阵结构定理).幂等矩阵具有如下性质:
+\begin{enumerate}
+    \begin{multicols}{2}
+        \item $A(I-A)=(I-A)A=0$
+        \item $N(A)=C(I-A)$
+        \item $N(I-A)=C(A)$
+        \item $C^n=C(A)\oplus N(A)$
+    \end{multicols}
+\end{enumerate}
+\begin{remarkbox}
+    零(Null)空间: $N(A)=\{x|Ax=0,x\in C^n\}$\\
+    列空间: $C(A)=\{Ay|y\in C^n\}$ (列向量张成的空间) \\
+    行空间: $R(A)=C(A^\HH),\qquad$
+    左零空间: $N(A^\HH)$\\
+    一个矩阵的零空间和行空间是正交的,左零空间与列空间是正交的.\\
+    \sout{有的时候列空间(range space)也可以表示为$R(A)$,有些坑人.}
+\end{remarkbox}
+
+\textbf{投影变换}: 将$n$维酉空间$V$分解为两个子空间$S,T$,且$V=S\oplus T$, 则$V$中任一向量都可以唯一表示为
+$$\al=x+y,\quad x\in S, y\in T$$
+则称线性变换$$\tau(\al)=x$$为$V$沿$T$到$S$的投影变换.
+\begin{remarkbox}
+    $\tau$是投影变换等价于$\tau$的矩阵是幂等矩阵,\\
+    幂等矩阵$A$对应了$C^n$沿着$N(A)$到$C(A)$的投影变换\\
+    这从几何上来说, 代表多次投影后的结果保持不变.
+\end{remarkbox}
+
+\textbf{正交投影变换}: 如果两个子空间$S,T$中任意两个向量内积均为零,则称两个子空间是正交的,此时他们的直和加强为正交和,投影变换加强为\emph{正交投影变换}.
+\begin{remarkbox}
+    正交投影变换等价于矩阵是幂等H-矩阵$A$, 增加H条件后列空间与行空间相等了.\\
+    进一步等价于$A=U_1U_1^\HH$\\
+    其中$U_1$为次酉矩阵(从酉矩阵中保留若干列得到).
+\end{remarkbox}
+
 \subsection{正规矩阵}
+\textbf{Schur引理}: 任何一个$n$阶复矩阵$A$都酉相似于一个上(下)三角矩阵. (数学归纳法证明)
+
+\textbf{Schur不等式}: 设矩阵$A=(a_{ij})\in C^{n\times n}$, $\la_i$为特征值,则\begin{equation}
+    \sum_{i=1}^{n}|\la_i|^2\le\sum_{i,j}|a_{ij}|^2
+\end{equation}当且仅当$A$酉相似于对角矩阵是等号成立.
+
+\textbf{正规矩阵}: 满足$AA^\HH=A^\HH A$的矩阵$A$称为正规矩阵. 其\emph{充要条件}是有相似于对角矩阵,其中对角线上值为特征值(正规矩阵结构定理).
+\begin{remarkbox}
+    结构定理的证明:对于正规矩阵$A$,和$A$酉相似的矩阵一定是正规矩阵;\\如果正规矩阵$A$是三角矩阵,则其必为对角矩阵;\\正规矩阵酉相似于一个正规三角矩阵.
+    \\[0.7em]
+    $n$阶正规矩阵一定有$n$个线性无关的特征向量,同时不同特征值的特征向量彼此正交.
+\end{remarkbox}
+
+正规矩阵同时酉对角化: 当且仅当$AB=BA$时, 两个矩阵可以同时被酉对角化.
+\begin{remarkbox}
+    首先将$A$使用$U_1$酉对角化为$C$,$B$也同时做相应变换为$D$;\\
+    由于$AB=BA\Rightarrow CD=DC$的条件,$D$实际是由正规矩阵块组成的准对角线矩阵;\\
+    相应的就有一个由酉矩阵块组成的准对角线矩阵$V$,$C$经过$V$的变换能够保持不变;\\
+    最终两个矩阵被$U_1V$同时酉对角化.
+\end{remarkbox}
+
+\subsection{Hermite二次型}
+\textbf{H-阵结构定理}: H-阵酉相似于实对角矩阵
+
+\textbf{\important 正定矩阵}: 对于不全为零的向量$X$,$X^\HH AX>0$,则矩阵$A$正定.正定矩阵具有如下等价命题:
+\begin{multicols}{2}
+    \begin{enumerate}
+        \item 对于任何$n$阶可逆矩阵,$P^\HH AP$均正定
+        \item $A$的特征值均大于0
+        \item 存在可逆矩阵$P$使得$P^\HH AP=I$
+        \item 存在可逆矩阵$Q$使得$A=Q^\HH Q$
+        \item 存在正线上三角矩阵$R$使得$A$被唯一分解为$A=R^\HH R$
+    \end{enumerate}
+\end{multicols}
+
+类似地,半正定矩阵有如下等价命题:
+\begin{enumerate}
+    \item 对于任何$n$阶可逆矩阵,$P^\HH AP$半正定
+    \item $A$的特征值非负
+    \item 存在可逆矩阵$P$使得$P^\HH AP=\mat{I_r&0\\0&0}$
+    \item 存在秩为$r$的矩阵$Q$使得$A=Q^\HH Q$
+\end{enumerate}
+\begin{remarkbox}
+    正定矩阵可以依靠顺序主子式均大于0判断\\
+    负定矩阵的顺序主子式符号奇数次小于0,偶数次大于0\\
+    半正定(半负定)无法依靠顺序主子式判断,他们需要判断所有主子式.
+    \begin{remarkbox}
+        主子式: 提取矩阵相同索引的一组行和列组成的子式\\
+        顺序主子式: 前$ k $行和前$ k $列形成的主子式
+    \end{remarkbox}
+\end{remarkbox}
+
+H-矩阵偶在复合同下的标准形: 若$A,B$为H-阵,其中$B$正定,则存在可逆矩阵使得\begin{equation*}
+    P^\HH AP=\mat{\la_1\\&\la_2\\&&\ddots\\&&&\la_n},\qquad P^\HH BP=I
+\end{equation*}其中$\la_1,\la_2,\cdots,\la_n$是$|\la B-A|$的根,被称为\emph{$A$相对于$B$的广义特征值},与$P$无关.相应地满足\begin{equation*}
+    AX=\la BX
+\end{equation*}的$\la$被称为对应的\emph{广义特征向量}.
+
+
+\subsection{RayLeigh商}
+H-矩阵$A$的Rayleigh商定义为:\begin{equation}
+    R(X)=\frac{X^\HH AX}{X^\HH X}(X\in C^n, X\ne0)
+\end{equation}具有性质如下:
+\begin{multicols}{2}
+    \begin{enumerate}
+        \item $R(kX)=R(X)$
+        \item $\la_1\le R(X)\le\la_n$
+        \item $\displaystyle\min_{X\ne0}R(X)=\la_1$
+        \item $\displaystyle\max_{X\ne0}R(X)=\la_n$
+    \end{enumerate}
+\end{multicols}
+
+
+
+
 
 \section{矩阵的分解}
 
@@ -123,9 +268,6 @@
         \be_1^\TT \\\be_2^\TT\\\vdots\\\be_n^\TT
     \end{bmatrix}             \\& = \sum_{i=1}^{n}\la_i\al_i\be_i^\TT = \sum_{i=1}^{r}\la_iG_i
 \end{align*}
-
-
-
 
 
 \section{向量与矩阵范数}
