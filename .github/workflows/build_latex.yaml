@@ -21,18 +21,6 @@ jobs:
       - name: Upload PDF file
         uses: actions/upload-artifact@v5
         with:
-          name: PDF
+          name: Matrix_Analysis_Homework_PDF
           path: |
-            *.pdf
-
-      - name: Set timestamp
-        id: ts
-        run: echo "RELEASE_TAG=$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_ENV
-
-      - name: Create Release
-        id: create_release
-        uses: softprops/action-gh-release@v2
-        if: github.ref_type == 'tag'
-        with:
-          files: |
             *.pdf
