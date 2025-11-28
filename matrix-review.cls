@@ -19,9 +19,19 @@
 
 \fancyhead[C]{\@reviewtitle}
 \fancyfoot[R]{\small\thepage}
+\newcommand{\makecover}{%
+    \clearpage
+    \thispagestyle{empty} % 去掉页眉页脚
+    \begin{center}
+        {\Huge \textit{矩阵分析复习整理}} % 封面标题
+    \end{center}
+    \clearpage
+    \setcounter{page}{1} % 正文页码从1开始
+    \pagestyle{fancy}     % 正文启用fancy页眉页脚
+}
 
 %% 水印
-\RequirePackage{everypage-1x} % 修复首页透明度问题
+% \RequirePackage{everypage-1x} % 修复首页透明度问题
 \RequirePackage{background}
 \backgroundsetup{
     pages=all,
