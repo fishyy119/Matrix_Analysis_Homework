@@ -20,8 +20,20 @@
 \fancyhead[C]{\@homeworktitle}
 \fancyfoot[R]{\small\thepage}
 
+\newcommand{\makecover}[1]{%
+    \clearpage
+    \thispagestyle{empty} % 去掉页眉页脚
+    \begin{center}
+        {\Huge \textit{矩阵分析第#1章作业}} % 封面标题
+    \end{center}
+    \clearpage
+    \setcounter{page}{1} % 正文页码从1开始
+    \pagestyle{fancy}     % 正文启用fancy页眉页脚
+}
+
 %% 水印
-\RequirePackage{everypage-1x} % 修复首页透明度问题
+% \RequirePackage{everypage-1x} % 修复首页透明度问题
+% 虽然能生成但是报错，直接不用首页好了
 \RequirePackage{background}
 \backgroundsetup{
     pages=all,
