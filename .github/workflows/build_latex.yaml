@@ -22,4 +22,5 @@ jobs:
         uses: actions/upload-artifact@v5
         with:
           name: PDF
-          path: main.pdf
+          path: |
+            *.pdf
