@@ -27,7 +27,7 @@ jobs:
 
       - name: Set timestamp
         id: ts
-        run: echo "RELEASE_TAG=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
+        run: echo "RELEASE_TAG=$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_ENV
 
       - name: Create Release
         id: create_release
@@ -39,9 +39,3 @@ jobs:
             *.pdf
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Cleanup old releases
-        uses: devops-infra/action-delete-release@v1
-        with:
-          keep_releases: 5
-          github_token: ${{ secrets.GITHUB_TOKEN }}
