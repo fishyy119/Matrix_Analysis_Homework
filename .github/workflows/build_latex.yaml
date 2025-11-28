@@ -17,6 +17,7 @@ jobs:
             c*.tex
             review.tex
           latexmk_use_xelatex: true
+          args: "-interaction=nonstopmode -halt-on-error"
 
       - name: Upload PDF file
         uses: actions/upload-artifact@v5
