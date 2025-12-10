@@ -1,6 +1,7 @@
 \documentclass{matrix-review}
 \usepackage{ulem} % 他会把emph变为下划线样式
 \usepackage{multicol}
+% \usepackage{arydshln} % 增广矩阵虚线
 
 % 孤行寡行
 \widowpenalty=10000
@@ -30,11 +31,19 @@
 
 \textbf{基变换与坐标变换}: 设旧基底$\al_1,\al_2,\cdots,\al_n$与新基底$\be_1,\be_2,\cdots,\be_n$之间变换关系为\begin{equation*}
     \be_i=\mat{\al_1&\al_2&\cdots&\al_n}\mat{a_{1i}\\a_{2i}\\\vdots\\a_{ni}}
-\end{equation*}则$P=\mat{a_{11}&a_{12}&\cdots&a_{1n}\\a_{21}&a_{22}&\cdots&a_{2n}\\\cdots&\cdots&\cdots&\cdots\\a_{n1}&a_{n2}&\cdots&a_{nn}}$是由旧基底到新基底的过渡矩阵,基变换公式为:\begin{equation}
+\end{equation*}则$P=\mat{a_{11}&a_{12}&\cdots&a_{1n}\\a_{21}&a_{22}&\cdots&a_{2n}\\\cdots&\cdots&\cdots&\cdots\\a_{n1}&a_{n2}&\cdots&a_{nn}}$是由旧基底到新基底的过渡矩阵,基变换公式为:\begin{equation}\label{eq:jidiP}
     \mat{\be_1&\be_2&\cdots&\be_n}=\mat{\al_1&\al_2&\cdots&\al_n}P
 \end{equation}对于同一个向量,其在两个基底下的坐标(y新x旧)变换公式为:\begin{equation}\label{eq:guoduP}
     \mat{x_1\\x_2\\\vdots\\x_n}=P\mat{y_1\\y_2\\\vdots\\y_n}
 \end{equation}
+
+\begin{remarkbox}
+    实际上\eqref{eq:jidiP}中隐含了一个平凡基(即第$i$个基只有第$i$位为1), 这样一来基变换公式就可以理解为$A^b_2=A^b_1A^1_2$
+    \\[0.9em]
+    $A^1_2$意为将坐标系2的向量表示在坐标系1下\\
+    其列向量是坐标系2的某一个基底在坐标系1下的表示\\
+    $A^1_2\al^2$\eqref{eq:guoduP}可以把表示在坐标系2下的向量$\al^2$表示回坐标系1
+\end{remarkbox}
 
 \subsection{线性子空间}
 设$V$是数域$F$上一个线性空间,$W$是$V$的一个非空子集合,如果$\forall \al,\be\in W,\forall k,l\in F$都有$$k\al+l\be\in W$$则称$W$是$V$的一个子空间.
@@ -609,9 +618,9 @@ $f(x)$在影谱上有定义,如果存在多项式$p(\la)$的上面$m$个值与$f
 
 \textbf{\important 矩阵函数的Jordan表示:} 与上文矩阵多项式的Jordan表示是相似的,不过是把多项式换为了函数,同时要求在影谱上有定义.
 
-\textbf{\important 矩阵函数的多项式表示:} 使用拉格朗日插入计算多项式系数$a_0,a_1,\cdots,a_{m-1}$,使得多项式影谱上对应值相等\begin{equation*}
-    p^{(k)}(\la_i)=f^{(k)}(\la_i), \quad i=1,2,\cdots,s; \quad k=1,2,\cdots,d_i-1
-\end{equation*}最终可得到多项式表示$f(A)=a_{m-1}A^{m-1}+\cdots+a_1A+A_0I$
+\textbf{\important 矩阵函数的多项式表示:} 使用拉格朗日插值计算多项式系数$a_0,a_1,\cdots,a_{m-1}$,使得多项式影谱上对应值相等\begin{equation*}
+    p^{(k)}(\la_i)=f^{(k)}(\la_i), \quad i=1,2,\cdots,s; \quad k=0,1,2,\cdots,d_i-1
+\end{equation*}最终可得到多项式表示$f(A)=a_{m-1}A^{m-1}+\cdots+a_1A+A_0I$ (其中各多项式系数是由暂定未知量$f^{(k)}(\la_i)$组成的)
 
 \textbf{\important 矩阵函数的幂级数表示:} 将一元函数$f(x)$展开为收敛半径$R$的幂级数$\displaystyle\sum_{k=0}^{\infty}c_kx^k$. 当矩阵$A$的谱半径$\rho(A)<R$时,矩阵幂级数$\displaystyle\sum_{k=0}^{\infty}c_kx^k$绝对收敛, 该级数即为急诊的幂级数表示.
 
@@ -789,5 +798,34 @@ $\OT{A}{B}=\mat{a_{11}B & a_{12}B & \cdots & a_{1n}B \\
     \item $\cs{XB}=\left(\OT{B^\TT}{E_m}\right)\cs{X}$
 \end{enumerate}
 
+\startappendix
+
+
+\section{矩阵求逆方法}
+
+\subsection{初等变换法}
+对于一个可逆矩阵$A$,将其与单位矩阵$I$拼接成增广矩阵$\mat{A & I}$, 随后\emph{仅进行}初等行变换化简为如下形式 $\mat{I & A^{-1}}$.
+
+\subsection{伴随矩阵法}
+对于一个可逆矩阵$A$,其伴随矩阵定义为
+$$A^*=
+    \begin{bmatrix}
+        A_{11} & A_{21} & \cdots & A_{n1} \\
+        A_{12} & A_{22} & \cdots & A_{n2} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        A_{1n} & A_{2n} & \cdots & A_{nn}
+    \end{bmatrix}
+$$
+其中$A_{ij}$为$A$的代数余子式, 即抛去第$i$行第$j$列后组成的$n-1$阶矩阵的行列式与$(-1)^{i+j}$的乘积. 最终逆矩阵的求法为:
+$$
+    A^{-1}=\frac{1}{|A|}A^*
+$$
+\begin{remarkbox}
+    此处需要尤为注意两点：
+    \begin{enumerate}
+        \item 伴随矩阵的各项相对于原矩阵各项余子式是转置了的
+        \item 代数余子式需要乘以一个$(-1)^{i+j}$的系数
+    \end{enumerate}
+\end{remarkbox}
 
 \end{document}

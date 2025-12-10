@@ -19,12 +19,21 @@
 
 \fancyhead[C]{\@reviewtitle}
 \fancyfoot[R]{\small\thepage}
+
+\RequirePackage{datetime2}
 \newcommand{\makecover}{%
     \clearpage
     \thispagestyle{empty} % 去掉页眉页脚
+
+    % 封面标题
     \begin{center}
-        {\Huge \textit{矩阵分析复习整理}} % 封面标题
+        {\Huge \textit{矩阵分析复习整理}}
     \end{center}
+
+    % 尾部添加编译日期
+    \vfill   % 把下面的文字压到页面底部（正文区域）
+    \hfill \textit{\DTMnow} % 右对齐的最后一行
+
     \clearpage
     \setcounter{page}{1} % 正文页码从1开始
     \pagestyle{fancy}     % 正文启用fancy页眉页脚
@@ -81,6 +90,20 @@
 {}
 
 \titlespacing*{\subsection}{0pt}{0.8em}{0.3em}
+
+% 附录环境设置 
+\newcommand{\startappendix}{%
+    \appendix                       % 切换到附录
+    \renewcommand{\thesection}{\Alph{section}} % 附录章节编号 A、B、C
+    \renewcommand{\thesubsection}{\thesection.\arabic{subsection}} % A.1, A.2
+    % 设置 section 标题显示为 "附录A: 标题"
+    \titleformat{\section}
+    {\bfseries\large}  % 字体样式
+    {附录\thesection:\quad}            % 前缀显示
+    {0em}                         % 编号和标题之间间距
+    {}                             % 标题正文前额外代码
+}
+
 
 % --------------------------
 % 宏包

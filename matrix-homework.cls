@@ -20,12 +20,20 @@
 \fancyhead[C]{\@homeworktitle}
 \fancyfoot[R]{\small\thepage}
 
+\RequirePackage{datetime2}
 \newcommand{\makecover}[1]{%
     \clearpage
     \thispagestyle{empty} % 去掉页眉页脚
+
+    % 封面标题
     \begin{center}
         {\Huge \textit{矩阵分析第#1章作业}} % 封面标题
     \end{center}
+
+    % 尾部添加编译日期
+    \vfill   % 把下面的文字压到页面底部（正文区域）
+    \hfill \textit{\DTMnow} % 右对齐的最后一行
+
     \clearpage
     \setcounter{page}{1} % 正文页码从1开始
     \pagestyle{fancy}     % 正文启用fancy页眉页脚
