@@ -218,6 +218,9 @@ $A,B$可以同时相似对角化的充要条件为:$AB=BA$
 \end{multicols}
 
 定义了内积的$n$维实线性空间被称为\emph{欧氏空间},复线性空间被称为\emph{酉空间},两者合称\emph{内积空间}.
+\begin{remarkbox}
+    最常用的内积定义: $(\al,\be)=\be^\HH\al$, 需注意复数域上要共轭转置
+\end{remarkbox}
 
 \textbf{\important Schmidt正交化方法}: 从一个线性无关向量组$\left\{\al_1,\al_2,\cdots,\al_r\right\}$出发,可以构造一个等价的标准正交向量组(是$\mr{span}\left\{\al_1,\al_2,\cdots,\al_r\right\}$的一个标准正交基):\begin{equation}\label{eq:schmidt}
     \left\{
@@ -243,8 +246,8 @@ $A,B$可以同时相似对角化的充要条件为:$AB=BA$
     \end{multicols}
 \end{enumerate}
 \begin{remarkbox}
-    零(Null)空间: $N(A)=\{x|Ax=0,x\in C^n\}$\\
-    列空间: $C(A)=\{Ay|y\in C^n\}$ (列向量张成的空间) \\
+    零(Null)空间 / 核空间: $N(A)=\{x|Ax=0,x\in C^n\}$\\
+    列空间 / 像空间: $C(A)=\{Ay|y\in C^n\}$ (列向量张成的空间) \\
     行空间: $C(A^\HH),\qquad$
     左零空间: $N(A^\HH)$\\
     一个矩阵的零空间和行空间是正交的,左零空间与列空间是正交的.\\
@@ -272,9 +275,9 @@ $$\al=x+y,\quad x\in S, y\in T$$
 
 \textbf{Schur不等式}: 设矩阵$A=(a_{ij})\in C^{n\times n}$, $\la_i$为特征值,则\begin{equation}
     \sum_{i=1}^{n}|\la_i|^2\le\sum_{i,j}|a_{ij}|^2
-\end{equation}当且仅当$A$酉相似于对角矩阵是等号成立.
+\end{equation}当且仅当$A$酉相似于对角矩阵时等号成立.
 
-\textbf{正规矩阵}: 满足$AA^\HH=A^\HH A$的矩阵$A$称为正规矩阵. 其\emph{充要条件}是有相似于对角矩阵,其中对角线上值为特征值(正规矩阵结构定理).
+\textbf{正规矩阵}: 满足$AA^\HH=A^\HH A$的矩阵$A$称为正规矩阵. 其\emph{充要条件}是酉相似于对角矩阵,其中对角线上值为特征值(正规矩阵结构定理).
 \begin{remarkbox}
     结构定理的证明:对于正规矩阵$A$,和$A$酉相似的矩阵一定是正规矩阵;\\如果正规矩阵$A$是三角矩阵,则其必为对角矩阵;\\正规矩阵酉相似于一个正规三角矩阵.
     \\[0.7em]
@@ -292,6 +295,11 @@ $$\al=x+y,\quad x\in S, y\in T$$
 \subsection{Hermite二次型}
 \textbf{H-阵结构定理}: H-阵酉相似于实对角矩阵
 
+\textbf{\important 标准形的Hermite二次型}: 对于任意一个Hermite二次型$f(X)=X^\HH AX$, 必存在酉线性替换$$X=UY$$可以将$f(x)$化为标准形$$f(x)=\sum_{i=1}^{n}\la_i\bar{y_i}y_i$$
+其中$\la_i$是$A$的特征值, $U$由各特征值对应的\emph{标准}特征向量组成.
+
+规范形: 与标准形类似,只是将酉线性变换$U$修改为可逆线性变换$P$,得到的规范形对角线取值仅为$0,\pm 1$.
+
 \textbf{\important 正定矩阵}: 对于不全为零的向量$X$,$X^\HH AX>0$,则矩阵$A$正定.正定矩阵具有如下等价命题:
 \begin{multicols}{2}
     \begin{enumerate}
@@ -303,7 +311,11 @@ $$\al=x+y,\quad x\in S, y\in T$$
     \end{enumerate}
 \end{multicols}
 
-类似地,半正定矩阵有如下等价命题:
+\begin{remarkbox}
+    其中第三条可以从规范形的角度理解
+\end{remarkbox}
+
+类似地,\textbf{半正定矩阵}有如下等价命题:
 \begin{enumerate}
     \item 对于任何$n$阶可逆矩阵,$P^\HH AP$半正定
     \item $A$的特征值非负
