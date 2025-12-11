@@ -20,6 +20,7 @@
 \fancyhead[C]{\@reviewtitle}
 \fancyfoot[R]{\small\thepage}
 
+\providecommand{\pdfcreationdate}{\creationdate} % 使用新版XeLaTeX时区支持
 \RequirePackage{datetime2}
 \newcommand{\makecover}{%
     \clearpage

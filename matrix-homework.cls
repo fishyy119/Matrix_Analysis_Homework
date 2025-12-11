@@ -20,6 +20,7 @@
 \fancyhead[C]{\@homeworktitle}
 \fancyfoot[R]{\small\thepage}
 
+\providecommand{\pdfcreationdate}{\creationdate} % 使用新版XeLaTeX时区支持
 \RequirePackage{datetime2}
 \newcommand{\makecover}[1]{%
     \clearpage
