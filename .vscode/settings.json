@@ -43,6 +43,7 @@
             "name": "latexmk",
             "command": "latexmk",
             "args": [
+                "-xelatex",
                 "-synctex=1",
                 "-interaction=nonstopmode",
                 "-file-line-error",
@@ -125,7 +126,7 @@
         "*.fdb_latexmk"
     ],
     "latex-workshop.latex.autoClean.run": "onFailed",
-    "latex-workshop.latex.recipe.default": "XeLaTeX",
+    "latex-workshop.latex.recipe.default": "LaTeXmk",
     "latex-workshop.view.pdf.internal.synctex.keybinding": "double-click",
     "latex-workshop.view.pdf.viewer": "tab",
     "latex-workshop.view.pdf.ref.viewer": "auto",

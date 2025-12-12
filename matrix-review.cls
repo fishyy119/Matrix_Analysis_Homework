@@ -12,13 +12,19 @@
 \RequirePackage{fancyhdr}
 \setlength{\headheight}{15pt}
 \pagestyle{fancy}
-\fancyhf{}
 
 \newcommand{\@reviewtitle}{矩阵分析复习整理}
-\newcommand{\reviewchapter}[1]{\gdef\@reviewtitle{矩阵分析第#1章复习}}
 
+\fancyhf{}
 \fancyhead[C]{\@reviewtitle}
 \fancyfoot[R]{\small\thepage}
+
+% 避免printindex用回原先的页脚样式
+\fancypagestyle{plain}{%
+    \fancyhf{} % 清空原来的页眉页脚
+    \fancyhead[C]{\@reviewtitle}
+    \fancyfoot[R]{\small\thepage} % 页码放右下角
+}
 
 \providecommand{\pdfcreationdate}{\creationdate} % 使用新版XeLaTeX时区支持
 \RequirePackage{datetime2}
