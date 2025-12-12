@@ -306,9 +306,9 @@ $$\al=x+y,\quad x\in S, y\in T$$
 \subsection{Hermite二次型}
 \term{H-阵结构定理}: H-阵酉相似于实对角矩阵
 \begin{remarkbox}
-    H-阵的特征值均为实数, 反H-阵的特征值实部均为0.
+    H-阵$A$的特征值均为实数, 反H-阵$B$的特征值实部均为0.
     \begin{proof}
-        对于H-阵$A$的特征值$\la$与对应的特征向量$X$,有
+        对于$A$的特征值$\la$与对应的特征向量$X$,有
         \begin{align*}
             \la X =AX & \Rightarrow \overline{\la}X^\HH  = X^\HH A^\HH = X^\HH A        \\
                       & \Rightarrow \overline{\la}X^\HH X = X^\HH AX = \la X^\HH X      \\
@@ -316,6 +316,7 @@ $$\al=x+y,\quad x\in S, y\in T$$
         \end{align*}
         反H-阵同理.
     \end{proof}
+    进一步地, 可以知道对于任意非零向量$X$, $X^\HH AX$为实数, $X^\HH BX$为纯虚数.
 \end{remarkbox}
 
 \term{\important 标准形的Hermite二次型}: 对于任意一个Hermite二次型$f(X)=X^\HH AX$, 必存在酉线性替换$$X=UY$$可以将$f(x)$化为标准形$$f(x)=\sum_{i=1}^{n}\la_i\bar{y_i}y_i$$
@@ -539,9 +540,54 @@ $\norm{\al}_\infty=\displaystyle\max_{1\le i\le n}|a_i|$
     \norm{AX}_\al\le\norm{A}_\be\norm{X}_\al
 \end{equation*}则称矩阵范数$\norm{A}_\be$与向量范数$\norm{X}_\al$是相容的.
 
+\begin{remarkbox}
+    相当于对一个向量$X$施加线性变换$A$后,其范数不会超过原来范数的多少倍,与其相容的矩阵范数给出了一个控制上界.
+\end{remarkbox}
+
 \term{诱导范数（算子范数）}: 设$\norm{X}_\al$是向量范数,则\begin{equation*}
     \norm{A}_i=\max_{X\ne0}\frac{\norm{AX}_\al}{\norm{X}_\al}
 \end{equation*}是与$\norm{X}_\al$ \emph{相容}的矩阵范数,被称为算子范数.
+\begin{remarkbox}
+    仔细一看这个诱导范数是可以从前面\emph{矩阵范数与向量范数相容}的定义自然构造出来的.
+\end{remarkbox}
+
+\begin{remarkbox}
+    算子范数还有另外一种等价定义
+    \begin{align*}
+        \max_{X\ne0}\frac{\norm{AX}}{\norm{X}} & \xlongequal[]{Y=\frac{X}{\norm{X}}} \max_{X\ne0}\frac{\norm{X}\norm{AY}}{\norm{X}} = \max_{\norm{Y}=1}\norm{AY}
+    \end{align*}
+\end{remarkbox}
+
+\begin{remarkbox}[title=列和范数的证明]
+    将矩阵$A$拆分为列向量$\mat{\al_1&\al_2&\cdots&\al_n}$, 对于满足$\norm{X}_1=1$的向量$X$有
+    \begin{align*}
+        \norm{AX}_1 & = \norm{\sum_{j=1}^{n}a_jx_j}_1 = \sum_{j=1}^{n}|x_j|\norm{\al_j}_1                                           \\
+                    & \le \left(\max_{i}\norm{\al_i}_1\right)\sum_{j=1}^{n}|x_j| \xlongequal[]{\norm{X}_1=1} \max_{i}\norm{\al_i}_1
+    \end{align*}
+    接下来构造性的说明该最大值能取到: 假设第$r$个列向量的范数最大,只需要构造只有第$r$位为1的单位向量.
+\end{remarkbox}
+
+\begin{remarkbox}[title=行和范数的证明]
+    将矩阵$A$拆分为行向量$\mat{\be_1^\TT&\be_2^\TT&\cdots&\be_n^\TT}^\TT$, 对于满足$\norm{X}_\infty=1$的向量$X$有
+    \begin{align*}
+        \norm{AX}_\infty & = \max_{j}\be_j^\TT X \le \max_{j}\be_j^\TT \mat{1 & 1 & \cdots & 1}^\TT \\
+                         & = ...
+    \end{align*}
+    接下来构造性的说明该最大值能取到: $\mat{1 & 1 & \cdots & 1}^\TT$
+\end{remarkbox}
+
+\begin{remarkbox}[title=谱范数的证明]
+    使用Rayleigh商的结论即可证明,此处使用奇异值分解证明. 考虑满足$\norm{X}_2=1$的向量$X$
+    \begin{align*}
+        \norm{AX}_2 & = \norm{U\Sigma V^\HH X}_2 \xlongequal[]{1} \norm{\Sigma V^\HH X}_2 \xlongequal[]{Y=V^\HH X} \norm{\Sigma Y}_2
+    \end{align*}
+    其中等式1使用了酉不变性$\norm{Uy}_2=\norm{y}_2$, 最终
+    \begin{align*}
+        \max_{\norm{X}_2=1}\norm{AX}_2 & = \max_{\norm{Y}_2=1}\norm{\Sigma Y}_2 = \max_{\norm{Y}_2=1}\sqrt{\sum_{i}\sigma_i^2y_i^2} \\
+                                       & = \max_{j}\sqrt{\la_j\left(A^\HH A\right)}
+    \end{align*}
+    其中最后一个等号可以从加权角度理解.
+\end{remarkbox}
 
 \term{由矩阵范数构造向量范数}: 设$\norm{A}_*$是矩阵范数,则存在与其\emph{相容}的向量范数$\norm{X}=\norm{X\al^\HH}_*$.
 
@@ -610,7 +656,7 @@ $\norm{\al}_\infty=\displaystyle\max_{1\le i\le n}|a_i|$
 \newcommand{\ddt}[1]{\ddd{#1}{t}}
 
 \subsection{矩阵多项式}
-$\displaystyle p(A)=\sum_{i=0}^{m}a_iA^i$被称为矩阵多项式. 考虑$d_i$阶Jordan块矩阵$J_i$,则\begin{equation}
+\term{\important Jordan块矩阵的函数值}: $\displaystyle p(A)=\sum_{i=0}^{m}a_iA^i$被称为矩阵多项式. 考虑$d_i$阶Jordan块矩阵$J_i$,则\begin{equation}
     p(J_i)=\begin{bmatrix}
         p(\la_i) & p'(\la_i) & \frac{p''(\la_i)}{2!} & \cdots & \frac{p^{(d_i-1)}(\la_i)}{(d_i-1)!} \\
                  & p(\la_i)  & p'(\la_i)             & \ddots & \vdots                              \\
@@ -682,8 +728,11 @@ $f(x)$在影谱上有定义,如果存在多项式$p(\la)$的上面$m$个值与$f
     \item $\ddt{e^{At}}=Ae^{At}=e^{At}A$
     \item $\ddt{\sin At}=A(\cos At)=(\cos At)A$
     \item $\ddt{\cos At}=-A(\sin At)=-(\sin At)A$
-    \item $|e^{At}|=e^{\Tr{A}}$
+    \item $|e^{A}|=e^{\Tr{A}}$ \important
 \end{enumerate}
+\begin{remarkbox}
+    $$\left|e^A\right| = |P|\left|e^J\right||P^{-1}|= \prod_{i=1}^{r}\left|e^{J_i}\right| = \prod_{i=1}^{r} e^{d_i\la_i} = e^{\Tr{A}}$$
+\end{remarkbox}
 
 
 \section{函数矩阵与矩阵微分方程}
@@ -865,4 +914,6 @@ $$
 
 \clearpage
 \printindex
+
+
 \end{document}

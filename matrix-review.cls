@@ -136,10 +136,11 @@
 
 % 备注
 \RequirePackage[most]{tcolorbox}
-\newtcolorbox{remarkbox}{
+\newtcolorbox{remarkbox}[1][]{
     colback=yellow!5, colframe=yellow!30!black,
     left=1mm, right=1mm, boxrule=0.5pt, arc=2mm,
-    fonttitle=\bfseries, title=备注
+    fonttitle=\bfseries, title=备注,
+    #1
 }
 
 % --------------------------
