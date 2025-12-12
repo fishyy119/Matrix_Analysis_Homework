@@ -294,6 +294,18 @@ $$\al=x+y,\quad x\in S, y\in T$$
 
 \subsection{Hermite二次型}
 \textbf{H-阵结构定理}: H-阵酉相似于实对角矩阵
+\begin{remarkbox}
+    H-阵的特征值均为实数, 反H-阵的特征值实部均为0.
+    \begin{proof}
+        对于H-阵$A$的特征值$\la$与对应的特征向量$X$,有
+        \begin{align*}
+            \la X =AX & \Rightarrow \overline{\la}X^\HH  = X^\HH A^\HH = X^\HH A        \\
+                      & \Rightarrow \overline{\la}X^\HH X = X^\HH AX = \la X^\HH X      \\
+                      & \Rightarrow \overline{\la}  = \la  \Rightarrow \mr{Im}(\la) = 0
+        \end{align*}
+        反H-阵同理.
+    \end{proof}
+\end{remarkbox}
 
 \textbf{\important 标准形的Hermite二次型}: 对于任意一个Hermite二次型$f(X)=X^\HH AX$, 必存在酉线性替换$$X=UY$$可以将$f(x)$化为标准形$$f(x)=\sum_{i=1}^{n}\la_i\bar{y_i}y_i$$
 其中$\la_i$是$A$的特征值, $U$由各特征值对应的\emph{标准}特征向量组成.
