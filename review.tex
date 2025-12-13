@@ -98,7 +98,9 @@
         \item $\Tr{A} = \sum_{i=1}^{n}\la_i$
     \end{enumerate}
 \end{multicols}
-
+\begin{remarkbox}
+    求解特征值之后使用迹验证非常方便
+\end{remarkbox}
 
 已知矩阵$A$的特征多项式为
 $$|\la I-A|=(\la-\la_1)^{p_i}(\la-\la_2)^{p_2}\cdots(\la-\la_r)^{p_r}$$
@@ -202,6 +204,10 @@ $A,B$可以同时相似对角化的充要条件为:$AB=BA$
 \begin{remarkbox}
     考虑$\la_iI-J$的多次幂,不难发现只有对应$\la_i$的Jordan块会降秩,同时在次数为$r$时,阶数小于等于$r$的Jordan块会降秩到0.\\
     上面步骤中不再降秩,就代表该特征值对应的所有Jordan块都已经降秩到0了.
+\end{remarkbox}
+\begin{remarkbox}[title=另一种等价表述]
+    记$n_k$为阶数大于$k$的Jordan块个数,则有:
+    $$n_k=\mr{dim}N(A-\la I)^k-\mr{dim}N(A-\la I)^{k-1}$$
 \end{remarkbox}
 
 
@@ -444,6 +450,7 @@ H-矩阵$A$的Rayleigh商定义为:\begin{equation}
         \item 奇异值分解不唯一
         \item $U$的列向量是$AA^\HH$的标准正交特征向量;$V$的列向量是$A^\HH A$的标准正交列向量
         \item 视计算量,可以先分解转置矩阵后再转置回来
+        \item 一个避免把$AA^\HH$搞反的方法: $U$的阶数应该等于$A$的行数
     \end{enumerate}
 \end{remarkbox}
 
@@ -465,6 +472,9 @@ H-矩阵$A$的Rayleigh商定义为:\begin{equation}
 \end{equation*}其中多重特征值还可以进一步合并,表示为\begin{equation*}
     A=\sum_{i=1}^{r}\la_i\sum_{j=1}^{n_i}\al_{i_j}\al_{i_j}^\HH=\sum_{i=1}^{r}\la_iG_i
 \end{equation*}
+\begin{remarkbox}
+    求解出的特征向量要记得标准化, 0特征值对应项也要写出.
+\end{remarkbox}
 
 \term{单纯(可对角化)矩阵的谱分解}: 将$A$相似对角化的结果变形得:\begin{align*}
     A=P\Lambda P^{-1} & =\mat{\al_1,\al_2,\cdots,\al_n}
@@ -495,7 +505,7 @@ $\norm{\al}_\infty=\displaystyle\max_{1\le i\le n}|a_i|$
 
 \begin{remarkbox}
     常用不等式1(Holder不等式):\begin{equation*}
-        \sum_{i=1}^{n}|a_ib_i|\le\left(\sum_{i=1}^{n}\left|a_i\right|^p\right)^{1/p}\left(\sum_{i=1}^{n}\left|b_i\right|^p\right)^{1/p}
+        \sum_{i=1}^{n}|a_ib_i|\le\left(\sum_{i=1}^{n}\left|a_i\right|^p\right)^{1/p}\left(\sum_{i=1}^{n}\left|b_i\right|^q\right)^{1/q}
     \end{equation*}其中$p>1,q>1$且$1/p+1/q=1$\\[1em]
     常用不等式2(Minkowski不等式):\begin{equation*}
         \left(\sum_{i=1}^{n}\left|a_i+b_i\right|^p\right)^{1/p}\le\left(\sum_{i=1}^{n}\left|a_i\right|^p\right)^{1/p}+\left(\sum_{i=1}^{n}\left|b_i\right|^p\right)^{1/p}
@@ -603,24 +613,32 @@ $\norm{\al}_\infty=\displaystyle\max_{1\le i\le n}|a_i|$
     \item $\displaystyle\lim_{k\to\infty}\left(A^{(k)}\right)^{-1}=A^{-1}$
 \end{enumerate}
 
-矩阵序列$\left\{A^{(k)}\right\}$收敛于$A$的充要条件为$\displaystyle\lim_{k\to\infty}\norm{A^{(k)}-A}=0$.
+\important 矩阵序列$\left\{A^{(k)}\right\}$收敛于$A$的充要条件为$\displaystyle\lim_{k\to\infty}\norm{A^{(k)}-A}=0$.
 \begin{remarkbox}
     根据矩阵范数等价性,任意范数成立上式后都可以使用夹逼准则证明另一范数满足该条件,因此证明时可以使用最简单形式的范数$\norm{A}=\displaystyle\sum_{i=1}^{m}\sum_{j=1}^{n}|a_{ij}|$.
 \end{remarkbox}
 
-矩阵序列$\left\{A,A^2,\cdots,A^k,\cdots\right\}$收敛于$0$的充要条件为$\rho(A)<0$.
+\important 矩阵序列$\left\{A,A^2,\cdots,A^k,\cdots\right\}$收敛于$0$的充要条件为$\rho(A)<1$.
+\begin{remarkbox}
+    如果$\rho(A)>1$, 则矩阵序列发散; \\[0.7em]
+    如果$\rho(A)=1$, 虽不收敛于$0$, 若额外满足如下两个条件仍可收敛:
+    \begin{enumerate}
+        \item 仅有$\la=1$是模长为$1$的特征值(否则$\la^k$震荡)
+        \item $\la=1$对应的Jordan块均为1阶(根据\eqref{eq:jordan-power})
+    \end{enumerate}
+\end{remarkbox}
 
 \subsection{矩阵幂级数}
 矩阵级数$\displaystyle\sum_{k=1}^{\infty}A^{(k)}$绝对收敛的充要条件是正项级数$\displaystyle\sum_{k=1}^{\infty}\norm{A^{(k)}}$收敛.
 
-矩阵幂级数$\displaystyle\sum_{k=0}^{\infty}a_kA^k$在$\rho(A)<R$时绝对收敛,在$\rho(A)>R$时发散,在$\rho(A)=R$时需额外判断.其中$R$为收敛半径,计算公式如下\begin{equation*}
+矩阵幂级数$\displaystyle\sum_{k=0}^{\infty}a_kA^k$在$\rho(A)<R$时绝对收敛,在$\rho(A)>R$时发散,在$\rho(A)=R$时需额外判断.其中$R$为\term{收敛半径},计算公式如下\begin{equation*}
     \frac{1}{R}=\lim_{k\to\infty}\left|\frac{a_{k+1}}{a_k}\right|
 \end{equation*}
 \begin{remarkbox}
     因为谱半径是所有范数值的下界,因此可以通过寻找在收敛域内的范数值来说明级数收敛.
 \end{remarkbox}
 
-\term{\important Jordan块矩阵的幂}: \begin{equation}
+\term{\important Jordan块矩阵的幂}: \begin{equation}\label{eq:jordan-power}
     J_i^k(\la_i)=\begin{bmatrix}
         \la_i^k & C^1_k\la_i^{k-1} & \cdots & C_k^{d_i-1}\la_i^{k-d_i+1} \\
                 & \la_i^k          & \ddots & \vdots                     \\
@@ -638,6 +656,13 @@ $\norm{\al}_\infty=\displaystyle\max_{1\le i\le n}|a_i|$
             \item $\arctan x=\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{2n-1}x^{2n-1}$
             \item $\ln x=\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{n}x^{n}$
             \item $\displaystyle\frac{1}{1+x}=(1+x)^{-1}=\sum_{i=0}^{\infty}(-1)^nx^n$
+        \end{enumerate}
+    \end{multicols}
+    计算幂级数时常用的推导式:
+    \begin{multicols}{2}
+        \begin{enumerate}
+            \item $\displaystyle(1-x)^{-2}=\sum_{k=0}^{\infty}kx^{k-1}$
+            \item $\displaystyle x(1-x)^{-2}=\sum_{k=0}^{\infty}kx^{k}=\sum_{k=1}^{\infty}kx^{k}$
         \end{enumerate}
     \end{multicols}
 \end{remarkbox}
