@@ -245,10 +245,13 @@ $A,B$可以同时相似对角化的充要条件为:$AB=BA$
         \be_1  & =\al_2                                                                                                              \\
         \be_2  & =\al_2-\schmidt{\al_2}{\be_1}{\be_1}{\be_1}\be_1                                                                    \\
         \cdots & \cdots\cdots\cdots\cdots                                                                                            \\
-        \be_r  & =\al_r-\schmidt{\al_2}{\be_1}{\be_1}{\be_1}\be_1 -\cdots- \schmidt{\al_r}{\be_{r-1}}{\be_{r-1}}{\be_{r-1}}\be_{r-1}
+        \be_r  & =\al_r-\schmidt{\al_r}{\be_1}{\be_1}{\be_1}\be_1 -\cdots- \schmidt{\al_r}{\be_{r-1}}{\be_{r-1}}{\be_{r-1}}\be_{r-1}
     \end{aligned}
     \right.
 \end{equation}标准化步骤不再赘述.
+\begin{remarkbox}
+    实际上就是减去投影分量, 保留正交分量.
+\end{remarkbox}
 
 \term{正交矩阵(酉矩阵)}: 转置(共轭转置)等于逆的矩阵, 其各行(列)向量构成标准正交向量组, 行列式模长为1. \sout{(可以从几何直观上理解,懒得写了,反正我知道...)}
 
@@ -286,6 +289,8 @@ $$\al=x+y,\quad x\in S, y\in T$$
     进一步等价于$A=U_1U_1^\HH$\\
     其中$U_1$为次酉矩阵(从酉矩阵中保留若干列得到).
 \end{remarkbox}
+
+\term{幂零矩阵}: 在有限次复合后$A^k$坍缩为0的矩阵, 如ordan块$\mat{0&1\\&0&1\\&&0}$.
 
 \subsection{正规矩阵}
 \term{Schur引理}: 任何一个$n$阶复矩阵$A$都酉相似于一个上(下)三角矩阵. (数学归纳法证明)
