@@ -290,7 +290,7 @@ $$\al=x+y,\quad x\in S, y\in T$$
     其中$U_1$为次酉矩阵(从酉矩阵中保留若干列得到).
 \end{remarkbox}
 
-\term{幂零矩阵}: 在有限次复合后$A^k$坍缩为0的矩阵, 如ordan块$\mat{0&1\\&0&1\\&&0}$.
+\term{幂零矩阵}: 在有限次复合后$A^k$坍缩为0的矩阵, 如Jordan块$\mat{0&1\\&0&1\\&&0}$.
 
 \subsection{正规矩阵}
 \term{Schur引理}: 任何一个$n$阶复矩阵$A$都酉相似于一个上(下)三角矩阵. (数学归纳法证明)
@@ -374,7 +374,7 @@ H-矩阵偶在复合同下的标准形: 若$A,B$为H-阵,其中$B$正定,则存�
 \end{equation*}的$\la$被称为对应的\emph{广义特征向量}.
 
 
-\subsection{RayLeigh商}
+\subsection{Rayleigh商}
 H-矩阵$A$的Rayleigh商定义为:\begin{equation}
     R(X)=\frac{X^\HH AX}{X^\HH X}(X\in C^n, X\ne0)
 \end{equation}具有性质如下:
@@ -537,17 +537,17 @@ $\norm{\al}_\infty=\displaystyle\max_{1\le i\le n}|a_i|$
 
 常见矩阵范数:
 \begin{enumerate}
-    \item Frobenious范数 $\norm{A}_F^2=\displaystyle\sum_{i=1}^{m}\sum_{i=1}^{n}\left|a_{ij}\right|^2=\Tr{A^\HH A}$
+    \item Frobenius范数 $\norm{A}_F^2=\displaystyle\sum_{i=1}^{m}\sum_{i=1}^{n}\left|a_{ij}\right|^2=\Tr{A^\HH A}$
     \item 列和范数 $\norm{A}_1=\displaystyle\max_j\left(\sum_{i=1}^{m}\left|a_{ij}\right|\right)$
     \item 谱范数 $\norm{A}_2=\displaystyle\max_{j}\sqrt{\la_j\left(A^\HH A\right)}$
     \item 行和范数 $\norm{A}_\infty=\displaystyle\max_i\left(\sum_{j=1}^{n}\left|a_{ij}\right|\right)$
 \end{enumerate}
 \begin{remarkbox}
-    Frobenious范数的一些其他性质:
+    Frobenius范数的一些其他性质:
     \begin{enumerate}
         \item $\displaystyle A=\mat{\al_1&\al_2&\cdots&\al_n}, \norm{A}_F^2=\sum_{i=1}^{n}\norm{\al_i}_2^2$
         \item 酉不变性: $\norm{A}_F=\norm{UA}_F=\norm{A^\HH}_F=\norm{AV}_F=\norm{UAV}_F$
-        \item Frobenious范数与向量2-范数\emph{相容}
+        \item Frobenius范数与向量2-范数\emph{相容}
     \end{enumerate}
 \end{remarkbox}
 
@@ -733,7 +733,7 @@ $f(x)$在影谱上有定义,如果存在多项式$p(\la)$的上面$m$个值与$f
     p^{(k)}(\la_i)=f^{(k)}(\la_i), \quad i=1,2,\cdots,s; \quad k=0,1,2,\cdots,d_i-1
 \end{equation*}最终可得到多项式表示$f(A)=a_{m-1}A^{m-1}+\cdots+a_1A+A_0I$ (其中各多项式系数是由暂定未知量$f^{(k)}(\la_i)$组成的)
 
-\term{\important 矩阵函数的幂级数表示}: 将一元函数$f(x)$展开为收敛半径$R$的幂级数$\displaystyle\sum_{k=0}^{\infty}c_kx^k$. 当矩阵$A$的谱半径$\rho(A)<R$时,矩阵幂级数$\displaystyle\sum_{k=0}^{\infty}c_kx^k$绝对收敛, 该级数即为急诊的幂级数表示.
+\term{\important 矩阵函数的幂级数表示}: 将一元函数$f(x)$展开为收敛半径$R$的幂级数$\displaystyle\sum_{k=0}^{\infty}c_kx^k$. 当矩阵$A$的谱半径$\rho(A)<R$时,矩阵幂级数$\displaystyle\sum_{k=0}^{\infty}c_kx^k$绝对收敛, 该级数即为矩阵的幂级数表示.
 
 \subsection{矩阵指数函数和矩阵三角函数}
 
@@ -814,7 +814,7 @@ $A$列满秩的充要条件是$A^-A=E$, $A$行满秩的充要条件是$AA^-=E$.
 \end{enumerate}
 
 \subsection{伪逆}
-在\eqref{eq:inv1}\eqref{eq:inv2}的基础上额外添加两个对称条件,构成Penros-Moore方程如下:\begin{equation}
+在\eqref{eq:inv1}\eqref{eq:inv2}的基础上额外添加两个对称条件,构成Penrose-Moore方程如下:\begin{equation}
     \left\{
     \begin{aligned}
         AA^+A                 & =A    \\ A^+AA^+&=A^+                \\
