@@ -32,7 +32,7 @@ $\ddx{A^{-1}A}=\ddx{A^{-1}}A+A^{-1}\ddx{A}=\ddx{I}=0 \\[1em]\Rightarrow \ddx{A^{
 
 \textbf{(2)} $\ddx{A(x)}=\mat{1 & 0 \\ 0 & 1}$
 
-$\ddx{A^{-1}(x)}=-A^{-1}(x)A^{-1}(x)=\dfrac{-1}{(x^-1)^2}\mat{x^2+1 & -2x \\ -2x & x^2+1}$
+$\ddx{A^{-1}(x)}=-A^{-1}(x)A^{-1}(x)=\dfrac{-1}{(x^2-1)^2}\mat{x^2+1 & -2x \\ -2x & x^2+1}$
 \qed
 
 
@@ -40,9 +40,9 @@ $\ddx{A^{-1}(x)}=-A^{-1}(x)A^{-1}(x)=\dfrac{-1}{(x^-1)^2}\mat{x^2+1 & -2x \\ -2x
 对于任意的$n$阶实矩阵$A$和任意实数$t$,我们有$\ddd{e^{tA}}{t}=Ae^{tA}=e^{tA}A$
 
 \answer
-$\displaystyle e^{At}=\sum_{k=0}^{\infty}\frac{(At)^k}{k!}$
+$\displaystyle e^{tA}=\sum_{k=0}^{\infty}\frac{(At)^k}{k!}$
 
-$\displaystyle \ddd{e^{At}}{t}
+$\displaystyle \ddd{e^{tA}}{t}
     = \ddd{}{t}\left(\sum_{k=0}^{\infty}\frac{(At)^k}{k!}\right)
     = \sum_{k=0}^{\infty}\left(\ddd{}{t}\frac{(At)^k}{k!}\right)
     = \underbrace{\sum_{k=1}^{\infty}\left(\frac{A(At)^{k-1}}{(k-1)!}\right)}_{Ae^{tA}}

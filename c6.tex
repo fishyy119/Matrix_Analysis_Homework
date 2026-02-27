@@ -9,7 +9,9 @@
 \newcommand{\al}{\alpha}
 
 \section{}
-已知矩阵A$$A=\mat{1&0&0\\ -1&2&-1\\ 0&0&2}$$求矩阵函数$f(A)$的jordan表示. 并计算$e^A,e^{tA},\sin \dfrac{\pi}{2}A, \cos \pi A$.
+已知矩阵 A
+$$A=\mat{1&0&0\\ -1&2&-1\\ 0&0&2}$$
+求矩阵函数 $f(A)$ 的 Jordan 表示, 并计算 $e^A,\; e^{tA},\; \sin\left(\dfrac{\pi}{2}A\right),\; \cos(\pi A)$.
 
 \answer
 $\la I -A=\mat{\la-1&0&0\\1&\la-2&1\\0&0&\la-2}\simeq\mat{1\\&1\\&&(\la-1)(\la-2)^2}$, $J=\mat{1\\&2&1\\&&2}$
@@ -47,7 +49,7 @@ $ = \mat{f(1)&0&0\\f(1)-f(2)&f(2)&-f'(2)\\0&0&f(2)}$
 
 $e^{A}=\mat{e&0&0\\e-e^2&e^2&-e^2\\0&0&e^2}$, $e^{tA}=\mat{e^t&0&0\\e^t-e^{2t}&e^{2t}&-te^{2t}\\0&0&e^{2t}}$
 
-$\sin \dfrac{\pi}{2}A=\mat{1&0&0\\1&0&\pi/2\\0&0&0}$, $\cos \pi A=\mat{-1&0&0\\-2&1&0\\0&0&1}$
+$\sin\left(\dfrac{\pi}{2}A\right)=\mat{1&0&0\\1&0&\pi/2\\0&0&0}$, $\cos(\pi A)=\mat{-1&0&0\\-2&1&0\\0&0&1}$
 \qed
 
 
@@ -107,11 +109,12 @@ $2\pi i E$与$A$的乘法可交换,所以$e^{2\pi iE+A}=e^{2\pi iE}e^A=e^A$
 
 \textbf{(3)} $2\pi i E$与$A$的乘法可交换,
 
-$sin(2\pi E+A)=\sin(2\pi E)\cos A + \cos(2\pi E)\sin A = \sin A$
+$\sin(2\pi E+A)=\sin(2\pi E)\cos A + \cos(2\pi E)\sin A = \sin A$
 
 \textbf{(4)} 将$A$变换为Jordan标准形$A=PJP^{-1}$,$e^A=Pe^JP^{-1}$
 
-$|e^A|=|e^J|=|\mr{diag}\{e^{J_1},e^{J_2},\cdots,e^{J_r}\}|=\prod_i^r |e^{J_i}|=\prod_i^ne^{\la_i}=\exp(\sum_{i=1}^{n}\la_i)= e^{\Tr{A}}$
+$|e^A|=|e^J|=|\mr{diag}\{e^{J_1},e^{J_2},\cdots,e^{J_r}\}|=
+    \prod_{j=1}^r |e^{J_j}|=\prod_{i=1}^n e^{\la_i}=\exp\left(\sum_{i=1}^{n}\la_i\right)= e^{\Tr{A}}$
 
 \textbf{(5)} $e^A=\sum_{k=0}^{\infty}\dfrac{A^k}{k!}$
 \begin{align*}

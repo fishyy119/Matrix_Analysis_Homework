@@ -10,6 +10,9 @@
 - `*.pdf`：编译生成的 PDF 文件，在[Release页面](https://github.com/fishyy119/Matrix_Analysis_Homework/releases)或[自动编译产物](https://github.com/fishyy119/Matrix_Analysis_Homework/actions/workflows/build_latex.yaml)中获取
   - `c[1-9].pdf / review.pdf`：同上
 
+> [自动编译](https://github.com/fishyy119/Matrix_Analysis_Homework/actions/workflows/build_latex.yaml)会在每次提交后自动执行 PDF 构建，因此通常可以获取到最新版本。
+> [Release页面](https://github.com/fishyy119/Matrix_Analysis_Homework/releases)中的文件为阶段性发布版本，更新可能略有延迟。
+
 ## Remarks
 
 编译器使用 XeLaTeX，内核版本：

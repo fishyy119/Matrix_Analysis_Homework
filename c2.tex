@@ -22,7 +22,7 @@
 }
 \newcommand{\questionB}{\mat{\la^2-1 & 0 \\ 0 & (\la-1)^3}}
 
-求下列$\la -$矩阵的Simth标准型$$(a)\questionA,\quad(b)\questionB$$
+求下列$\la$-矩阵的Smith标准形$$(a)\questionA,\quad(b)\questionB$$
 \answer
 $(a)$
 $
@@ -69,7 +69,7 @@ $\questionB \simeqstep{} \mat{d_1(\la) & 0 \\ 0 & d_2(\la)}$
 \qed
 
 \section{}
-设$A(\la)$为一个5阶$\la-$矩阵,其秩为4,初等因子为$\la,\la^2,\la^2,\la-1,\la-1,\la+1,(\la+1)^3$,试求$A(\la)$的不变因子及其smith标准形.
+设$A(\la)$为一个5阶$\la$-矩阵,其秩为4,初等因子为$\la,\la^2,\la^2,\la-1,\la-1,\la+1,(\la+1)^3$,试求$A(\la)$的不变因子及其Smith标准形.
 
 \answer
 $d_4(\la) = \la^2(\la-1)(\la+1)^3$ \qquad
@@ -77,7 +77,7 @@ $d_3(\la) = \la^2(\la-1)(\la+1)$ \qquad
 $d_2(\la) = \la$ \qquad
 $d_1(\la) = 1$
 
-simth标准形为
+Smith标准形为
 $\mr{diag}\left(d_1(\la),d_2(\la),d_3(\la),d_4(\la),0\right)$
 \qed
 
@@ -102,7 +102,7 @@ $
 初等因子为$\la-2,(\la-2)^3$,Jordan标准形为
 $$J = \mat{2 & 1 & 0 & 0 \\ 0 & 2 & 1 & 0 \\ 0 & 0 & 2 & 0 \\ 0 & 0 & 0 & 2}$$
 
-设相似变换矩阵为$P=[X_1,X_2,X_3,X_4]$，则$AP=PJ$
+设相似变换矩阵为$P=[X_1,X_2,X_3,X_4]$, 则$AP=PJ$
 $$AP=[AX_1,AX_2,AX_3,AX_4]=PJ=[X_1,X_2,X_3,X_4]J=[2X_1,X_1+2X_2,X_2+2X_3,2X_4]$$
 从而有
 $$AX_1=2X_1,AX_2=X_1+2X_2,AX_3=X_2+2X_3,AX_4=2X_4$$
@@ -119,7 +119,7 @@ $$AX_1=2X_1,AX_2=X_1+2X_2,AX_3=X_2+2X_3,AX_4=2X_4$$
 
 \newpage
 \section{}
-已知矩阵$$A=\mat{3 & 0 & 0 \\ a & 3 & 0 \\ c & b & 2}$$求A的所有可能Jordan标准形,并给出A可对角化的条件.
+已知矩阵$$A=\mat{3 & 0 & 0 \\ a & 3 & 0 \\ c & b & 2}$$求$A$的所有可能Jordan标准形, 并给出$A$可对角化的条件.
 
 \answer
 $|\la E-A|=(\la-2)(\la-3)^2$
@@ -129,7 +129,7 @@ $|\la E-A|=(\la-2)(\la-3)^2$
 对于特征值$\la_2=3$,$A-3E=\mat{0 & 0 & 0 \\ -a & 0 & 0 \\ -c & -b &1}$,有如下两种情况:
 \begin{itemize}
     \item $a=0$,$\mr{rank}(A-3E)=1$,$q_{\la_2}=2$,对应两个1阶Jordan块.即Jordan标准形为$\mat{3 \\ &3 \\ &&2}$
-    \item $a\ne 0$,$\mr{rank}(A-3E)=2$,$q_{\la_2}=1$,对应一个2阶Jordan块.即Jordan标准形为$\mat{3&1 \\ &3 \\ &&2}$
+    \item $a\ne 0$, $\mr{rank}(A-3E)=2$, $q_{\la_2}=1$, 对应一个2阶Jordan块, 即Jordan标准形为$\mat{3&1 \\ &3 \\ &&2}$
 \end{itemize}
 $A$可对角化的条件为$a=0$.
 \qed
@@ -137,7 +137,7 @@ $A$可对角化的条件为$a=0$.
 \newpage
 \section{}
 
-已知$A^2=E$，证明：$A$相似于矩阵
+已知$A^2=E$, 证明：$A$相似于矩阵
 $$
     \begin{bmatrix}
         1                                \\
@@ -149,7 +149,7 @@ $$
     \end{bmatrix}
 $$
 \answer
-设$A$的Jordan标准形为$J=\mr{diag}(J_1,J_2,\cdots,J_n)$,存在可逆矩阵使得$P^{-1}AP=J$,于是有
+设$A$的Jordan标准形为$J=\mr{diag}(J_1,J_2,\cdots,J_n)$,存在可逆矩阵使得$P^{-1}AP=J$, 于是有
 $$J^2=(P^{-1}AP)^2=P^{-1}A^2P=E$$
 即$J_i^2=E_{d_i}$,其中
 $$

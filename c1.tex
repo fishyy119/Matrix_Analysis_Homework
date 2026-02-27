@@ -6,7 +6,7 @@
 \makecover{1}
 
 \section{}
-试证：所有$n$阶实对称矩阵构成$\dfrac{n(n+1)}{2}$维线性空间；所有$n$阶反对称矩阵构成$\dfrac{n(n-1)}{2}$维线性空间。
+试证：所有$n$阶实对称矩阵构成$\dfrac{n(n+1)}{2}$维线性空间；所有$n$阶反对称矩阵构成$\dfrac{n(n-1)}{2}$维线性空间.
 
 \answer
 显然, 在所有$n$阶实对称矩阵构成的空间上可以定义矩阵加法与数乘运算,其满足封闭性与其他各项基本性质,下面主要对其维数进行分析.
@@ -19,7 +19,7 @@ $$\dfrac{n(n-1)}{2}$$
 \qed
 
 \section{}
-设$R[x]_4$是所有次数小于4的实系数多项式组成的线性空间，求多项式$p(x)=1+2x^3$在基$1,x-1,(x-1)^2,(x-1)^3$下的坐标。
+设$R[x]_4$是所有次数小于4的实系数多项式组成的线性空间, 求多项式$p(x)=1+2x^3$在基$1,x-1,(x-1)^2,(x-1)^3$下的坐标.
 
 \answer
 设$t=x-1$,则$x=t+1$,从而有
@@ -34,7 +34,7 @@ $$\dfrac{n(n-1)}{2}$$
 \newpage
 \section{}
 \newcommand{\Axi}[1]{\underline{A}^{#1}\left(\xi\right)}
-设$\underline{A}$是$n$维线性空间$V$的一个线性变换,对某个$\xi \in V$有$\Axi{k-1} \neq0, \Axi{k-} =0$, 试证: $\xi,\Axi{},\Axi{2},\cdots,\Axi{k-1}$线性无关
+设$\underline{A}$是$n$维线性空间$V$的一个线性变换,对某个$\xi \in V$有$\Axi{k-1} \neq0, \Axi{k} =0$, 试证: $\xi,\Axi{},\Axi{2},\cdots,\Axi{k-1}$线性无关
 
 \answer
 使用反证法,设$\xi,\Axi{},\Axi{2},\cdots,\Axi{k-1}$线性相关,于是有不全为0的系数$c_0,c_1,\allowbreak c_2,\allowbreak\cdots,c_{k-1}$使得
@@ -47,7 +47,7 @@ $$ c_0\xi + c_1\Axi{1} + c_2\Axi{2} + \cdots + c_{k-1}\Axi{k-1} = 0 $$
 \end{align*}
 重复上述过程,最终得到
 $$c_0\Axi{k-1}=0$$
-由于$\Axi{k-1}\ne0$,所以$c_0=0$,将该结果向上一次变换得到的等式带入得到
+由于$\Axi{k-1}\ne0$,所以$c_0=0$, 将该结果向上一次变换得到的等式带入得到
 $$c_0\Axi{k-2} + c_1\Axi{k-1}=0$$
 故$c_1=0$.不断重复此步骤,最终得到$c_0=c_1=c_2=\cdots=c_{k-1}=0$,与原假设矛盾.
 
@@ -103,11 +103,11 @@ $$Av=\alpha\beta^\TT v=\lambda v=0$$
 于是有
 $$
     \begin{bmatrix}
-        \beta_1 & \beta_2 & \beta_3 & \beta_3
+        \beta_1 & \beta_2 & \beta_3 & \beta_4
     \end{bmatrix}
     =
     \begin{bmatrix}
-        \alpha_1 & \alpha_2 & \alpha_3 & \alpha_3
+        \alpha_1 & \alpha_2 & \alpha_3 & \alpha_4
     \end{bmatrix}
     \underbrace{
         \begin{bmatrix}
@@ -123,7 +123,7 @@ $$
 
 \newpage
 \section{}
-设$R[x]_4$是所有次数小于4的实系数多项式组成的线性空间，求多项式$p(x)=3+2x^3$在基$1,x-1,(x-1)^2,(x-1)^3$下的坐标。
+设$R[x]_4$是所有次数小于4的实系数多项式组成的线性空间, 求多项式$p(x)=3+2x^3$在基$1,x-1,(x-1)^2,(x-1)^3$下的坐标.
 
 \answer
 设$t=x-1$,则$x=t+1$,从而有

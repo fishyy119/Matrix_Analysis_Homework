@@ -22,8 +22,8 @@
                                  & \le \sum_{i=1}^{n}|x_i|^2 + \sum_{i=1}^{n}|y_i|^2 + 2\sum_{i=1}^{n} |x_iy_i|                                           \\
                                  & \le \sum_{i=1}^{n}|x_i|^2 + \sum_{i=1}^{n}|y_i|^2 + 2\sqrt{\sum_{i=1}^{n}|x_i|^2}\sqrt{\sum_{i=1}^{n}|y_i|^2}          \\
                                  & =\left(\sqrt{\sum_{i=1}^{n}|x_i|^2} + \sqrt{\sum_{i=1}^{n}|y_i|^2}\right)^2                                            \\
-                                 & =\left(\sqrt{\beta_1^\HH\beta_1} + \sqrt{\beta_2^\HH\beta_1}\right)^2                                                  \\
-                                 & =\left(\sqrt{\alpha_1^\HH A\alpha_1} + \sqrt{\alpha_2^\HH A\alpha_1}\right)^2                                          \\
+                                 & =\left(\sqrt{\beta_1^\HH\beta_1} + \sqrt{\beta_2^\HH\beta_2}\right)^2                                                  \\
+                                 & =\left(\sqrt{\alpha_1^\HH A\alpha_1} + \sqrt{\alpha_2^\HH A\alpha_2}\right)^2                                          \\
                                  & =\left(\norm{\alpha_1}_A + \norm{\alpha_2}_A\right)^2
 \end{align*}
 \qed
@@ -33,7 +33,7 @@
 试证: $\norm{X}=\displaystyle\sqrt{|2x_1-3ix_2+x_3|^2 + |x_2-2x_3|^2 + |x_1+x_3|^2}$是$C^3$上的向量范数.
 
 \answer
-$\mat{3 & -3i & 1 \\ 0 & 1 & -2 \\ 1 & 0 & 3}\mat{x_1 \\ x_2 \\ x_3}=AX=\mat{2x_1-3ix_2+x_3 \\ x_2-2x_3 \\ x_1+x_3}$, $\mr{rank}(A)=3$
+$\mat{2 & -3i & 1 \\ 0 & 1 & -2 \\ 1 & 0 & 1}\mat{x_1 \\ x_2 \\ x_3}=AX=\mat{2x_1-3ix_2+x_3 \\ x_2-2x_3 \\ x_1+x_3}$, $\mr{rank}(A)=3$
 
 故$\norm{X}=\norm{AX}_2=\sqrt{X^\HH A^\HH AX}$, 其中$A^\HH A$为正定H矩阵.
 
@@ -53,8 +53,8 @@ $\mat{3 & -3i & 1 \\ 0 & 1 & -2 \\ 1 & 0 & 3}\mat{x_1 \\ x_2 \\ x_3}=AX=\mat{2x_
                                & \le \sum_{i=1}^{n}|x_i|^2 + \sum_{i=1}^{n}|y_i|^2 + 2\sum_{i=1}^{n} |x_iy_i|                                           \\
                                & \le \sum_{i=1}^{n}|x_i|^2 + \sum_{i=1}^{n}|y_i|^2 + 2\sqrt{\sum_{i=1}^{n}|x_i|^2}\sqrt{\sum_{i=1}^{n}|y_i|^2}          \\
                                & =\left(\sqrt{\sum_{i=1}^{n}|x_i|^2} + \sqrt{\sum_{i=1}^{n}|y_i|^2}\right)^2                                            \\
-                               & =\left(\sqrt{\beta_1^\HH\beta_1} + \sqrt{\beta_2^\HH\beta_1}\right)^2                                                  \\
-                               & =\left(\sqrt{\alpha_1^\HH A^\HH A\alpha_1} + \sqrt{\alpha_2^\HH A^\HH A\alpha_1}\right)^2                              \\
+                               & =\left(\sqrt{\beta_1^\HH\beta_1} + \sqrt{\beta_2^\HH\beta_2}\right)^2                                                  \\
+                               & =\left(\sqrt{\alpha_1^\HH A^\HH A\alpha_1} + \sqrt{\alpha_2^\HH A^\HH A\alpha_2}\right)^2                              \\
                                & =\left(\norm{\alpha_1} + \norm{\alpha_2}\right)^2
 \end{align*}
 \qed
@@ -168,14 +168,14 @@ $A=\mat{2&-1&0\\ 0&2&4 \\ 1&2&0}$,求1-范数与$\infty$-范数
 
 
 \section{}
-$A=\mat{1 & 0 & 0 \\ 0 & 0.9 & -2 \\ 0 & 0.08 & 0.9}$,求$\lim_{k\to\infty}A^k$
+$A=\mat{1 & 0 & 0 \\ 0 & 0.9 & -2 \\ 0 & 0.08 & 0.9}$,求$\lim_{k\to\infty}A^k$.
 
 \answer
-$A=\mat{1&0\\0&B},A^k=\mat{1&0\\0&B^k}$
-
-令$B=\mat{1&0&0\\0&0&0\\0&0&0}$,$\norm{A^k-B}_1=0$
-
-$\lim_{k\to\infty}A^k=B$
+把$A$分块写成
+$$A=\mat{1&0\\0&B},\qquad B=\mat{0.9&-2\\0.08&0.9}.$$
+由于$\rho(B)<1$,故$B^k\to0$, 于是
+$$A^k=\mat{1&0\\0&B^k}\to\mat{1&0&0\\0&0&0\\0&0&0}$$
+故$\lim_{k\to\infty}A^k=\mat{1&0&0\\0&0&0\\0&0&0}$.
 \qed
 
 

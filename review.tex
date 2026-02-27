@@ -148,10 +148,10 @@ $A,B$可以同时相似对角化的充要条件为:$AB=BA$
 \term{\important 行列式因子与不变因子的关系}: $d_1(\la)=D_1(\la),d_2(\la)=\frac{D_2(\la)}{D_1(\la)},\cdots,d_r(\la)=\frac{D_r(\la)}{D_{r-1}(\la)}$. 从而可证明Smith标准形唯一.
 
 \term{\important 初等因子}: 由于不变因子的整除特性, 不变因子可以被分解为一次因式幂的乘积:\begin{align*}
-    d_1(\la) & =(\la-\la+_1)^{e_{11}}(\la-\la+_2)^{e_{12}}\cdots(\la-\la+_s)^{e_{1s}} \\
-    d_2(\la) & =(\la-\la+_1)^{e_{21}}(\la-\la+_2)^{e_{22}}\cdots(\la-\la+_s)^{e_{2s}} \\
-    \vdots                                                                            \\
-    d_r(\la) & =(\la-\la+_1)^{e_{r1}}(\la-\la+_2)^{e_{r2}}\cdots(\la-\la+_s)^{e_{rs}} \\
+    d_1(\la) & =(\la-\la_1)^{e_{11}}(\la-\la_2)^{e_{12}}\cdots(\la-\la_s)^{e_{1s}} \\
+    d_2(\la) & =(\la-\la_1)^{e_{21}}(\la-\la_2)^{e_{22}}\cdots(\la-\la_s)^{e_{2s}} \\
+    \vdots                                                                         \\
+    d_r(\la) & =(\la-\la_1)^{e_{r1}}(\la-\la_2)^{e_{r2}}\cdots(\la-\la_s)^{e_{rs}} \\
 \end{align*}其中所有指数大于0的因子$(\la-\la_j)^{e_{ij}}$即为\emph{初等因子},在列出时就算相同也要写多次.
 \begin{remarkbox}
     两个$\la$矩阵等价的充要条件是具有相同的不变(行列式/初等)因子.\\
@@ -167,7 +167,7 @@ $A,B$可以同时相似对角化的充要条件为:$AB=BA$
             &     &        & \ddots & 1   \\
             &     &        &        & a_i
     \end{bmatrix}_{n_i\times n_i}
-\end{equation*}该Jordan块矩阵只有一个初等因子,就是他对应的那个初等因子.于是矩阵就可以相似变换为Jordan标准形\begin{equation}
+\end{equation*}该Jordan块矩阵只有一个初等因子,就是它对应的那个初等因子.于是矩阵就可以相似变换为Jordan标准形\begin{equation}
     P^{-1}AP=
     \begin{bmatrix}
         J_1                   \\
@@ -242,7 +242,7 @@ $A,B$可以同时相似对角化的充要条件为:$AB=BA$
 \term{\important Schmidt正交化方法}: 从一个线性无关向量组$\left\{\al_1,\al_2,\cdots,\al_r\right\}$出发,可以构造一个等价的标准正交向量组(是$\mr{span}\left\{\al_1,\al_2,\cdots,\al_r\right\}$的一个标准正交基):\begin{equation}\label{eq:schmidt}
     \left\{
     \begin{aligned}
-        \be_1  & =\al_2                                                                                                              \\
+        \be_1  & =\al_1                                                                                                              \\
         \be_2  & =\al_2-\schmidt{\al_2}{\be_1}{\be_1}{\be_1}\be_1                                                                    \\
         \cdots & \cdots\cdots\cdots\cdots                                                                                            \\
         \be_r  & =\al_r-\schmidt{\al_r}{\be_1}{\be_1}{\be_1}\be_1 -\cdots- \schmidt{\al_r}{\be_{r-1}}{\be_{r-1}}{\be_{r-1}}\be_{r-1}
@@ -576,7 +576,7 @@ $\norm{\al}_\infty=\displaystyle\max_{1\le i\le n}|a_i|$
 \begin{remarkbox}[title=列和范数的证明]
     将矩阵$A$拆分为列向量$\mat{\al_1&\al_2&\cdots&\al_n}$, 对于满足$\norm{X}_1=1$的向量$X$有
     \begin{align*}
-        \norm{AX}_1 & = \norm{\sum_{j=1}^{n}a_jx_j}_1 = \sum_{j=1}^{n}|x_j|\norm{\al_j}_1                                           \\
+        \norm{AX}_1 & = \norm{\sum_{j=1}^{n}\al_jx_j}_1 = \sum_{j=1}^{n}|x_j|\norm{\al_j}_1                                         \\
                     & \le \left(\max_{i}\norm{\al_i}_1\right)\sum_{j=1}^{n}|x_j| \xlongequal[]{\norm{X}_1=1} \max_{i}\norm{\al_i}_1
     \end{align*}
     接下来构造性的说明该最大值能取到: 假设第$r$个列向量的范数最大,只需要构造只有第$r$位为1的单位向量.
@@ -721,11 +721,11 @@ $\norm{\al}_\infty=\displaystyle\max_{1\le i\le n}|a_i|$
 
 \subsection{矩阵函数}
 \textbf{定义}: $A$的最小多项式为\begin{equation*}
-    m(\la)=\sum_{i=1}^{s}(\la-la_i)^{d_ii}  \qquad  \left(\sum_{i=1}^{s}d_i=m\right)
+    m(\la)=\prod_{i=1}^{s}(\la-\la_i)^{d_i},  \qquad  \left(\sum_{i=1}^{s}d_i=m\right)
 \end{equation*}如果函数$f(x)$具有足够高阶的导数并且以下$m$个值
 $$\{f(\la_i),f'(\la_i),\cdots,f^{(d_i-1)}(\la_i),i=1,2,\cdots,s\}$$存在,则称\emph{$f(x)$在矩阵$A$的影谱上有定义}.
 
-$f(x)$在影谱上有定义,如果存在多项式$p(\la)$的上面$m$个值与$f(\la)$相等,则定义矩阵函数$f(A)=p(A)$. 满足定义的多项式\emph{存在但并不唯一}, 只要影谱上对应的值相等, 最终矩阵函数就相等.
+$f(x)$在影谱上有定义, 如果存在多项式$p(\la)$的上面$m$个值与$f(\la)$相等,则定义矩阵函数$f(A)=p(A)$. 满足定义的多项式\emph{存在但并不唯一}, 只要影谱上对应的值相等, 最终矩阵函数就相等.
 
 \term{\important 矩阵函数的Jordan表示}: 与上文矩阵多项式的Jordan表示是相似的,不过是把多项式换为了函数,同时要求在影谱上有定义.
 
@@ -806,7 +806,7 @@ $A$列满秩的充要条件是$A^-A=E$, $A$行满秩的充要条件是$AA^-=E$.
 在\eqref{eq:inv1}的基础上附加另一条件\begin{equation}\label{eq:inv2}
     A^-AA^-=A^-
 \end{equation}
-满足该定义的广义逆成为自反广义逆,记作$A_r^-$,相比于广义逆具有如下额外性质:
+满足上述定义的广义逆成为自反广义逆,记作$A_r^-$,相比于广义逆具有如下额外性质:
 \begin{enumerate}
     \item $\Rank{A}=\Rank{A^-}$ \textbf{(充要条件)}
     \item 若$X,Y$是$A$的广义逆,则$XAY$是自反广义逆
@@ -814,7 +814,7 @@ $A$列满秩的充要条件是$A^-A=E$, $A$行满秩的充要条件是$AA^-=E$.
 \end{enumerate}
 
 \subsection{伪逆}
-在\eqref{eq:inv1}\eqref{eq:inv2}的基础上额外添加两个对称条件,构成Penrose-Moore方程如下:\begin{equation}
+在\eqref{eq:inv1}\eqref{eq:inv2}的基础上额外添加两个对称条件,构成Moore-Penrose方程如下:\begin{equation}
     \left\{
     \begin{aligned}
         AA^+A                 & =A    \\ A^+AA^+&=A^+                \\

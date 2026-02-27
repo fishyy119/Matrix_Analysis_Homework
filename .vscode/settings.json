@@ -3,6 +3,13 @@
         "build/*.aux": true,
         "build/*.log": true,
         "build/*.synctex.gz": true,
+        "build/*.fdb_latexmk": true,
+        "build/*.fls": true,
+        "build/*.idx": true,
+        "build/*.ilg": true,
+        "build/*.ind": true,
+        "build/*.out": true,
+        "build/*.toc": true
     },
     "editor.wordWrap": "on",
     "editor.formatOnSave": true,

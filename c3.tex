@@ -19,28 +19,28 @@ $P=[\alpha_1,\alpha_2]=\mat{1&1\\0&1}$,$D=\mat{1&0\\0&2}$
 
 
 \section{}
-设$A$为正定H矩阵,$B$为H矩阵,试证:$AB$与$BA$的特征值为实数.
+设$A$为正定H-矩阵,$B$为H-矩阵,试证:$AB$与$BA$的特征值为实数.
 
 \answer
-由于$A$为正定H矩阵,所以存在可逆矩阵$Q$,使得$A=Q^\HH Q$,于是有
+由于$A$为正定H-矩阵,所以存在可逆矩阵$Q$,使得$A=Q^\HH Q$,于是有
 $$AB=Q^\HH Q B= Q^\HH QB Q^\HH (Q^\HH)^{-1} \sim QBQ^\HH$$
 
-由于$B$是H矩阵,故$QBQ^\HH$也是H矩阵,特征是为实数.
+由于$B$是H-矩阵,故$QBQ^\HH$也是H-矩阵,特征值为实数.
 
 $AB$与$QBQ^\HH$具有相同的特征值,故$AB$特征值为实数.
 
-同理,$BA$特征值为实数.
+同理可证$BA$的特征值为实数.
 \qed
 
 \newpage
 \section{}
-设$A$是半正定H矩阵,$A\ne 0$,$B$是正定H矩阵,试证:$|A+B| >|B|$
+设$A$是半正定H-矩阵,$A\ne 0$,$B$是正定H-矩阵,试证:$|A+B| >|B|$
 
 \answer
-由于$B$为正定H矩阵,所以存在可逆矩阵$Q$,使得$B=Q^\HH Q$,于是有
+由于$B$为正定H-矩阵,所以存在可逆矩阵$Q$,使得$B=Q^\HH Q$,于是有
 $$|A+B|= |A+Q^\HH Q| = |Q^\HH| |(Q^\HH)^{-1}AQ^{-1}+I| |Q| = |B| |(Q^\HH)^{-1}AQ^{-1}+I|$$
 
-其中矩阵$(Q^\HH)^{-1}AQ^{-1}$仍然是半正定H阵,具有$n$个非负特征值$\lambda_1,\lambda_2,\cdots,\lambda_n$,于是有
+其中矩阵$(Q^\HH)^{-1}AQ^{-1}$仍然是半正定H-矩阵,具有$n$个非负特征值$\lambda_1,\lambda_2,\cdots,\lambda_n$,于是有
 $$|(Q^\HH)^{-1}AQ^{-1}+I| > (1+\lambda_1)(1+\lambda_2)\cdots(1+\lambda_n)>1$$
 
 最终有
@@ -91,7 +91,7 @@ $|P^\HH BP|=|P^\HH||B||P|=1$
 
 \newpage
 \section{}
-设$\alpha_1=(1,0,i,0)^\TT$,$\alpha_2=(1,1,0,0)^\TT$,求向量$\gamma=(1,1,1,1)^\TT$在子空间$S=\mr{span}\{\alpha_1,\alpha_2\}$上的正交投影.
+设$\alpha_1=(1,0,i,0)^\TT$, $\alpha_2=(1,1,0,0)^\TT$,求向量$\gamma=(1,1,1,1)^\TT$在子空间$S=\mr{span}\{\alpha_1,\alpha_2\}$上的正交投影.
 
 \answer
 将$\alpha_1,\alpha_2$正交标准化为:
@@ -100,9 +100,9 @@ $\beta_1=\alpha_1$, $\eta_1=\dfrac{1}{\sqrt{2}}(1,0,i,0)^\TT$
 
 $\beta_2=\alpha_2-\dfrac{(\alpha_2,\beta_1)}{(\beta_1,\beta_1)}\beta_1= \dfrac{1}{2}(1,2,-i,0)^\TT$, $\eta_2=\dfrac{1}{\sqrt{6}}(1,2,-i,0)^\TT$
 
-令$U=[\eta_1,\eta_2]$,投影变换矩阵为$UU^\TT$
+令$U=[\eta_1,\eta_2]$,投影变换矩阵为$UU^{\HH}$
 
-向量$\gamma$在$S$的正交投影为$UU^\TT\gamma=(1-\dfrac{i}{3},1+\dfrac{i}{3},\dfrac{2}{3},0)^\TT$
+向量$\gamma$在$S$的正交投影为$UU^{\HH}\gamma=(1-\dfrac{i}{3},1+\dfrac{i}{3},\dfrac{2}{3},0)^\TT$
 \qed
 
 
